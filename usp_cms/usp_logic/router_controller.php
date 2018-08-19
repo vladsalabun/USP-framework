@@ -1,7 +1,7 @@
 <?php
     
     function checkPage() {
-        
+
         if ($_POST) {
             
         }

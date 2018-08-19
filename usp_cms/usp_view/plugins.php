@@ -36,7 +36,11 @@
             <div class="row padding10">
                 <div class="col-1">
                     <?php 
-                        echo readParam($plugin['pluginActivation'])
+                        if( readParam($plugin['pluginActivation']) == 'yes') {
+                            echo 'yes';
+                        } else {
+                            echo 'no';
+                        }
                     ?>
                 </div> 
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -56,7 +60,6 @@
             </div>         
         </div>         
 <?php       
-       //$status = explode(':',$value['pluginActivation']);
        }
 ?>
   

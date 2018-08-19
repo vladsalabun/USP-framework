@@ -5,7 +5,7 @@
     
     # CMS prefix:
     $usp = 'usp';                                               // <- Треба редагувати при встановленні
-    
+
     # CMS статус:
     $debug = 1;
     $showErrors = 0;

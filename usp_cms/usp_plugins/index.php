@@ -18,32 +18,44 @@
     function getAllPluginsInfo() {
         
         global $usp;
+        
         $pluginArray = array();
         $pagesArray = getFoldersArray($dir);
         
         foreach ($pagesArray as $pluginFolder) {
             
-            // TODO: зчитати файл і дізнатись параметри
-            $content = file($usp.'_plugins/'.$pluginFolder.'/index.php');
+            // Дізнаюсь чи файл index.php існує:
+            if (file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$usp.'_cms/usp_plugins/'.$pluginFolder.'/index.php')) {
+                // TODO: зчитати файл і дізнатись параметри
+                $content = file($_SERVER['DOCUMENT_ROOT'].'/'.$usp.'_cms/usp_plugins/'.$pluginFolder.'/index.php');
+                
+                $pluginArray[] = array(
+                    'pluginName' => $content[2],
+                    'pluginVersion' => $content[3],
+                    'pluginAuthor' => $content[4],
+                    'pluginDescription' => $content[5],
+                    'pluginActivation' => $content[6],
+                    'pluginFolder' => $pluginFolder,
+                );
+            }
             
-            $pluginArray[] = array(
-                'pluginName' => $content[2],
-                'pluginVersion' => $content[3],
-                'pluginAuthor' => $content[4],
-                'pluginDescription' => $content[5],
-                'pluginActivation' => $content[6],
-                'pluginFolder' => $pluginFolder,
-            );
         }
+        
         return ($pluginArray);
+        
     }
 
     function plugPlugins($pluginsArray) {
+        
+        global $usp;
+        
         foreach ($pluginsArray as $key => $value) {
             
             if (readParam($value['pluginActivation']) == 'yes') {
-                require_once $value['pluginFolder'].'/index.php';
+                require_once $_SERVER['DOCUMENT_ROOT'].'/'.$usp.'_cms/usp_plugins/'.$value['pluginFolder'].'/index.php';
+                
             }
+            
         }
     }
     
@@ -53,4 +65,3 @@
     // Включаю ті, які активовані:
     plugPlugins($pluginsArray);
 
-?>

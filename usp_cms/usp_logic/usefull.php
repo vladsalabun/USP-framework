@@ -27,9 +27,11 @@
 
     function getFoldersArray($dir) {
         
+        global $usp;
+        
         $array = array();
         // беру файли з директорії:
-        $files = scandir('usp_plugins');
+        $files = scandir($_SERVER['DOCUMENT_ROOT'].'/'.$usp.'_cms/usp_plugins');
 
         // проходжу по масиву і беру тільки php файли:
         foreach ($files as $key => $string) {
