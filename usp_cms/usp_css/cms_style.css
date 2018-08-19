@@ -1,0 +1,39 @@
+﻿/*
+
+    Стилі адмінки USP:
+
+*/
+@font-face {
+    font-family: Arsenal-Regular; 
+    src: url(../usp_fonts/Arsenal-Regular.otf);
+}
+@font-face {
+    font-family: Arsenal-Bold; 
+    src: url(../usp_fonts/Arsenal-Bold.otf);
+}
+
+body {
+    background-color: #F5F5E9;  
+    font-family: Arsenal-Regular;
+    font-size: 15px;
+} 
+h2 { 
+    font-family: Arsenal-Bold;
+}
+
+
+#welcome_form { 
+    padding: 150px 0px 250px 0px;
+}
+#middle{
+    color:#000; 
+    background-color: #F5F5E9; 
+    font-family:Arsenal-Regular; 
+}
+#footer{
+    padding:20px; 
+    background-color:#222222; 
+    color:#F5F5E9; 
+    text-align: center;
+}
+
