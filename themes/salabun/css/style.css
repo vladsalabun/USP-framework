@@ -1,2 +1,75 @@
-body { 
+@font-face { font-family: Arsenal-Bold; src: url(../fonts/Arsenal-Bold.otf); }
+@font-face { font-family: Arsenal-Regular; src: url(../fonts/Arsenal-Regular.otf); }
+
+body {
+    background-color: #fff; 
+    font-family: Arsenal-Regular; 
+    /*background-image:url(../img/light-green-small-sticks.png);*/ 
+} 
+
+h2 { 
+    font-family: Arsenal-Bold;
 }
+
+#header{ 
+    background-color:#292836; 
+    color:#FFF; font-size:35px; 
+    font-family: Arsenal-Bold; 
+    background-image:url(../img/vlad_salabun.png); 
+    background-repeat: no-repeat;
+    background-position: center top; 
+    height: 500px; 
+    border-bottom:1px solid #565656; 
+} 
+
+a { 
+    color: #306eba;
+}
+
+#middle{
+    color:#000; 
+    /*background-color:#F5F5E9; */
+    background-color: #FAFAFA;
+    font-family:Arsenal-Regular; 
+}
+#footer{
+    padding:20px; 
+    background-color:#222222; 
+    color:#F5F5E9; 
+}
+#top{ 
+    color:#939396; height:400px;
+}
+#vlad_salabun{text-align:center; }
+#designer{font-size:17px; text-align:center; font-style:italic; }
+#thanks{text-align:center; }
+#email{ text-align:center; }
+a.email { color: #FF8A3C; }
+#c {text-align:center; }
+#copyright{text-align:center; }
+#about_me{font-size:19px; padding:20px 0px 20px 0px; }
+#welcome_form { padding: 150px 0px 150px 0px; }
+
+
+
+input {
+    font-size: 17px;
+    color: #ccc;
+    padding: 5px;
+    font-family: Arsenal-Regular;
+}
+
+
+@media (max-width: 760px) { 
+    #top{ 
+        color:#939396; 
+        height:220px;
+    }
+    #header { 
+        height:270px; 
+        background-image: url(../img/IMG_2385.jpg); 
+        background-size: cover; 
+        opacity: 0.7;
+        font-size: 17px;
+    }
+} 

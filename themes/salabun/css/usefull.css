@@ -13,3 +13,10 @@
 .right {
     text-align: right;
 }
+.float-right { 
+    float: right !important; 
+}
+.padding0 {
+    padding: 0px !important;
+}
+

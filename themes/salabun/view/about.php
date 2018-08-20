@@ -1,8 +1,14 @@
+<div id="header" class="container-fluid">
+    <div id="top" class="container"></div>
+    <div id="vlad_salabun" class="">
+        Влад Салабун
+    </div>
+    <div id="designer" class="container">
+        Веб-програміст
+    </div>
+</div>
 <div id="middle" class="container-fluid">
     <div id="about_me" class="container">
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 center">
-
-        <p><img src="<?php echo $webSiteUrl; ?>themes/salabun/img/mission.png"></p>
         <h2>
             В чому моя місія?
         </h2>
@@ -10,9 +16,7 @@
         <p>
             Я пропоную нові ідеї та творчі рішення, бо хочу бачити довкола якісні послуги і товари, вироблені в Україні. Замовляючи у мене сайти, ви інвестуєте у здорове майбутнє країни.
         </p>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 center">
-        <p><img src="<?php echo $webSiteUrl; ?>themes/salabun/img/solve.png"></p>
+         
         <h2>
             Які проблеми я вирішую? В чому мій талант?
         </h2>
@@ -20,9 +24,7 @@
         <p>
             Я зроблю для вас сайт, який візьме на себе частину Вашої роботи. Створю таку цифрову форму для ваших послуг, якою люди захочуть користуватись. Допоможу Вам зробити такий сайт, щоб Ваші клієнти отримували задоволення від Вашого сервісу і хотіли придбати Ваші послуги.
         </p>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 center">
-        <p><img src="<?php echo $webSiteUrl; ?>themes/salabun/img/strategy.png"></p>
+         
         <h2>
             Яка моя стратегія виготовлення сайтів? Як я дію?
         </h2>
@@ -34,10 +36,6 @@
         <p>
             Якщо Вам подобається хід моїх думок та мої роботи, телефонуйте і замовляйте у мене розробку сайту.
         </p>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 center">
-
-        <p><img src="<?php echo $webSiteUrl; ?>themes/salabun/img/grafik.png"></p>
         
         <h2>
             Який у мене робочий графік?
@@ -50,6 +48,5 @@
         <p>
             Я обов'язково приділяю увагу кожному моєму відвідувачеві, бо я дуже люблю спілкуватись і допомагати людям. Проте написання програмного коду займає більшу частину моєї уваги. Тому, якщо у вас є питання, яке потребує більше, ніж 5 хвилин обговорення, будь ласка, надішліть свої запитання на мою електронну скриньку.
         </p>
-        </div>
     </div>
 </div>

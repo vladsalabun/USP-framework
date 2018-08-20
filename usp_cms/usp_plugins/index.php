@@ -9,6 +9,10 @@
         #   Description: ...
         #   Activation: yes
 
+        #   Menu: yes
+        #   url: usp_money
+        #   title: Money
+
         
         Ці дані беруться в CMS і плагін активується
         а строку "active: yes" можна в адмінці переписати на "active: no"
@@ -30,11 +34,14 @@
                 $content = file($_SERVER['DOCUMENT_ROOT'].'/'.$usp.'_cms/usp_plugins/'.$pluginFolder.'/index.php');
                 
                 $pluginArray[] = array(
-                    'pluginName' => $content[2],
-                    'pluginVersion' => $content[3],
-                    'pluginAuthor' => $content[4],
-                    'pluginDescription' => $content[5],
-                    'pluginActivation' => $content[6],
+                    'pluginName' => readParam($content[2]),
+                    'pluginVersion' => readParam($content[3]),
+                    'pluginAuthor' => readParam($content[4]),
+                    'pluginDescription' => readParam($content[5]),
+                    'pluginActivation' => readParam($content[6]),
+                    'pluginMenu' => readParam($content[8]),
+                    'pluginUrl' => readParam($content[9]),
+                    'pluginTitle' => readParam($content[10]),
                     'pluginFolder' => $pluginFolder,
                 );
             }
@@ -44,24 +51,18 @@
         return ($pluginArray);
         
     }
-
-    function plugPlugins($pluginsArray) {
-        
-        global $usp;
-        
-        foreach ($pluginsArray as $key => $value) {
-            
-            if (readParam($value['pluginActivation']) == 'yes') {
-                require_once $_SERVER['DOCUMENT_ROOT'].'/'.$usp.'_cms/usp_plugins/'.$value['pluginFolder'].'/index.php';
-                
-            }
-            
-        }
-    }
     
     // Беру список всіх плагінів:
     $pluginsArray = getAllPluginsInfo();
     
-    // Включаю ті, які активовані:
-    plugPlugins($pluginsArray);
+    // Включаю ті, які активовані: 
+    foreach ($pluginsArray as $key => $value) {
+        
+        if ($value['pluginActivation'] == 'yes') {
+            require_once $_SERVER['DOCUMENT_ROOT'].'/'.$usp.'_cms/usp_plugins/'.$value['pluginFolder'].'/index.php';
+        
+        }
+        
+    }    
+
 

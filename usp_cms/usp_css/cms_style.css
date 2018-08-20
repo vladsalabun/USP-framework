@@ -31,7 +31,8 @@ h2 {
     font-family:Arsenal-Regular; 
 }
 #footer{
-    padding:20px; 
+    padding:20px;
+    margin-top: 30px;    
     background-color:#222222; 
     color:#F5F5E9; 
     text-align: center;

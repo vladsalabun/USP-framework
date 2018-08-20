@@ -1,2 +1,12 @@
-body { 
+.navbar {
+    margin-bottom: 0px !important;
+}
+.headerlink {
+    color: #FDD947 !important;
+}
+.headerlink:hover {
+    background: #282930 !important;
+}
+.underline {
+    border-bottom: 1px solid #FDD947; 
 }
