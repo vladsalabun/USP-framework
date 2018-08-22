@@ -16,6 +16,9 @@
     # Підключаю логіку роботи з базою даних:
     require_once 'database/connection_to_database.php';
     
+    # Підключаю логіку роботи з базою даних:
+    require_once 'prepared_queries.php';   
+       
     # Підключаю корисні функції, які використовуються багато разів у різних місцях:
     require_once 'usefull.php';   
     

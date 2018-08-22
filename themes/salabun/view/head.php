@@ -33,7 +33,7 @@
                 <li><a href="<?php $usp; ?>" class="headerlink"><span class="underline">Робота</span></a></li>
                 <li><a href="<?php $usp; ?>" class="headerlink"><span class="underline">Я</span></a></li>
                 <li><a href="<?php $usp; ?>?page=contacts" class="headerlink"><span class="underline">Контакти</span></a></li>
-                <li><a href="<?php $usp; ?>?page=welcome" class="headerlink"><span class="underline">Вхід</span></a></li>
+                <li><a href="<?php $usp; ?>?page=gateway" class="headerlink"><span class="underline">Вхід</span></a></li>
                 <li><a href="<?php $usp; ?>/usp_cms/" class="headerlink"><span class="underline">Admin panel</span></a></li>
             </ul>
 		</div>
