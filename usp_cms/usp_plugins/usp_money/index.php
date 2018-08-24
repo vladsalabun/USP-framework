@@ -18,5 +18,6 @@
     */
 
     require 'functions.php';
+    require 'data.php';
     
     //var_dump($db);

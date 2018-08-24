@@ -19,6 +19,12 @@
         
     */
     
+    $pluginNameCall = $_GET['name'];
+    $pathToPluginView = $_SERVER['DOCUMENT_ROOT'].'/'.$usp.'_cms/usp_plugins/'.$pluginNameCall.'/plugin_view/';
+    
+    $pluginConfigUrl = $webSiteUrl.$usp.'_cms/?page=plugin&name='.$pluginNameCall;
+ 
+    
     function getAllPluginsInfo() {
         
         global $usp;
@@ -57,7 +63,7 @@
     
     // Включаю ті, які активовані: 
     foreach ($pluginsArray as $key => $value) {
-        
+
         if ($value['pluginActivation'] == 'yes') {
             require_once $_SERVER['DOCUMENT_ROOT'].'/'.$usp.'_cms/usp_plugins/'.$value['pluginFolder'].'/index.php';
         

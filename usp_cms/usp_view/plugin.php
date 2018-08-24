@@ -1,11 +1,11 @@
 <div class="container-fluid">
 <?php 
-    
+ /*   
     $pluginNameCall = $_GET['name'];
     $pathToPluginView = $_SERVER['DOCUMENT_ROOT'].'/'.$usp.'_cms/usp_plugins/'.$pluginNameCall.'/plugin_view/';
     
     $pluginConfigUrl = $webSiteUrl.$usp.'_cms/?page=plugin&name='.$pluginNameCall;
-    
+ */   
     // Перевіряю чи створена папка view в плагіні:
     if(is_dir($pathToPluginView)) {
     

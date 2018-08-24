@@ -10,7 +10,13 @@
                 'russian' => 'Плагины',
                 'poland' => '',
                 'english' => 'Plugins',
-            )
+            ),
+            401 => array(
+                'ukraine' => 'Документація',
+                'russian' => 'Документаця',
+                'poland' => '',
+                'english' => 'Documentation',
+            ) 
         ); 
 
         return $dialogs;
