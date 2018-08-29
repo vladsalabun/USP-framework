@@ -24,3 +24,12 @@
     
     # Підключаю логіку роутера:
     require_once 'router_controller.php';
+            
+    # Підключаю класи для допомоги в верстці:
+    require 'classes/class_form.php';
+    require 'classes/class_table.php';
+    require 'classes/class_highlight.php';
+    
+    $table = new tableGenerator;
+    $highlight = new highlight;
+    $form = new formGenerator;

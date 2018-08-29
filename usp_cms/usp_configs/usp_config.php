@@ -1,7 +1,7 @@
 <?php
 
     # CMS version:
-    $version = '1.0';
+    $version = '1.1';
     
     # CMS prefix:
     $usp = 'usp';                                               // <- Треба редагувати при встановленні

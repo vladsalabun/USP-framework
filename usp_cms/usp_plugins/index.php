@@ -65,6 +65,7 @@
     foreach ($pluginsArray as $key => $value) {
 
         if ($value['pluginActivation'] == 'yes') {
+
             require_once $_SERVER['DOCUMENT_ROOT'].'/'.$usp.'_cms/usp_plugins/'.$value['pluginFolder'].'/index.php';
         
         }

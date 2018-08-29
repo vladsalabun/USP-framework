@@ -28,35 +28,7 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
     // TODO: чи видно змінні з одного плагіну в іншому?
     
     require_once 'plugin_database.php';
-    
-    
-    if (isset($_POST['action'])) {
-        
-        // Дія updateConfig:
-        if ($_POST['action'] == 'updateConfig') {
-            
-            // update in db:
-            $array = array(
-                "UPDATE" => $moneytablesArray[3],
-                "SET" => array(
-                    "moneyUAH" => $_POST['uah'],
-                    "moneyUSD" => $_POST['usd'],
-                    "uahToUsd" => $_POST['uahtousd'],
-                    "usdToUah" => $_POST['usdtouah'],
-                )
-            );
-                    
-            $db->update($array); 
-            
-            $link = $pluginConfigUrl."&plugin_config=money_config";
-            
-            header ("Location: $link");
-            exit();
-            
-        }
-    }
-    
-    
+
     $moneyCategory = array (
 		0 => 'невідомо', 
 		1 => 'їжа', 
@@ -86,7 +58,111 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
 		'12' => 'гру'
 	);
     
+    
+    
+    // Якщо чітко вказано, що це запит до плагіну:
+    if ($_POST['actionTo'] == 'plugin') {
+        
+        // якщо чітко вказано, що це запит до цього плагіну:
+        if ($_POST['pluginFolder'] == 'usp_money') {
+            
+            // тільки тоді виконую якусь дію:
+            if (isset($_POST['action'])) {
+                
+                // Дія updateConfig:
+                if ($_POST['action'] == 'updateConfig') {
+                    
+                    // update in db:
+                    $array = array(
+                        "UPDATE" => $moneytablesArray[3],
+                        "SET" => array(
+                            "moneyUAH" => $_POST['uah'],
+                            "moneyUSD" => $_POST['usd'],
+                            "uahToUsd" => $_POST['uahtousd'],
+                            "usdToUah" => $_POST['usdtouah'],
+                        )
+                    );
+                            
+                    $db->update($array); 
+                    
+                    $link = $pluginConfigUrl."&plugin_config=money_config";
+                    
+                    header ("Location: $link");
+                    exit();
+                    
+                } // <-- Дія updateConfig
+                
+                // Дія changeUAH: 
+                else if ($_POST['action'] == 'changeUAH') {
+                    
+                    // Дізнаюсь параметри готівки:
+                    $array = array(
+                        "SELECT" => "*",
+                        "FROM" => $moneytablesArray[3]
+                    );
+                    $moneyParams = $db->select($array, null); 
+                    
+                    // Вставляю в базу нову витратну операцію:
+                    $array = array(
+                        "INSERT INTO" => $moneytablesArray[0],
+                        "COLUMNS" => array(
+                            "money" => $_POST['sum'],
+                            "operation" => $_POST['operation'][0],
+                            "category" => $_POST['category'][0],
+                            "date" => date('Y-m-d H:i:s'),
+                        )
+                    );
+                    $db->insert($array);
+                    
+                    // Витрати:
+                    if ($_POST['operation'][0] == 1) {
+
+                        // Оновляю готівку у базі даних:
+                        $newMoney = $moneyParams[0]['moneyUAH'] - $_POST['sum'];
+                        
+                        $array = array(
+                            "UPDATE" => $moneytablesArray[3],
+                            "SET" => array(
+                                "moneyUAH" => $newMoney,
+                            )
+                        );
+                                
+                        $db->update($array); 
+                        
+                        
+               
+                    } else if ($_POST['operation'][0] == 2) {
+                        // прибуток:
+
+                        // Оновляю готівку у базі даних:
+                        $newMoney = $moneyParams[0]['moneyUAH'] + $_POST['sum'];
+                        
+                        $array = array(
+                            "UPDATE" => $moneytablesArray[3],
+                            "SET" => array(
+                                "moneyUAH" => $newMoney,
+                            )
+                        );
+                                
+                        $db->update($array); 
+
+                    }
+                    
+                    // TODO: Редірект на список операцій в цьому місяці:
+                    $link = $pluginConfigUrl."&plugin_config=money_config";
+                    header ("Location: $link");
+                    exit();
+                    
+                } // <-- Дія changeUAH: 
+                
+            } // <-- кінець виконання дій
+        } // <-- кінець перевірки папки плагіну
+    } // <-- кінець перевірки запиту до плагіну
+    
+    
+    
     /*
+        
         $array = array(
             "INSERT INTO" => 'usp_vladMoneyCategory',
             "COLUMNS" => array(
@@ -96,6 +172,6 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
         );
         
         $db->insert($array);
-*/
-
+        
+    */
 

@@ -1,5 +1,13 @@
 <?php
      
+    # Доступні мови:
+    $allowedLanguages = array(
+        'ua' => 'ukraine',
+        'ru' => 'russian',
+        'pl' => 'poland',
+        'en' => 'english'
+    );
+    
     # Мова CMS по замовчуванню:
     $language = 'ukraine';                       // <- Треба редагувати при встановленні
          

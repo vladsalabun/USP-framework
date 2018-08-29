@@ -8,29 +8,29 @@
     );
     $moneyParams = $db->select($array, null); 
 
+
 ?>
 
 <div class="containter">
     <p>
-    <form action="" method="POST">
-    <input type="hidden" name="action" value="updateConfig">
-        <div class="form-group">
-            <label>UAH:</label>
-            <input type="text" name="uah" class="form-control" value="<?php echo $moneyParams[0]['moneyUAH']; ?>">
-        </div>
-        <div class="form-group">
-            <label>USD:</label>
-            <input type="text" name="usd" class="form-control" value="<?php echo $moneyParams[0]['moneyUSD']; ?>">
-        </div> 
-        <div class="form-group">
-            <label>uahToUsd:</label>
-            <input type="text" name="uahtousd" class="form-control" value="<?php echo $moneyParams[0]['uahToUsd']; ?>">
-        </div>
-        <div class="form-group">
-            <label>usdToUah:</label>
-            <input type="text" name="usdtouah" class="form-control" value="<?php echo $moneyParams[0]['usdToUah']; ?>">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+<?php 
+         echo 
+         $form->formStart()
+        .$form->hidden(array('name'=> 'actionTo','value'=> 'plugin'))
+        .$form->hidden(array('name'=> 'pluginFolder','value'=> 'usp_money'))
+        .$form->hidden(array('name'=> 'action','value'=> 'updateConfig'))
+        
+        .p('UAH:')
+        .p($form->text(array('name'=> 'uah','value'=> $moneyParams[0]['moneyUAH'])))
+        .p('USD:')
+        .p($form->text(array('name'=> 'usd','value'=> $moneyParams[0]['moneyUSD'])))
+        .p('uahToUsd:')
+        .p($form->text(array('name'=> 'uahtousd','value'=> $moneyParams[0]['uahToUsd'])))
+        .p('usdToUah:')
+        .p($form->text(array('name'=> 'usdtouah','value'=> $moneyParams[0]['usdToUah'])))
+        .p($form->submit(array('name'=> 'submit','value'=> 'Update Money','class'=>'btn btn-primary')))
+        
+        .$form->formEnd();
+?>
     </p>
 </div>

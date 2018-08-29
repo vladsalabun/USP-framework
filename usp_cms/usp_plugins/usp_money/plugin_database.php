@@ -53,5 +53,7 @@
     );
    
     // Create tables:
-    $db->createAllTables($uspMoneyTables);  
+    if($reinstallPlugin == 1 ) {
+        $db->createAllTables($uspMoneyTables);  
+    }
     

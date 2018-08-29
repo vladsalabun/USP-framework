@@ -28,6 +28,12 @@
 .margin30 {
     margin: 30px 0 30px 0;
 }
+.margin40 {
+    margin: 40px 0 40px 0;
+}
+.margin50 {
+    margin: 50px 0 50px 0;
+}
 .margin60 {
     margin: 60px 0 60px 0;
 }
@@ -44,8 +50,17 @@
 .padding30 {
     padding: 30px 0 30px 0;
 }
+.padding40 {
+    padding: 40px 0 40px 0;
+}
+.padding50 {
+    padding: 50px 0 50px 0;
+}
 .padding60 {
     padding: 60px 0 60px 0;
+}
+.padding70 {
+    padding: 70px 0 70px 0;
 }
 .padding120 {
     padding: 120px 0 120px 0;

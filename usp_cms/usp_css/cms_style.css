@@ -16,6 +16,7 @@ body {
     background-color: #F5F5E9;  
     font-family: Arsenal-Regular;
     font-size: 15px;
+    
 } 
 h2 { 
     font-family: Arsenal-Bold;
@@ -37,4 +38,10 @@ h2 {
     color:#F5F5E9; 
     text-align: center;
 }
-
+pre {
+    background-color:#222222;
+    color: #97979e;
+    letter-spacing: 1px;
+    font-size: 12px;
+    padding: 10px;
+}

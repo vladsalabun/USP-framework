@@ -57,3 +57,55 @@
         $status = explode(':',$sting);
         return trim($status[1]);
     }
+    
+    function p($string,$class = null) {
+        if ($class != null ) {
+            $class = ' class="'.$class.'"';
+        }
+        return '<p'.$class.'>'.$string.'</p>';
+    }
+    
+    function modalWindow($modalId,$modalTitle,$modalBody,$large = null,$center = null) 
+    { 
+        
+        if ($large != null) {
+            $large = 'modal-lg';
+        }
+        if ($center != null) {
+            $center = 'modal-dialog-centered';
+        }
+        
+        return   '
+        <!-- Modal -->
+            <div class="modal fade" id="'.$modalId.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog '.$center.' '.$large.'" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="modal-title" id="exampleModalLongTitle">'.$modalTitle.'</p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">'.$modalBody.'</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+            </div>
+        <!-- /Modal -->';
+    }
+    
+    function modalLink($array = null, $anchor = null, $class = null)
+    {
+        if (is_array($array)) {
+            return '<a href="" class="'.$class.'" data-toggle="modal" data-target="#'.$array['window'].'">'.$array['anchor'].'</a>';
+        } else {
+            if(isset($array) and isset($anchor)) {
+                return '<a href="" class="'.$class.'" data-toggle="modal" data-target="#'.$array.'">'.$anchor.'</a>';
+            } else {
+                return 'Error! Bad modal link param!';
+            }
+        }
+    }
+    
