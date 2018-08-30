@@ -5,6 +5,7 @@
     $array = array(
         "SELECT" => "*",
         "FROM" => $moneytablesArray[0],
+        "WHERE" => "moderation = 0",
         "ORDER" => "ID",
         "SORT" => "DESC"
     );
@@ -75,11 +76,21 @@
  
     }
     
-    //print_r($yearStat);
-    //print_r($yearStat[2018]['08']);
     
-    
-    if(!isset($_GET['month'])) {
-        require_once 'statByYear.php';
+    if(isset($_GET['month'])) {
+        // статистика по місяцю:
+        require_once 'statByMonth.php';
+        
+    } else if(isset($_GET['category'])) {
+        // статистика по категорії:
+        require_once 'statByCategory.php';
+        
+    } else if(isset($_GET['show'])) {
+        // статистика по категорії:
+        require_once $_GET['show'].'.php';
+        
+    } else {
+        // статистика по роках:
+        require_once 'statByYear.php';   
     }
 

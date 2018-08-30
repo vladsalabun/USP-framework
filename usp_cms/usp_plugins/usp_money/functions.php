@@ -102,12 +102,20 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
                     );
                     $moneyParams = $db->select($array, null); 
                     
+                    // якщо це прибуток:
+                    if ($_POST['category'][0] == 50) {
+                        $operationType = 2;
+                    } else {
+                        // якщо видатки:
+                        $operationType = 1;
+                    }
+                    
                     // Вставляю в базу нову витратну операцію:
                     $array = array(
                         "INSERT INTO" => $moneytablesArray[0],
                         "COLUMNS" => array(
                             "money" => $_POST['sum'],
-                            "operation" => $_POST['operation'][0],
+                            "operation" => $operationType,
                             "category" => $_POST['category'][0],
                             "date" => date('Y-m-d H:i:s'),
                         )
@@ -115,7 +123,7 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
                     $db->insert($array);
                     
                     // Витрати:
-                    if ($_POST['operation'][0] == 1) {
+                    if ($operationType == 1) {
 
                         // Оновляю готівку у базі даних:
                         $newMoney = $moneyParams[0]['moneyUAH'] - $_POST['sum'];
@@ -131,7 +139,7 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
                         
                         
                
-                    } else if ($_POST['operation'][0] == 2) {
+                    } else if ($operationType == 2) {
                         // прибуток:
 
                         // Оновляю готівку у базі даних:
@@ -148,12 +156,184 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
 
                     }
                     
-                    // TODO: Редірект на список операцій в цьому місяці:
-                    $link = $pluginConfigUrl."&plugin_config=money_config";
+                    // Редірект на список операцій в цьому місяці:
+                    $link = $pluginConfigUrl."&year=".date('Y')."&month=".date('m');
                     header ("Location: $link");
                     exit();
                     
                 } // <-- Дія changeUAH: 
+                
+                // Дія changeUSD: 
+                else if ($_POST['action'] == 'changeUSD') {
+                    
+                    // Дізнаюсь параметри готівки:
+                    $array = array(
+                        "SELECT" => "*",
+                        "FROM" => $moneytablesArray[3]
+                    );
+                    $moneyParams = $db->select($array, null); 
+                    
+                    // якщо це прибуток:
+                    if ($_POST['category'][0] == 50) {
+                        $operationType = 2;
+                    } else {
+                        // якщо видатки:
+                        $operationType = 1;
+                    }
+                    
+                    // Вставляю в базу нову витратну операцію:
+                    $array = array(
+                        "INSERT INTO" => $moneytablesArray[1],
+                        "COLUMNS" => array(
+                            "money" => $_POST['sum'],
+                            "operation" => $operationType,
+                            "category" => $_POST['category'][0],
+                            "date" => date('Y-m-d H:i:s'),
+                        )
+                    );
+                    $db->insert($array);
+                    
+                    // Витрати:
+                    if ($operationType == 1) {
+
+                        // Оновляю USD у базі даних:
+                        $newMoney = $moneyParams[0]['moneyUSD'] - $_POST['sum'];
+                        
+                        $array = array(
+                            "UPDATE" => $moneytablesArray[3],
+                            "SET" => array(
+                                "moneyUSD" => $newMoney,
+                            )
+                        );
+                                
+                        $db->update($array); 
+                        
+                        
+               
+                    } else if ($operationType == 2) {
+                        // прибуток:
+
+                        // Оновляю USD у базі даних:
+                        $newMoney = $moneyParams[0]['moneyUSD'] + $_POST['sum'];
+                        
+                        $array = array(
+                            "UPDATE" => $moneytablesArray[3],
+                            "SET" => array(
+                                "moneyUSD" => $newMoney,
+                            )
+                        );
+                                
+                        $db->update($array); 
+
+                    }
+                    
+                    // Редірект на список операцій в цьому місяці:
+                    $link = $pluginConfigUrl."&show=usd";
+                    header ("Location: $link");
+                    exit();
+                    
+                } // <-- Дія changeUSD: 
+                
+                
+                
+                // Дія editUAHoperation: 
+                else if ($_POST['action'] == 'editUAHoperation') {
+                    // оновляю операцію:
+                    if (isset($_POST['update'])) {
+                        
+                        // якщо це прибуток:
+                        if ($_POST['category'][0] == 50) {
+                            $operationType = 2;
+                        } else {
+                            // якщо видатки:
+                            $operationType = 1;
+                        }
+                        
+                        $array = array(
+                            "UPDATE" => $moneytablesArray[0],
+                            "SET" => array(
+                                "money" => $_POST['money'],
+                                "category" => $_POST['category'][0],
+                                "operation" => $operationType,
+                            ),
+                            "WHERE" => array(
+                                "ID" => $_POST['ID']
+                            )
+                        );
+                        
+                        $db->update($array); 
+                        
+                    } else if (isset($_POST['delete'])) {
+                        // видаляю операцію:
+                        $array = array(
+                            "UPDATE" => $moneytablesArray[0],
+                            "SET" => array(
+                                "moderation" => 1,
+                            ),
+                            "WHERE" => array(
+                                "ID" => $_POST['ID']
+                            )
+                        );
+                        
+                        $db->update($array); 
+                    }
+                    
+                    // Редірект на список операцій в цьому місяці:
+                    $link = $pluginConfigUrl."&year=".$_POST['year']."&month=".$_POST['month'];
+                    header ("Location: $link");
+                    exit();
+                    
+                } // <-- Дія editUAHoperation: 
+
+                // Дія editUSDoperation: 
+                else if ($_POST['action'] == 'editUSDoperation') {
+                    // оновляю операцію:
+                    if (isset($_POST['update'])) {
+                        
+                        // якщо це прибуток:
+                        if ($_POST['category'][0] == 50) {
+                            $operationType = 2;
+                        } else {
+                            // якщо видатки:
+                            $operationType = 1;
+                        }
+                        
+                        $array = array(
+                            "UPDATE" => $moneytablesArray[1],
+                            "SET" => array(
+                                "money" => $_POST['money'],
+                                "category" => $_POST['category'][0],
+                                "operation" => $operationType,
+                            ),
+                            "WHERE" => array(
+                                "ID" => $_POST['ID']
+                            )
+                        );
+                        
+                        $db->update($array); 
+                        
+                    } else if (isset($_POST['delete'])) {
+                        // видаляю операцію:
+                        $array = array(
+                            "UPDATE" => $moneytablesArray[1],
+                            "SET" => array(
+                                "moderation" => 1,
+                            ),
+                            "WHERE" => array(
+                                "ID" => $_POST['ID']
+                            )
+                        );
+                        
+                        $db->update($array); 
+                    }
+                    
+                    // Редірект на список операцій в цьому місяці:
+                    $link = $pluginConfigUrl."&show=usd";
+                    header ("Location: $link");
+                    exit();
+                    
+                } // <-- Дія editUSDoperation: 
+                
                 
             } // <-- кінець виконання дій
         } // <-- кінець перевірки папки плагіну

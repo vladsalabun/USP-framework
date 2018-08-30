@@ -23,6 +23,7 @@
     $pathToPluginView = $_SERVER['DOCUMENT_ROOT'].'/'.$usp.'_cms/usp_plugins/'.$pluginNameCall.'/plugin_view/';
     
     $pluginConfigUrl = $webSiteUrl.$usp.'_cms/?page=plugin&name='.$pluginNameCall;
+    $pluginWebURL = $webSiteUrl.$usp.'_cms/usp_plugins/';
  
     
     function getAllPluginsInfo() {

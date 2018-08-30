@@ -74,12 +74,17 @@
             return '<input name="'.$name.'" type="file">';
         } 
 
-        public function select($array = null)
+        public function select($array = null, $selected = null)
         {
             $sting = '<select name="'.$array['name'].'[]">';
             
             foreach ($array['value'] as $key => $value) {
-                $sting .= '<option value="'.$key.'">'.$value.'</option>';
+                if ($key == $selected) {
+                    $select = ' selected ';
+                } else {
+                    $select = '';
+                }
+                $sting .= '<option value="'.$key.'"'.$select.'>'.$value.'</option>';
             }
             
             $sting .= '</select>';
