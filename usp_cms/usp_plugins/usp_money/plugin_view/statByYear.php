@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <h2>По місяцях:</h2>
-            <table class="table">
+            <table class="table table-striped table-mini">
             <tbody>
             <?php
                 
@@ -12,9 +12,9 @@
                         } else {
                             echo
                             '<tr>
-                              <th scope="row">'.$year.' '. $monthNames[$month].'</th>
-                              <td>'.$monthStat['profit'].' ₴</td>
-                              <td>'.$monthStat['expenses'].' ₴</td>
+                              <th scope="row"><a href="">'.$year.' '. $monthNames[$month].'</a></th>
+                              <td><span class="green">'.$monthStat['profit'].' ₴</span></td>
+                              <td><span class="red">-'.$monthStat['expenses'].' ₴</span></td>
                             </tr>';
                         }
                     }
@@ -26,25 +26,25 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <h2>По роках:</h2>
-            <table class="table">
+            <table class="table table-striped table-mini">
             <tbody>
             <?php
                 foreach ($yearStat as $year => $yearArray) {
                     echo
                     '<tr>
-                      <th scope="row">'.$year.'</th>
-                      <td>'.$yearArray['profit'].' ₴</td>
-                      <td>'.$yearArray['expenses'].' ₴</td>
+                      <th scope="row">'.$year.' рік:</th>
+                      <td><span class="green">'.$yearArray['profit'].' ₴</span></td>
+                      <td><span class="red">-'.$yearArray['expenses'].' ₴</span></td>
                     </tr>';
                     echo
                     '<tr>
-                      <td colspan="3"><h3 class="center">'.$year.' в категоріях:</h3>';
+                      <td colspan="3">';
                       foreach ($yearArray['categories'] as $catID => $catValue) {
                           echo '
                              <ul class="list-group">
                               <li class="list-group-item d-flex justify-content-between align-items-center">
-                                '.$allCategory[$catID].'
-                                <span class="badge badge-primary badge-pill">'.$catValue.' ₴</span>
+                                <span>'.$allCategory[$catID].'</span>
+                                <span>'.$catValue.' ₴</span>
                               </li>
                             </ul>';
                       }
@@ -54,26 +54,7 @@
                 }
             ?>
             </tbody>
-            </table>  
-            <h2>...</h2>
-            <table class="table">
-            <tbody>
-            <?php
-                /*
-                foreach ($yearStat as $year => $yearArray) {
-                    foreach ($yearArray['categories'] as $year => $yearArray) {
-                        echo
-                        '<tr>
-                          <th scope="row">'.$year.'</th>
-                          <td>'.$yearArray['profit'].' ₴</td>
-                          <td>'.$yearArray['expenses'].' ₴</td>
-                        </tr>';
-                    }
-                }
-                */
-            ?>
-            </tbody>
-            </table>            
+            </table>           
         </div>
     </div>
 </div>

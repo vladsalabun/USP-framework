@@ -16,6 +16,7 @@ body {
     background-color: #F5F5E9;  
     font-family: Arsenal-Regular;
     font-size: 15px;
+    letter-spacing: 1px; 
     
 } 
 h2 { 
@@ -44,4 +45,12 @@ pre {
     letter-spacing: 1px;
     font-size: 12px;
     padding: 10px;
+}
+
+
+.list-group-item {
+    padding: 1px 5px 1px 5px !important;
+    border: none !important;
+    margin: 0px !important;
+    background: none;
 }

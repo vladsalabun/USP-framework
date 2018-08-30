@@ -76,7 +76,7 @@
     }
     
     //print_r($yearStat);
-    print_r($yearStat[2018]['08']);
+    //print_r($yearStat[2018]['08']);
     
     
     if(!isset($_GET['month'])) {

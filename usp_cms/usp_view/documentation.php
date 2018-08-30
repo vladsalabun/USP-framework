@@ -50,13 +50,18 @@
     <br> 
     <h3>Bootstrap:</h3>
     <b>.container-fluid</b> - контейнер на ширину екрану<br>  
-    <p>Покраска фона:
+    <b>.table-striped table-mini</b> - компктний стиль для таблиць<br>  
+    <p>Покраска фона:<br>
         <b>.success</b> - зелений<br> 
         <b>.danger</b> - червоний<br> 
         <b>.info</b> - синій<br> 
         <b>.warning</b> - жовтий<br> 
         <b>.active</b> - сірий<br> 
     </p>
+    <p>Покраска тексту:<br>
+        <b>.red</b> - зелений<br> 
+        <b>.green</b> - червоний<br> 
+    </p>   
     <b><?php echo htmlspecialchars('<mark>...</mark>'); ?></b> - <mark>виділення тексту</mark><br>  
     <b><?php echo htmlspecialchars('<abbr>...</abbr>'); ?></b> - <abbr title="Cascading stylesheet">CSS</abbr>
     <p><b><?php echo htmlspecialchars('<blockquote>...</blockquote>'); ?></b> - <blockquote>Бог умер.<footer>Ф.Ницше</footer></blockquote></p>

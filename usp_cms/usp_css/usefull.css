@@ -48,3 +48,9 @@
 .border-bottom {
     border-bottom: 1px solid #000;
 }
+.red {
+    color: #bb1e2e;
+}
+.green {
+    color: #3CB371;
+}

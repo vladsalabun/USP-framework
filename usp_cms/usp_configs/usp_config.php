@@ -24,6 +24,7 @@
         $webSiteUrl.'usp_cms/usp_css/modal_style.css',
         $webSiteUrl.'usp_cms/usp_css/cms_style.css',
         $webSiteUrl.'usp_cms/usp_css/links_style.css',
+        $webSiteUrl.'usp_cms/usp_css/tables_style.css',
     );
     $cmsImg = $webSiteUrl.'usp_cms/usp_img/';
     $cmsJsArray = array(
