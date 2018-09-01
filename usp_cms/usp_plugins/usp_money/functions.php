@@ -69,6 +69,8 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
             // тільки тоді виконую якусь дію:
             if (isset($_POST['action'])) {
                 
+                ##############################################
+                
                 // Дія updateConfig:
                 if ($_POST['action'] == 'updateConfig') {
                     
@@ -91,6 +93,8 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
                     exit();
                     
                 } // <-- Дія updateConfig
+                
+                ##############################################
                 
                 // Дія changeUAH: 
                 else if ($_POST['action'] == 'changeUAH') {
@@ -163,6 +167,8 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
                     
                 } // <-- Дія changeUAH: 
                 
+                ##############################################
+                
                 // Дія changeUSD: 
                 else if ($_POST['action'] == 'changeUSD') {
                     
@@ -234,7 +240,7 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
                     
                 } // <-- Дія changeUSD: 
                 
-                
+                ##############################################
                 
                 // Дія editUAHoperation: 
                 else if ($_POST['action'] == 'editUAHoperation') {
@@ -285,6 +291,8 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
                     
                 } // <-- Дія editUAHoperation: 
 
+                ##############################################
+                
                 // Дія editUSDoperation: 
                 else if ($_POST['action'] == 'editUSDoperation') {
                     // оновляю операцію:
@@ -327,12 +335,79 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
                         $db->update($array); 
                     }
                     
-                    // Редірект на список операцій в цьому місяці:
+                    // Редірект:
                     $link = $pluginConfigUrl."&show=usd";
                     header ("Location: $link");
                     exit();
                     
                 } // <-- Дія editUSDoperation: 
+                
+                ##############################################
+                
+                // Дія editWish: 
+                else if ($_POST['action'] == 'editWish') {
+                    // оновляю операцію:
+                    if (isset($_POST['update'])) {
+                        // оновляю інформацію про бажання:
+                        $array = array(
+                            "UPDATE" => $moneytablesArray[4],
+                            "SET" => array(
+                                "wishName" => $_POST['wishName'],
+                                "wishCategory" => $_POST['category'][0],
+                                "wishPrice" => $_POST['wishPrice'],
+                                "done" => $_POST['done'][0],
+                            ),
+                            "WHERE" => array(
+                                "ID" => $_POST['ID']
+                            )
+                        );
+                        
+                        $db->update($array); 
+                        
+                    } else if (isset($_POST['delete'])) {
+                        // видаляю операцію:
+                        $array = array(
+                            "UPDATE" => $moneytablesArray[4],
+                            "SET" => array(
+                                "done" => 2,
+                            ),
+                            "WHERE" => array(
+                                "ID" => $_POST['ID']
+                            )
+                        );
+                        
+                        $db->update($array); 
+                    }
+                    
+                    // Редірект:
+                    $link = $pluginConfigUrl."&show=wishlist";
+                    header ("Location: $link");
+                    exit();
+                    
+                } // <-- Дія editWish:
+                
+                ##############################################
+                
+                // Дія eaddWish: 
+                else if ($_POST['action'] == 'addWish') {
+ 
+                    // Вставляю в базу нове бажання:
+                    $array = array(
+                        "INSERT INTO" => $moneytablesArray[4],
+                        "COLUMNS" => array(
+                            "wishName" => $_POST['wishName'],
+                            "wishCategory" => $_POST['category'][0],
+                            "wishPrice" => $_POST['wishPrice'],
+                        )
+                    );
+                    $db->insert($array);
+                    
+                    // Редірект:
+                    $link = $pluginConfigUrl."&show=wishlist";
+                    header ("Location: $link");
+                    exit();
+                    
+                } // <-- Дія addWish:
                 
                 
             } // <-- кінець виконання дій
@@ -340,18 +415,3 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
     } // <-- кінець перевірки запиту до плагіну
     
     
-    
-    /*
-        
-        $array = array(
-            "INSERT INTO" => 'usp_vladMoneyCategory',
-            "COLUMNS" => array(
-                "categoryID" => $key,
-                "categoryName" => $value
-            )
-        );
-        
-        $db->insert($array);
-        
-    */
-
