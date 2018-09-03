@@ -1,96 +1,31 @@
-<?php 
+<?php
+  require_once 'header.php';
+?>
+<div class="row margin20">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center">
 
-    require_once 'top.php';      
+<?php
 
-    $array = array(
-        "SELECT" => "*",
-        "FROM" => $moneytablesArray[0],
-        "WHERE" => "moderation = 0",
-        "ORDER" => "ID",
-        "SORT" => "DESC"
-    );
-    $allOperations = $db->select($array); 
+    $questionsArray = getQuestionsToCustomer('ukraine');
 
-    $array = array(
-        "SELECT" => "*",
-        "FROM" => $moneytablesArray[2],
-        "WHERE" => "moderation = 0"
-    );
-    $allCategoryArray = $db->select($array);
-    
-    
-    
-    $allCategory = array();
-    
-    foreach ($allCategoryArray as $key => $value) {
-        $allCategory[$value['categoryID']] = $value['categoryName'];
+    $questionsID = 0;
+    $questionsArray[$questionsID];
+
+    echo '<p>Питання '.$questionsID.' з '.count($questionsArray).'</p>';
+    echo '<h2>'.$questionsArray[$questionsID]['question'].'</h2>';
+    echo '<h3>'.$questionsArray[$questionsID]['hint'].'</h3>';
+    foreach ($questionsArray[$questionsID]['form'] as $formValue) {
+      echo '<p>'.$formValue.'</p>';
     }
-        
-    # Сумарна статистика
-    $yearStat = array();
-
-    foreach ($allOperations as $opID => $opreationArray) {
-        
-        //print_r($opreationArray);
-        $dateparts = explode('-',$opreationArray['date']);
-        
-        // якщо статистика по року ще не була записана в масив, то створюю:
-        if(!isset($yearStat[$dateparts[0]])) {
-            $yearStat[$dateparts[0]] = array(
-                'profit' => 0,
-                'expenses' => 0,
-                'categories' => $allCategory
-            );
-            foreach ($yearStat[$dateparts[0]]['categories'] as $catID => $catValue) {
-                $yearStat[$dateparts[0]]['categories'][$catID] = 0;
-            }
-        }
-        // якщо вже є цей рік у масиві, то додаю нові значення:
-        if($opreationArray['operation'] == 2) {
-            $yearStat[$dateparts[0]]['profit'] += $opreationArray['money'];
-            $yearStat[$dateparts[0]]['categories'][$opreationArray['category']] += $opreationArray['money'];
-        } else if($opreationArray['operation'] == 1) {
-            $yearStat[$dateparts[0]]['expenses'] += $opreationArray['money'];
-            $yearStat[$dateparts[0]]['categories'][$opreationArray['category']] += $opreationArray['money'];
-        }
-        
-        // якщо статистика по місяцях ще не була записана в масив, то створюю:
-        if(!isset($yearStat[$dateparts[0]][$dateparts[1]])) {
-            $yearStat[$dateparts[0]][$dateparts[1]] = array(
-                'profit' => 0,
-                'expenses' => 0,
-                'categories' => $allCategory
-            );
-            foreach ($yearStat[$dateparts[0]][$dateparts[1]]['categories'] as $catID => $catValue) {
-                $yearStat[$dateparts[0]][$dateparts[1]]['categories'][$catID] = 0;
-            }
-        }
-        // якщо вже є цей місяць у масиві, то додаю нові значення:
-        if($opreationArray['operation'] == 2) {
-            $yearStat[$dateparts[0]][$dateparts[1]]['profit'] += $opreationArray['money'];
-            $yearStat[$dateparts[0]][$dateparts[1]]['categories'][$opreationArray['category']] += $opreationArray['money'];
-        } else if($opreationArray['operation'] == 1) {
-            $yearStat[$dateparts[0]][$dateparts[1]]['expenses'] += $opreationArray['money'];
-            $yearStat[$dateparts[0]][$dateparts[1]]['categories'][$opreationArray['category']] += $opreationArray['money'];
-        }
- 
+/*
+    echo '<ol>';
+    foreach ($questionsArray as $questionID => $questionArray) {
+        echo '<li>'.$questionArray['question'].'</li>';
     }
-    
-    
-    if(isset($_GET['month'])) {
-        // статистика по місяцю:
-        require_once 'statByMonth.php';
-        
-    } else if(isset($_GET['category'])) {
-        // статистика по категорії:
-        require_once 'statByCategory.php';
-        
-    } else if(isset($_GET['show'])) {
-        // статистика по категорії:
-        require_once $_GET['show'].'.php';
-        
-    } else {
-        // статистика по роках:
-        require_once 'statByYear.php';   
-    }
+    echo '</ol>';
+*/
+?>
 
+
+</div>
+</div>

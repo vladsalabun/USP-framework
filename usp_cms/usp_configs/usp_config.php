@@ -2,7 +2,7 @@
 
     # CMS version:
     $version = '1.1';
-    
+
     # CMS prefix:
     $usp = 'usp';                                               // <- Треба редагувати при встановленні
 
@@ -13,7 +13,7 @@
     # Посилання:
     $webSiteUrl = 'http://usp.com.yy/';                         // <- Треба редагувати при встановленні
     $loginPage = $webSiteUrl.'gateway/';
-    
+
     # Модулі:
     $cmsStylesArray = array(
         // TODO: підключай автоматично з папки:
@@ -25,6 +25,7 @@
         $webSiteUrl.'usp_cms/usp_css/cms_style.css',
         $webSiteUrl.'usp_cms/usp_css/links_style.css',
         $webSiteUrl.'usp_cms/usp_css/tables_style.css',
+        $webSiteUrl.'usp_cms/usp_css/forms_style.css',
     );
     $cmsImg = $webSiteUrl.'usp_cms/usp_img/';
     $cmsJsArray = array(
@@ -34,11 +35,11 @@
         $webSiteUrl.'usp_cms/usp_js/fade.js',
         $webSiteUrl.'usp_cms/usp_js/bootstrap.js'
     );
-    
-    
+
+
     $cmsFonts = $webSiteUrl.'usp_cms/usp_fonts/';
-    
-    
+
+
     # Логін та пароль адміна, які встановлюються по замовчуванню:
     $defaultAdmin = 'usp';
     $defaultPassword = 'marketing';
