@@ -33,22 +33,21 @@
     if ($_POST['actionTo'] == 'plugin') {
 
         // якщо чітко вказано, що це запит до цього плагіну:
-        if ($_POST['pluginFolder'] == 'usp_questionnaire') {
+        if ($_POST['pluginFolder'] == 'usp_corporateBlog') {
 
             // тільки тоді виконую якусь дію:
             if (isset($_POST['action'])) {
 
                 ##############################################
 
-                // Дія :
-                if ($_POST['action'] == '') {
+                // Дія addCategory:
+                if ($_POST['action'] == 'addCategory') {
 
-                    $link = $pluginConfigUrl."&plugin_config=money_config";
-
+                    addCorporateBlogCategory();
+                    $link = $pluginConfigUrl;
                     header ("Location: $link");
                     exit();
-
-                } // <-- Дія
+                } // <-- Дія addCategory
 
 
 
@@ -57,3 +56,44 @@
         } // <-- кінець перевірки папки плагіну
 
     } // <-- кінець перевірки запиту до плагіну
+
+
+    function getCorporateBlogCategories() {
+
+       global $db;
+       global $corporateBlog;
+
+       $array = array(
+           "SELECT" => "*",
+           "FROM" => $corporateBlog[2],
+           "WHERE" => "moderation = 0",
+           "ORDER" => "parentCategoryID",
+           "SORT" => "DESC"
+       );
+
+       return $db->select($array, null);
+
+    }
+
+
+    function showCategoryTree($oneDimensionalArray) {
+        return createMultidimensionalArray($oneDimensionalArray);
+    }
+
+    function addCorporateBlogCategory() {
+
+        global $db;
+        global $corporateBlog;
+
+        $array = array(
+            "INSERT INTO" => $corporateBlog[2],
+            "COLUMNS" => array(
+                "categoryName" => $_POST['categoryName'],
+                "categoryURL" =>  $_POST['categoryURL'],
+                "parentCategoryID" => $_POST['parentCategoryID'][0],
+                "priority" => 0,
+            )
+        );
+        $db->insert($array);
+
+    }

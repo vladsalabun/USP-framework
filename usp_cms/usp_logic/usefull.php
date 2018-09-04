@@ -1,20 +1,20 @@
 <?php
-    
+
     /*
-        
+
         TODO: корисні функції, які використовуються багато разів у різних місцях:
-    
+
     */
-    
+
     function getFilesArray($dir) {
-        
+
         global $usp;
-        
+
         $array = array();
-        
+
         // беру файли з директорії:
         $files = scandir($_SERVER['DOCUMENT_ROOT'].'/'.$usp.'_cms/usp_view/');
-        
+
         // проходжу по масиву і беру тільки php файли:
         foreach ($files as $key => $string) {
             // якщо розширення .php:
@@ -23,15 +23,15 @@
                 $array[] = $string;
             }
         }
-        
+
         return $array;
-        
+
     }
 
     function getFoldersArray($dir) {
-        
+
         global $usp;
-        
+
         $array = array();
         // беру файли з директорії:
         $files = scandir($_SERVER['DOCUMENT_ROOT'].'/'.$usp.'_cms/usp_plugins');
@@ -41,40 +41,40 @@
             // якщо розширення .php:
             if(substr($string, -4) == '.php') {
                 // додаю файл в масив:
-                
+
             } else if($string == '.' or $string == '..') {
-                
+
             } else {
                 $array[] = $string;
             }
         }
-        
-        return $array; 
-        
+
+        return $array;
+
     }
-    
+
     function readParam($sting) {
         $status = explode(':',$sting);
         return trim($status[1]);
     }
-    
+
     function p($string,$class = null) {
         if ($class != null ) {
             $class = ' class="'.$class.'"';
         }
         return '<p'.$class.'>'.$string.'</p>';
     }
-    
-    function modalWindow($modalId,$modalTitle,$modalBody,$large = null,$center = null) 
-    { 
-        
+
+    function modalWindow($modalId,$modalTitle,$modalBody,$large = null,$center = null)
+    {
+
         if ($large != null) {
             $large = 'modal-lg';
         }
         if ($center != null) {
             $center = 'modal-dialog-centered';
         }
-        
+
         return   '
         <!-- Modal -->
             <div class="modal fade" id="'.$modalId.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -95,7 +95,7 @@
             </div>
         <!-- /Modal -->';
     }
-    
+
     function modalLink($array = null, $anchor = null, $class = null)
     {
         if (is_array($array)) {
@@ -108,4 +108,76 @@
             }
         }
     }
-    
+
+    /* ********************************************************
+
+        СТВОРЕННЯ ДЕРЕВА КАТЕГОРІЙ
+
+        Потрібно передати масив у форматі:
+
+        Array
+          (
+                [elementID] => [parentID]
+          )
+
+    ********************************************************** */
+
+    function createMultidimensionalArray($oneDimensionalArray) {
+
+        $parentIDarray = array();
+
+        if (is_array($oneDimensionalArray)) {
+            // Проходжу по всьому одновимірному масиву:
+            foreach ($oneDimensionalArray as $elementID => $parentID) {
+                $parentIDarray[] = $parentID;
+            }
+
+            // Беру тільки  унікальні значення батьківських елементів:
+            $parentIDarray = array_unique($parentIDarray,SORT_NUMERIC);
+            // Сотрую в порядку зростання:
+            sort($parentIDarray,SORT_NUMERIC);
+
+            $tree = array();
+            $tree += addBranchToMultidimensionalArray($oneDimensionalArray,$parentIDarray[0]);
+
+            return $tree;
+
+        }
+    }
+
+    function addBranchToMultidimensionalArray($oneDimensionalArray,$searchParentID) {
+
+        $elements = array();
+
+        foreach ($oneDimensionalArray as $elementID => $parentID) {
+            if ($searchParentID == $parentID) {
+                // Додаю елемент у поточну гілку:
+                $elements[$elementID] = addBranchToMultidimensionalArray($oneDimensionalArray,$elementID);
+            }
+        }
+
+        return $elements;
+    }
+
+    /* ********************************************************
+
+        Генератор HTML коду КАТЕГОРІЙ
+
+        Потрібно передати масив дерево, згенероване з одновимірного масиву
+        createMultidimensionalArray($oneDimensionalArray)
+
+    ********************************************************** */
+
+    function renderTreeHTML($tree) {
+        /*
+            TODO:
+
+            На виході має бути HTML код з ul li
+            Може бути просто текст?
+            Має бути URL посилання
+                     Текст посилання
+                     Додаткові параметри посилань
+                     Клас посилань
+                     І будь який код (як це передати?)
+        */
+    }

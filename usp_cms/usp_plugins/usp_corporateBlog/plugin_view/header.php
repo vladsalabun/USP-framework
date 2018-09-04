@@ -9,7 +9,9 @@
                     Main Page
                 </a>
             </li>
-
+            <li class="nav-item active">
+                <?php echo modalLink('addcategory', '+Add Category', 'nav-link'); ?>
+            </li>
         </ul>
     </div>
 </nav>
@@ -25,3 +27,52 @@
     background: #FAFAFA;
 }
 </style>
+
+<?php
+
+  $corporateBlogCategories = getCorporateBlogCategories();
+  echo '<pre>';
+  print_r($corporateBlogCategories);
+  echo '</pre>';
+
+  /*
+        Створюю одновимірний масив для перетворення його у дерево:
+  */
+  $oneDimensionalArray = array();
+
+  // проходжусь по всім категоріям:
+  foreach ($corporateBlogCategories as $categoryArray ) {
+      $selectCatArray[$categoryArray['ID']] = $categoryArray['categoryName'];
+      /*
+
+          Потрібно передати масив у форматі:
+
+          Array
+            (
+                  [elementID] => [parentID]
+            )
+
+      */
+      $oneDimensionalArray[$categoryArray['ID']] = $categoryArray['parentCategoryID'];
+  }
+
+
+  echo '<pre>';
+  print_r(showCategoryTree($oneDimensionalArray));
+  echo '</pre>';
+
+  unset($oneDimensionalArray);
+
+$addCategory =
+     $form->formStart()
+    .$form->hidden(array('name'=> 'actionTo','value'=> 'plugin'))
+    .$form->hidden(array('name'=> 'pluginFolder','value'=> 'usp_corporateBlog'))
+    .$form->hidden(array('name'=> 'action','value'=> 'addCategory'))
+    .p($form->text(array('name'=> 'categoryName','value'=> '','class'=>'txtfield','placeholder' => 'categoryName')))
+    .p($form->text(array('name'=> 'categoryURL','value'=> '','class'=>'txtfield','placeholder' => 'categoryURL')))
+    .p($form->select(array('name'=> 'parentCategoryID','value'=> $selectCatArray)))
+    .p($form->submit(array('name'=> 'submit','value'=> 'Add new category','class'=>'btn')),'center')
+    .$form->formEnd();
+
+
+echo modalWindow('addcategory','Add Category:',$addCategory,1,1);

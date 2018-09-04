@@ -43,7 +43,6 @@
             "categoryURL" => "VARCHAR( 100 )", // URL категорії
             "parentCategoryID" => "INT( 11 ) DEFAULT '0'", // підкатегорія
             "priority" => "INT( 11 ) DEFAULT '0'",
-            "wide" => "INT( 11 ) DEFAULT '0'", // 1 - широкий параграф і широка примітка
             "moderation" => "INT( 11 ) DEFAULT '0'" // 0 - нема відповіді, 1 - зафіксована відповідь, 2 - видалено
         ),
 
