@@ -13,7 +13,7 @@
     $maintance = false;
     
     /* TODO: дізнатись яка тема вибрата у налаштуваннях */
-    $theme = 'salabun';
+    $theme = 'personal_crm';
     
     if (isset($_GET['lang'])) {
         if(array_key_exists($_GET['lang'],$allowedLanguages)) {

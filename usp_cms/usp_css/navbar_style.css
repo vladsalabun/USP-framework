@@ -1,11 +1,11 @@
 .navbar {
-    background-color:#222222 !important; 
+    background-color: #f5f5e9 !important; 
 }
 .navbar-brand {
-    color: #fff !important;
+    color: #160000 !important;
 }
 .nav-link {
-    color: #fff !important;
+    color: #007bff !important;
 }
 #navbar-space {
     height: 30px;

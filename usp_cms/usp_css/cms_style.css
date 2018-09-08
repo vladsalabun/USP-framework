@@ -3,24 +3,18 @@
     Стилі адмінки USP:
 
 */
-@font-face {
-    font-family: Arsenal-Regular;
-    src: url(../usp_fonts/Arsenal-Regular.otf);
-}
-@font-face {
-    font-family: Arsenal-Bold;
-    src: url(../usp_fonts/Arsenal-Bold.otf);
-}
+@font-face { font-family: RobotoCondensed-Light; src: url(../usp_fonts/RobotoCondensed-Light.ttf); }
+@font-face { font-family: RobotoCondensed-Bold; src: url(../usp_fonts/RobotoCondensed-Bold.ttf); }
 
 body {
-    background-color: #F5F5E9;
-    font-family: Arsenal-Regular;
-    font-size: 18px;
+    background-color: #FFF;
+    font-family: RobotoCondensed-Light;
+    font-size: 16px;
     letter-spacing: 1px;
 
 }
 h2 {
-    font-family: Arsenal-Bold;
+    font-family: RobotoCondensed-Bold;
 }
 
 
@@ -30,13 +24,13 @@ h2 {
 #middle{
     color:#000;
     background-color: #F5F5E9;
-    font-family:Arsenal-Regular;
+    font-family:RobotoCondensed-Light;
 }
 #footer{
     padding:20px;
     margin-top: 30px;
-    background-color:#222222;
-    color:#F5F5E9;
+    background-color: #f5f5e9;
+    color: #160000;
     text-align: center;
 }
 pre {

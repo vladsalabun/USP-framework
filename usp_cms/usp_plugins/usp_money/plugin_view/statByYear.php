@@ -44,7 +44,7 @@
         Вартість одного місяця: <?php echo $expensesPerDay * 30; ?> ₴<br>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-        Вистачить на: <?php echo $daysLiving; ?> днів <?php echo round($daysLiving / 365, 2); ?> років
+        Вистачить на: <?php echo $daysLiving; ?> днів (<?php echo round($daysLiving / 365, 2); ?> років)
         </div>
     </div>
     <div class="row">

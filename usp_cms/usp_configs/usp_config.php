@@ -1,5 +1,9 @@
 <?php
 
+    # Адмінський пароль:
+    $userAdmin = '5fcfd41e547a12215b173ff47fdd3739';
+    $passwordAdmin = 'b03895753fa4c58290ae3605e78b78dd';
+
     # CMS version:
     $version = '1.1';
 

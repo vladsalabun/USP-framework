@@ -50,10 +50,10 @@
 </nav>
 <style>
 .vilet {
-    background: #56004F !important;
+    background-color: #f5f5e9 !important; 
 }
 .navbar-text {
-    color: #FED570 !important;
+    color: #160000 !important;
     margin-right: 20px;
 }
 .modal-content {

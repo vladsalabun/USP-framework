@@ -1,0 +1,16 @@
+.navbar {
+    margin-bottom: 0px !important;
+    font-size:16px;
+    background-color: #584b4f;
+    border-bottom: 2px solid #1a191a;
+}
+.headerlink {
+    color: #efe0bc !important;
+    text-decoration: none;
+}
+.headerlink:hover {
+    color: #81b872 !important;
+}
+.underline {
+
+}

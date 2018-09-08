@@ -5,13 +5,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent1">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="">
-                    Main Page
+                <a class="nav-link" href="<?php echo $pluginConfigUrl; ?>">
+                    Corporate Blog
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="<?php echo $pluginConfigUrl; ?>&plugin_config=documentation">
+                    Documentation
                 </a>
             </li>
             <li class="nav-item active">
                 <?php echo modalLink('addcategory', '+Add Category', 'nav-link'); ?>
             </li>
+
         </ul>
     </div>
 </nav>
@@ -31,14 +37,12 @@
 <?php
 
   $corporateBlogCategories = getCorporateBlogCategories();
-  echo '<pre>';
-  print_r($corporateBlogCategories);
-  echo '</pre>';
 
   /*
         Створюю одновимірний масив для перетворення його у дерево:
   */
   $oneDimensionalArray = array();
+  $idTitleArray = array();
 
   // проходжусь по всім категоріям:
   foreach ($corporateBlogCategories as $categoryArray ) {
@@ -57,11 +61,8 @@
   }
 
 
-  echo '<pre>';
-  print_r(showCategoryTree($oneDimensionalArray));
-  echo '</pre>';
 
-  unset($oneDimensionalArray);
+
 
 $addCategory =
      $form->formStart()

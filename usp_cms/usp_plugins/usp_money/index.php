@@ -8,7 +8,7 @@
 
     #   Menu: yes
     #   url: usp_money
-    #   title: Money
+    #   title: Гроші
 
     /*
         TODO: Облік моїх коштів 

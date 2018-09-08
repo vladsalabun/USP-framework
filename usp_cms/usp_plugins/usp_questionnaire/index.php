@@ -6,7 +6,7 @@
     #   description: Опитування клієнта
     #   Activation: yes
 
-    #   Menu: yes
+    #   Menu: no
     #   url: usp_questionnaire
     #   title: Опитування клієнта
 

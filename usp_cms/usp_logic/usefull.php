@@ -164,20 +164,28 @@
         Генератор HTML коду КАТЕГОРІЙ
 
         Потрібно передати масив дерево, згенероване з одновимірного масиву
-        createMultidimensionalArray($oneDimensionalArray)
+        $tree = createMultidimensionalArray($oneDimensionalArray);
+
+        $linkParamArray = array(
+            'url' => ,
+            'title' => ,
+            'anchor' => ,
+            'class' => ,
+        );
 
     ********************************************************** */
 
-    function renderTreeHTML($tree) {
-        /*
-            TODO:
+    function renderCategoryTreeHTML($tree, $linkParamArray,$selectCatArray) {
 
-            На виході має бути HTML код з ul li
-            Може бути просто текст?
-            Має бути URL посилання
-                     Текст посилання
-                     Додаткові параметри посилань
-                     Клас посилань
-                     І будь який код (як це передати?)
-        */
+        $string = '<ul>';
+        foreach($tree as $root => $branch) {
+            $string .= '<li><a href="'.$linkParamArray['url'].'&category='.$root.'" title="'.$selectCatArray[$root].'" class="'.$linkParamArray['class'].'">'.$selectCatArray[$root].'</a>';
+            if (is_array($branch)) {
+                $string .= renderCategoryTreeHTML($branch, $linkParamArray,$selectCatArray);
+            }
+            $string .= '</li>';
+        }
+        $string .= '</ul>';
+
+        return $string;
     }

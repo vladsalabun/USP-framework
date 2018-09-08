@@ -12,7 +12,7 @@
 
 
     // All tables:
-    $uspQuestionnaireTables = array(
+    $uspCorporateBlogTables = array(
 
         $corporateBlog[0] => array (
             "ID" => "INT( 11 ) UNSIGNED AUTO_INCREMENT PRIMARY KEY",
@@ -62,5 +62,5 @@
 
     // Create tables:
     if($reinstallPlugin == 1 ) {
-        $db->createAllTables($uspQuestionnaireTables);
+        $db->createAllTables($uspCorporateBlogTables);
     }

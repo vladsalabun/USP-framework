@@ -10,8 +10,12 @@
    require_once $usp.'_plugins/index.php';
    
    
-   # TODO: Перевіряю чи користувач авторизований:
-   $userID = 1;
+    # TODO: Перевіряю чи користувач авторизований:
+    if($_COOKIE['login'] === $userAdmin and $_COOKIE['password'] === $passwordAdmin) {
+        $userID = 1000000;
+    } else {
+        $userID = 0;
+    }
    
    # TODO: Перевіряю права доступа 
    $userAccess = 1000000;
@@ -21,12 +25,24 @@
         // то запускаю роутер:
         $need_page = checkPage();
         
+        // якщо вибрано логаут:
+        if($need_page == 'logout') {
+            
+            // знищую куки:
+            setcookie("login",null,-1,'/');
+            setcookie("password",null,-1,'/');
+            
+            // і йду на головну:
+            header("Location: $webSiteUrl");
+            exit();
+            
+        }
+        
         // if there is no POST request, we can show page:
         require 'usp_view/head.php';
         require 'usp_view/'.$need_page.'.php';
         require 'usp_view/footer.php';
    } else {
-        require 'usp_view/head.php';
-        require 'usp_view/gateway.php';
-        require 'usp_view/footer.php';
+        // редірект на головну;
+        header("Location: $webSiteUrl");
    }

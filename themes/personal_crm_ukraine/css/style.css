@@ -1,0 +1,356 @@
+@font-face { font-family: RobotoCondensed-Light; src: url(../fonts/RobotoCondensed-Light.ttf); }
+@font-face { font-family: RobotoCondensed-Bold; src: url(../fonts/RobotoCondensed-Bold.ttf); }
+
+body {
+    background-color: #f5f5e9;
+    color: #160000;
+    font-family: RobotoCondensed-Light;
+    letter-spacing: 4px;
+    word-spacing: 4px;
+    font-size:20px;
+}
+hr {
+    background-color: #efdaac !important;
+}
+
+.entrance {
+    background-color: #3a3f4e;
+    color: #fff;
+    width: 100%;
+    border: 1px solid #20222a;
+    font-family: RobotoCondensed-Bold;
+    font-size:20px;
+    padding: 5px 14px 5px 14px;
+}
+.btn {
+    letter-spacing: 2px;
+    word-spacing: 4px;
+    font-size:17px;
+    font-family: RobotoCondensed-Bold;
+}
+.entrance-button {
+    width: 100px;
+}
+
+
+
+
+h2 {
+    font-family: RobotoCondensed-Bold;
+    font-size: 50px;
+}
+h3 {
+    font-family: RobotoCondensed-Bold;
+}
+h3 small {
+  color: #65b0a0;
+}
+.text-muted {
+  color: #efdaac;
+}
+a {
+    color: #fdcf51;
+}
+a:hover {
+    color: #fdcf51;
+}
+#top{
+    color:#939396;
+}
+#header{
+
+    color: #d4c2a5;
+    font-size:35px;
+    font-family: RobotoCondensed-Bold;
+    height: 190px;
+
+}
+
+#me {
+    width: 200px;
+    border-radius: 100px;
+    margin: 20px 0 10px 0;
+    border: 4px solid #6296c1;
+}
+#me:hover {
+
+}
+#vlad_salabun{
+    text-align:center;
+    padding: 40px 0 0px 0;
+}
+#designer{
+    font-size:17px;
+    text-align:center;
+    font-style:italic;
+
+    padding: 0px 0 30px 0;
+}
+#upup {
+    margin: -42px 0 0px 0;
+}
+
+#usp { margin-top: 100px; }
+
+#middle{
+    color:#776f4b;
+    /*background-color:#F5F5E9; */
+    background-color: #FAFAFA;
+    font-family:Arsenal-Regular;
+}
+.footer{
+
+    /*background-color:#222222;
+    color:#F5F5E9; */
+    font-size: 16px;
+    padding: 10px 0 10px 0;
+}
+#footer {
+    background-color: #efeae1;
+    color: #574c4f;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+}
+
+#thanks{text-align:center; }
+#email{ text-align:center; }
+a.email { color: #574c4f; }
+#c {text-align:center; }
+#copyright{text-align:center; }
+
+.call {
+    background: #ffd152 !important;
+    font-size: 22px;
+    color: #343233;
+    letter-spacing: 1px;
+    word-spacing: 1px;
+}
+.call:hover {
+    background: #ffc31f !important;
+    color: #343233;
+}
+
+.alert-success {
+   background: #2c2a2b !important;
+   color: #6b9d8e;
+   font-size: 18px;
+   padding: 40px;
+}
+
+input {
+    font-size: 17px;
+    color: #ccc;
+    padding: 5px;
+    font-family: Arsenal-Regular;
+}
+
+.forma {
+    //background: #f5f5e9 !important;
+}
+
+@media (max-width: 760px) {
+    #top{
+        color:#939396;
+
+    }
+    #header {
+        height:190px;
+
+    }
+}
+.bold {
+  color: #e9d5b4;
+}
+/*
+::-webkit-scrollbar {
+    width: 15px;
+    background-image: url(../img/z.png);
+    background-color: #FDD947;
+    background-repeat: no-repeat;
+	background-position: bottom;
+}
+
+::-webkit-scrollbar-track {
+
+}
+
+::-webkit-scrollbar-thumb {
+
+
+    background: rgba(255,0,0,0.8);
+    -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,1);
+}
+*/
+
+.flag {
+    height: 20px;
+}
+.dropdown-menu {
+    background: none !important;
+    min-width: 50px;
+    text-align: center;
+}
+.dropdown-item {
+    display: block;
+    margin: 5px 0 5px 0;
+}
+
+.list-group-item {
+   background: none !important;
+   border: 1px solid #615e60;
+   color: #fff !important;
+}
+.list-group-item:hover {
+    background: #f5f5f5 !important;
+    color: #000 !important;
+}
+.list-group-item.active {
+  background-color: #337ab7 !important;
+}
+
+.active:hover {
+    background: #337ab7 !important;
+    color: #fff !important;
+}
+
+.yellow {
+    background: #FDD947 !important;
+    color: #000 !important;
+    padding: 7px !important;
+    border-radius: 3px !important;
+    font-size: 18px;
+}
+
+.card-body {
+    /*background: #575456 !important;*/
+    padding: 40px 15px 40px 15px !important;
+    margin: 0px 0 50px 0;
+    border-radius: 7px !important;
+    /*border: 1px solid #4e4b4d;*/
+}
+.bold {
+    font-family: RobotoCondensed-Bold;
+}
+.icon { margin: 20px 0 20px 0; }
+.icon50 { width: 50px; }
+
+.modal-content {
+    background: #f5f5e9 !important;
+}
+
+
+a.callMe {
+    background: url("../img/icon9.png") no-repeat scroll 0 0 transparent;
+    bottom: 0;
+    display: block;
+    height: 50px;
+    position: fixed;
+    right: 20;
+    bottom: 20;
+    width: 50px;
+    z-index: 999;
+
+}
+
+.mgo-widget-call_pulse {
+
+    background-color: #00cc78;
+    border-radius: 100%;
+    position: absolute;
+
+    opacity: .75;
+    -webkit-animation: shake 2s infinite ease-in-out;
+    animation: shake 2s infinite ease-in-out;
+    -webkit-animation-delay: .6s;
+    animation-delay: .6s;
+}
+.mgo-widget-call_pulse:after,
+.mgo-widget-call_pulse:before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    top: 0;
+    background-color: #00cc78;
+    border-radius: 100%;
+    -webkit-animation: pulse 2s infinite ease-in-out;
+    animation: pulse 2s infinite ease-in-out;
+}
+.mgo-widget-call_pulse:before {
+    margin: auto 0 auto -32.5px;
+    height: 65px;
+    width: 65px;
+    opacity: .5;
+    -webkit-animation-delay: .1s;
+    animation-delay: .9s;
+}
+.mgo-widget-call_pulse:after {
+    margin: auto 0 auto -46px;
+    height: 92px;
+    width: 92px;
+    -webkit-animation-delay: .9s;
+    animation-delay: .9s;
+    opacity: .25;
+}
+
+@-webkit-keyframes shake {
+  0% {
+      transform: translateX(0);
+  }
+  25% {
+      transform: translateX(-2px);
+  }
+  50% {
+      transform: translateX(0);
+  }
+  100% {
+      transform: translateX(-2px);
+  }
+}
+
+@keyframes shake {
+  0% {
+     transform: translateX(0);
+  }
+  25% {
+     transform: translateX(-2px);
+  }
+  50% {
+     transform: translateX(0);
+  }
+  100% {
+     transform: translateX(-2px);
+  }
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+
+#back1 {
+
+
+}

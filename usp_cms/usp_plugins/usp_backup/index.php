@@ -6,7 +6,7 @@
     #   Description: ...
     #   Activation: yes
 
-    #   Menu: yes
+    #   Menu: no
     #   url: usp_backup
     #   title: Backup Plugin 
     
