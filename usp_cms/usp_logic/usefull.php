@@ -9,11 +9,12 @@
     function getFilesArray($dir) {
 
         global $usp;
+        global $rootFolder;
 
         $array = array();
 
         // беру файли з директорії:
-        $files = scandir($_SERVER['DOCUMENT_ROOT'].'/'.$usp.'_cms/usp_view/');
+        $files = scandir($_SERVER['DOCUMENT_ROOT'].$rootFolder.'/'.$usp.'_cms/usp_view/');
 
         // проходжу по масиву і беру тільки php файли:
         foreach ($files as $key => $string) {
@@ -31,10 +32,11 @@
     function getFoldersArray($dir) {
 
         global $usp;
+        global $rootFolder;
 
         $array = array();
         // беру файли з директорії:
-        $files = scandir($_SERVER['DOCUMENT_ROOT'].'/'.$usp.'_cms/usp_plugins');
+        $files = scandir($_SERVER['DOCUMENT_ROOT'].$rootFolder.'/'.$usp.'_cms/usp_plugins');
 
         // проходжу по масиву і беру тільки php файли:
         foreach ($files as $key => $string) {

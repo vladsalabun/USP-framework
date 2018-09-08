@@ -16,6 +16,7 @@
 
     # Посилання:
     $webSiteUrl = 'http://usp.com.yy/';                         // <- Треба редагувати при встановленні
+    $rootFolder = '';                                     // <- папка, у якій встановлено CMS, наприклад: drive/
     $loginPage = $webSiteUrl.'gateway/';
 
     # Модулі:

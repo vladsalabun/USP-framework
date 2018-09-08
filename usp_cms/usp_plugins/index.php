@@ -19,8 +19,11 @@
         
     */
     
+    $rootRoot = $_SERVER['DOCUMENT_ROOT'].$rootFolder;
+    
     $pluginNameCall = $_GET['name'];
-    $pathToPluginView = $_SERVER['DOCUMENT_ROOT'].'/'.$usp.'_cms/usp_plugins/'.$pluginNameCall.'/plugin_view/';
+    $pathToPluginView = $rootRoot.'/'.$usp.'_cms/usp_plugins/'.$pluginNameCall.'/plugin_view/';
+ 
     
     $pluginConfigUrl = $webSiteUrl.$usp.'_cms/?page=plugin&name='.$pluginNameCall;
     $pluginWebURL = $webSiteUrl.$usp.'_cms/usp_plugins/';
@@ -29,6 +32,7 @@
     function getAllPluginsInfo() {
         
         global $usp;
+        global $rootRoot;
         
         $pluginArray = array();
         $pagesArray = getFoldersArray($dir);
@@ -36,9 +40,9 @@
         foreach ($pagesArray as $pluginFolder) {
             
             // Дізнаюсь чи файл index.php існує:
-            if (file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$usp.'_cms/usp_plugins/'.$pluginFolder.'/index.php')) {
+            if (file_exists($rootRoot.'/'.$usp.'_cms/usp_plugins/'.$pluginFolder.'/index.php')) {
                 // TODO: зчитати файл і дізнатись параметри
-                $content = file($_SERVER['DOCUMENT_ROOT'].'/'.$usp.'_cms/usp_plugins/'.$pluginFolder.'/index.php');
+                $content = file($rootRoot.'/'.$usp.'_cms/usp_plugins/'.$pluginFolder.'/index.php');
                 
                 $pluginArray[] = array(
                     'pluginName' => readParam($content[2]),
@@ -67,7 +71,7 @@
 
         if ($value['pluginActivation'] == 'yes') {
 
-            require_once $_SERVER['DOCUMENT_ROOT'].'/'.$usp.'_cms/usp_plugins/'.$value['pluginFolder'].'/index.php';
+            require_once $rootRoot.'/'.$usp.'_cms/usp_plugins/'.$value['pluginFolder'].'/index.php';
         
         }
         
