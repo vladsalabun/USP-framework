@@ -1,15 +1,3 @@
-<?php 
-
-   if (md5($_COOKIE['login']) === $userAdmin and md5($_COOKIE['password']) === $passwordAdmin) {
-       
-       $link = $webSiteUrl.$usp.'_cms';
-       
-       header("Location: $link");
-       exit();
-   }
-   
-?>
-
 <div class="row margin60">
     <div class="container">
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 center">

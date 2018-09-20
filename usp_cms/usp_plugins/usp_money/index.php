@@ -1,12 +1,12 @@
 <?php 
 
     #   USP plugin: Money
-    #   version: 1.0
+    #   version: 2.1
     #   author: Vlad Salabun
     #   description: Облік моїх коштів 
     #   Activation: yes
 
-    #   Menu: yes
+    #   Menu: no
     #   url: usp_money
     #   title: Гроші
 

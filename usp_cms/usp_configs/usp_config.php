@@ -1,11 +1,10 @@
 <?php
 
-    # Адмінський пароль:
-    $userAdmin = '5fcfd41e547a12215b173ff47fdd3739';
-    $passwordAdmin = 'b03895753fa4c58290ae3605e78b78dd';
-
+    # Встановлення USP:
+    $uspInstaller = 0; // після першого запуску можна поставити 0
+    
     # CMS version:
-    $version = '1.1';
+    $version = '2.0';
 
     # CMS prefix:
     $usp = 'usp';                                               // <- Треба редагувати при встановленні
@@ -16,6 +15,7 @@
 
     # Посилання:
     $webSiteUrl = 'http://usp.com.yy/';                         // <- Треба редагувати при встановленні
+    // TODO: скрипт який знаходить папку, у якій встановлено CMS:
     $rootFolder = '';                                     // <- папка, у якій встановлено CMS, наприклад: drive/
     $loginPage = $webSiteUrl.'gateway/';
 

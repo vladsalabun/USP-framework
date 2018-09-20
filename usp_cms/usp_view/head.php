@@ -48,7 +48,7 @@
                 <a class="dropdown-item" href="?page=plugins"><?php echo dialogs(400,$language); ?></a>
                 <a class="dropdown-item" href="?page=documentation"><?php echo dialogs(401,$language); ?></a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" href="?page=configurations">Налаштування</a>
             </div>
         </li>
         </ul>

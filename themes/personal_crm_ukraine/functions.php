@@ -9,16 +9,14 @@
         // якщо чітко вказано, що це запит до цього плагіну:
         if ($_POST['themeFolder'] == 'personal_crm_ukraine') {
             
-           if (md5($_POST['login']) === $userAdmin and md5($_POST['password']) === $passwordAdmin) {
+           // TODO: перевірити чи не підбирається пароль навмисно. Записуй кількість спроб.
+           
+           if (md5($_POST['password']) === checkUSPuserByLogin($_POST['login'])['password']) {
                
                // Якщо пароль вірний, то ставлю куки:
-               setcookie("login",$userAdmin,time()+31536000,'/');
-               setcookie("password",$passwordAdmin,time()+31536000,'/');
-               /*
-               var_dump($_COOKIE);
-               var_dump($_POST);
-               exit();
-               */
+               setcookie("login",$_POST['login'],time()+31536000,'/');
+               setcookie("password",md5($_POST['password']),time()+31536000,'/');
+               
                $link = $webSiteUrl.$usp.'_cms';
                
                header("Location: $link");

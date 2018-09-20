@@ -1,5 +1,7 @@
 <?php
     
+    // версія 1.0 (21 вересня 2018)
+    
     class tableGenerator
     {
         public function tableStart($array = null)

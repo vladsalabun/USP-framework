@@ -59,6 +59,22 @@
 .modal-content {
     background: #FAFAFA;
 }
+.operation-date {
+    font-size: 12px;
+    color: #445566;
+}
+.table {
+    font-size: 13px !important;
+}
+@media (max-width: 576px) { 
+    h2 {
+        font-size: 22px !important;
+        text-align: center;
+    }
+    .container-fluid {
+        /*padding: 0px !important;*/
+    }
+}
 </style>
 <?php 
 

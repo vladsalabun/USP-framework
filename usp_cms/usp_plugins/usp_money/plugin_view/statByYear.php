@@ -37,18 +37,18 @@
     $daysLiving = floor($dollarsToUAH / $expensesPerDay);
 
 ?>
-<div class="container-fluid margin30">
-    <div class="row margin20">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="container-fluid margin30 delpadding576">
+    <div class="row margin20 delpadding576">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 delpadding576">
         Вартість одного дня: <?php echo $expensesPerDay; ?> ₴<br>
         Вартість одного місяця: <?php echo $expensesPerDay * 30; ?> ₴<br>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 delpadding576">
         Вистачить на: <?php echo $daysLiving; ?> днів (<?php echo round($daysLiving / 365, 2); ?> років)
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="row delpadding576">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 delpadding576">
             <h2 class="margin20">По місяцях:</h2>
             <table class="table table-striped table-mini">
             <tbody>
@@ -71,7 +71,7 @@
         </tbody>
         </table>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 delpadding576">
             <h2 class="margin20">По роках:</h2>
             <table class="table table-striped table-mini">
             <tbody>
@@ -110,8 +110,8 @@
                           echo '
                              <ul class="list-group">
                               <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span><a href="'.$pluginConfigUrl.'&category='.$catID.'">'.$allCategory[$catID].'</a></span>
-                                <span><span'.$catClass.'>'.$minus.$catValue.' ₴</span> '.$percent.'</span>
+                                <span class="operation-date"><a href="'.$pluginConfigUrl.'&category='.$catID.'">'.$allCategory[$catID].'</a></span>
+                                <span class="operation-date"><span'.$catClass.'>'.$minus.$catValue.' ₴</span> '.$percent.'</span>
                               </li>
                             </ul>';
                       }

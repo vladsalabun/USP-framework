@@ -49,34 +49,12 @@ pre {
     background: none;
 }
 
-.txtfield {
-    width: 100%;
-    border: 1px #eee solid;
-    padding: 2px;
-    border: 1px solid #e5e5e5;
-}
-.big_textarea {
-    width: 100%; height: 200px;
+@media (max-width: 576px) { 
+    body {
+        font-size: 13px;
+        letter-spacing: 1px;
     }
-.edit_element_textarea {
-    width: 100%;
-    height: 200px;
-    border: 1px solid #e5e5e5;
-}
-.submit_btn {
-    background: #009aff;
-    color: #fff;
-    border: 1px;
-    padding: 3px;
-    min-width: 40px;
-}
-input:focus {
-    background-color: #fef65b;
-    border: 1px solid #FF7F50;
-    outline:none;
-}
-textarea:focus {
-    background-color: #fef65b;
-    border: 1px solid #FF7F50;
-    outline:none;
+    .delpadding576 {
+        padding: 0px !important;
+    }
 }

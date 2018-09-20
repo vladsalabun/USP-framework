@@ -26,9 +26,9 @@
         $doneSum += $wishlistArray['wishPrice'];
     }
 ?>
-<div class="container-fluid">
-    <div class="row margin20">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="container-fluid delpadding576">
+    <div class="row margin20 delpadding576">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 delpadding576">
             <h2 class="margin20">Список бажань:</h2>
             <p>Загальна сума: <?php echo $wishSum; ?> ₴</p>
             <table class="table table-striped table-mini">
@@ -40,9 +40,8 @@
                     
                     echo
                     '<tr>
-                      <td>'.$wishlistArray['wishPrice'].' ₴</d>
-                      <td>'.$allCategory[$wishlistArray['wishCategory']].'</td>
-                      <td>'.$wishlistArray['wishName'].'</td>
+                      <td width="70px">'.$wishlistArray['wishPrice'].' ₴</d>
+                      <td>'.$wishlistArray['wishName'].'<br><span class="operation-date">'.$allCategory[$wishlistArray['wishCategory']].'</span></td>
                       <td>'.modalLink('operationModal'.$wishlistArray['ID'], '<img src="'.$pluginWebURL.'usp_money/plugin_img/edit.png" title="Edit" class="icon20">','className').'</td>
                     </tr>';
                     
@@ -71,7 +70,7 @@
         </tbody>
         </table>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 delpadding576">
         <h2 class="margin20">Здійснені:</h2>
         <p>Загальна сума: <?php echo $doneSum; ?> ₴</p>
         <table class="table table-striped table-mini">
@@ -83,9 +82,8 @@
                     
                     echo
                     '<tr>
-                      <td>'.$wishlistArray['wishPrice'].' ₴</d>
-                      <td>'.$allCategory[$wishlistArray['wishCategory']].'</td>
-                      <td>'.$wishlistArray['wishName'].'</td>
+                      <td width="70px">'.$wishlistArray['wishPrice'].' ₴</d>
+                      <td>'.$wishlistArray['wishName'].'<br><span class="operation-date">'.$allCategory[$wishlistArray['wishCategory']].'</span></td>
                       <td>'.modalLink('operationModal'.$wishlistArray['ID'], '<img src="'.$pluginWebURL.'usp_money/plugin_img/edit.png" title="Edit" class="icon20">','className').'</td>
                     </tr>';
                     

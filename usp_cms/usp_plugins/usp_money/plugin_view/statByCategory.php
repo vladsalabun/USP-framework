@@ -8,9 +8,9 @@
     );
     $moneyCategory = $db->select($array, null); 
 ?>
-<div class="container-fluid">
+<div class="container-fluid delpadding576">
     <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 delpadding576">
             <h2 class="margin20">Операції по категорії <?php echo $allCategory[$_GET['category']];?>:</h2>
             <table class="table table-striped table-mini">
             <tbody>
@@ -37,7 +37,7 @@
         </tbody>
         </table>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 delpadding576">
         </div>
     </div>
 </div>

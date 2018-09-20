@@ -1,8 +1,30 @@
 <?php
     
-    function checkPage() {
+    function checkPage($userINFO) {
 
+        global $webSiteUrl;
+                
         if ($_POST) {
+            
+            // якщо не було вказано, що запит йде до плагіну, чи до конкретної теми, то він йде до CMS:
+            
+            if($_COOKIE['password'] === $userINFO['password']) {
+                
+                $postObject = new postHandler; 
+                // Передаю рівень доступу поточного користувача:
+                $postObject->userINFO = $userINFO;
+                $postObject->usp = $usp;
+                // Вказую метод, який повинен виконатись:
+                if (method_exists($postObject, $_POST['action'])) {
+                    $postObject->$_POST['action']();
+                } else {
+                    // якщо метода не існує, то на головну:
+                    header("Location: $webSiteUrl");
+                    exit();
+                }
+            } else {
+                // Silence.
+            }
             
         }
         

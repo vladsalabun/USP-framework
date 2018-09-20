@@ -64,7 +64,7 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
     if ($_POST['actionTo'] == 'plugin') {
         
         // якщо чітко вказано, що це запит до цього плагіну:
-        if ($_POST['pluginFolder'] == 'usp_money') {
+        if ($_POST['pluginFolder'] == basename(pathinfo(__FILE__)['dirname'])) {
             
             // тільки тоді виконую якусь дію:
             if (isset($_POST['action'])) {

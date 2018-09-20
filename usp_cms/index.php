@@ -1,29 +1,35 @@
 <?php
    
-   # Підключаю конфігурацію:
-   require_once 'usp_configs/index.php';
+    # Підключаю конфігурацію:
+    require_once 'usp_configs/index.php';
+
+    # Підключаю логіку:
+    require_once $usp.'_logic/index.php';
+
+    # Підключаю плагіни:
+    require_once $usp.'_plugins/index.php';
    
-   # Підключаю логіку:
-   require_once $usp.'_logic/index.php';
-   
-   # Підключаю плагіни:
-   require_once $usp.'_plugins/index.php';
-   
-   
-    # TODO: Перевіряю чи користувач авторизований:
-    if($_COOKIE['login'] === $userAdmin and $_COOKIE['password'] === $passwordAdmin) {
-        $userID = 1000000;
+    # Перевіряю чи користувач авторизований:   
+    $userINFO = checkUSPuserByLogin($_COOKIE['login']);
+    
+    # Якщо ні - на головну:
+    if($userINFO == null) {       
+       header("Location: $webSiteUrl");
+       exit();
+    }
+    
+    # Якщо куки є, перевіряю їх:
+    if($_COOKIE['password'] === $userINFO['password']) {
+        $userID = $userINFO['ID'];
     } else {
         $userID = 0;
     }
    
-   # TODO: Перевіряю права доступа 
-   $userAccess = 1000000;
    
-   // Якщо користувач зареєстрований у системі:
-   if ($userID > 0) {
+   // Якщо користувач зареєстрований у системі, то його ID > 0 :
+   if ($userINFO['ID'] > 0) {
         // то запускаю роутер:
-        $need_page = checkPage();
+        $need_page = checkPage($userINFO);
         
         // якщо вибрано логаут:
         if($need_page == 'logout') {
@@ -44,5 +50,6 @@
         require 'usp_view/footer.php';
    } else {
         // редірект на головну;
-        header("Location: $webSiteUrl");
+        echo '<h1>У вас недостатньо прав доступу, щоб переглядати цю сторінку.<h1>';
+        exit();
    }

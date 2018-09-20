@@ -10,9 +10,9 @@
     $moneyByMonth = $db->select($array, null); 
     
 ?>
-<div class="container-fluid">
+<div class="container-fluid delpadding576">
     <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 delpadding576">
             <h2 class="margin20">Операції <?php echo $_GET['year'].' '. $monthNames[$_GET['month']].'.';?>:</h2>
             <table class="table table-striped table-mini">
             <tbody>
@@ -29,8 +29,7 @@
                     echo
                     '<tr>
                       <td>'.$operation.'</d>
-                      <td>'.$allCategory[$operationArray['category']].'</td>
-                      <td>'.$operationArray['date'].'</td>
+                      <td>'.$allCategory[$operationArray['category']].'<br><span class="operation-date">'.$operationArray['date'].'</span></td>
                       <td>'.modalLink('operationModal'.$operationArray['ID'], '<img src="'.$pluginWebURL.'usp_money/plugin_img/edit.png" title="Edit" class="icon20">','className').'</td>
                     </tr>';
                     
@@ -59,7 +58,7 @@
         </tbody>
         </table>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 delpadding576">
             <h2 class="margin20"><?php echo $_GET['year'].' '. $monthNames[$_GET['month']].'.';?> в категоріях:</h2>
         <?php 
             $expensies = 0;

@@ -11,9 +11,9 @@
     $dollars = 0;
     $dollarsExp = 0;
 ?>
-<div class="container-fluid">
+<div class="container-fluid delpadding576">
     <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 delpadding576">
             <h2 class="margin20">Операції по USD:</h2>
             <table class="table table-striped table-mini">
             <tbody>
@@ -32,8 +32,7 @@
                     echo
                     '<tr>
                       <td>'.$operation.'</d>
-                      <td>'.$allCategory[$usdArray['category']].'</td>
-                      <td>'.$usdArray['date'].'</td>
+                      <td>'.$allCategory[$usdArray['category']].'<br><span class="operation-date">'.$usdArray['date'].'</span></td>
                       <td>'.modalLink('operationModal'.$usdArray['ID'], '<img src="'.$pluginWebURL.'usp_money/plugin_img/edit.png" title="Edit" class="icon20">','className').'</td>
                     </tr>';
                     
@@ -62,7 +61,7 @@
         </tbody>
         </table>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 delpadding576">
         <h2 class="margin20">Операції по USD:</h2>
         <?php echo '+'.$dollars; ?> $<br>
         <?php echo '-'.$dollarsExp; ?> $
