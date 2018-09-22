@@ -15,6 +15,9 @@
             $this->db = new database;
         }
         
+        
+        // --------------> Функція зміни пароля:
+        
         public function changePassword() {
             
             global $usp;
@@ -39,5 +42,7 @@
                 
             }
         }
+        
+        // <---------------   Функція зміни пароля
         
     }

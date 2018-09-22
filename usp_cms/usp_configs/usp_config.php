@@ -1,28 +1,20 @@
 <?php
 
+    # CMS version:
+    $version = '2.2';
+
     # Встановлення USP:
     $uspInstaller = 0; // після першого запуску можна поставити 0
     
-    # CMS version:
-    $version = '2.0';
-
-    # CMS prefix:
-    $usp = 'usp';                                               // <- Треба редагувати при встановленні
-
-    # CMS статус:
-    $debug = 1;
-    $showErrors = 0;
+    # Логін та пароль адміна, які встановлюються по замовчуванню:
+    $defaultAdmin = 'usp';
+    $defaultPassword = 'marketing';
 
     # Посилання:
-    $webSiteUrl = 'http://usp.com.yy/';                         // <- Треба редагувати при встановленні
-    // TODO: скрипт який знаходить папку, у якій встановлено CMS:
-    $rootFolder = '';                                     // <- папка, у якій встановлено CMS, наприклад: drive/
-    $loginPage = $webSiteUrl.'gateway/';
-
+    $webSiteUrl = 'http://usp.com.yy/';                         // <- Треба редагувати при встановленні   
+    
     # Модулі:
     $cmsStylesArray = array(
-        // TODO: підключай автоматично з папки:
-        // TODO: для CMS одні стилі, а для теми - інші:
         $webSiteUrl.'usp_cms/usp_css/basic4.css',
         $webSiteUrl.'usp_cms/usp_css/usefull.css',
         $webSiteUrl.'usp_cms/usp_css/navbar_style.css',
@@ -34,8 +26,6 @@
     );
     $cmsImg = $webSiteUrl.'usp_cms/usp_img/';
     $cmsJsArray = array(
-        // TODO: підключай автоматично з папки:
-        // TODO: для CMS одні js скрипти, а для теми - інші:
         $webSiteUrl.'usp_cms/usp_js/jQuery_v1.12.4.js',
         $webSiteUrl.'usp_cms/usp_js/fade.js',
         $webSiteUrl.'usp_cms/usp_js/bootstrap.js'
@@ -45,6 +35,40 @@
     $cmsFonts = $webSiteUrl.'usp_cms/usp_fonts/';
 
 
-    # Логін та пароль адміна, які встановлюються по замовчуванню:
-    $defaultAdmin = 'usp';
-    $defaultPassword = 'marketing';
+    ##############################################################
+    #
+    #   Дальше редагувати нічого не треба!
+    #
+    ##############################################################
+    
+
+    # CMS prefix:
+    $usp = 'usp'; // не працює
+
+    # CMS статус:
+    $debug = 1;
+    $showErrors = 0;   
+    
+    /* Фішки для перевірки правильності URL:  */  
+    
+    // скрипт який знаходить папку, у якій встановлено CMS:
+    $rootArray = explode('/',$webSiteUrl);
+    
+    if(substr($webSiteUrl, -1) != '/') {
+        $webSiteUrl = $webSiteUrl . '/';
+    }
+    
+    /* папка, у якій знаходиться CMS, тут нічого міняти не потрібно */
+    for ($i = 3; $i < count($rootArray); $i++) {
+        if(strlen($rootArray[$i])>= 1) {
+            $rootFolder .= $rootArray[$i].'/';
+        }
+    }
+   
+    if(strlen($rootFolder)>= 1) {
+        $rootFolder = '/'.$rootFolder;
+    } else {
+        $rootFolder = '';
+    }
+  
+    $rootFolder = '/'.$rootFolder; // <- внутрішня папка, у якій встановлено CMS

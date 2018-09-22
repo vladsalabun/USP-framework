@@ -6,7 +6,7 @@
     #   description: Для швидких нотаток, щоб не завантажувати в свій телефон
     #   Activation: yes
 
-    #   Menu: no
+    #   Menu: yes
     #   url: usp_notes
     #   title: Нотатки
 

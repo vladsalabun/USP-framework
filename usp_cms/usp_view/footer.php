@@ -5,5 +5,8 @@
   <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">Ігноруй мудаків.</div>
 </div>
 </div>
+<div class="container-fluid center margin10">
+    ver. <?php echo $version; ?>
+</div>
 </body>
 </html>

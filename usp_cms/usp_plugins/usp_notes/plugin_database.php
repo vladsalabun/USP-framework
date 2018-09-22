@@ -17,7 +17,7 @@
         
     );
    
-    $reinstallPluginNotes = 1;
+    $reinstallPluginNotes = 0;
     
     // Create tables:
     if($reinstallPluginNotes == 1 ) {

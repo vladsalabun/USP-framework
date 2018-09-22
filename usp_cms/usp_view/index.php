@@ -1,7 +1,7 @@
 <div class="row margin20">
     <div class="container">
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 center">
-            <h2 class="margin20 font-size52">Привіт, Влад!</h2>
+            <h2 class="margin20 font-size52">Привіт, <?php echo $userINFO['Name']; ?>!</h2>
             <p class="letter-spacing4 font-size20">Який твій настрій сьогодні?</p>
         </div>
     </div>

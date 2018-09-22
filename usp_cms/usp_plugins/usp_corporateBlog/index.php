@@ -6,7 +6,7 @@
     #   description: Корпоративний блог
     #   Activation: yes
 
-    #   Menu: no
+    #   Menu: yes
     #   url: usp_corporateBlog
     #   title: Корпоративний блог
 

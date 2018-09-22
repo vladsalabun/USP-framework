@@ -51,7 +51,7 @@
                     <?php //echo $plugin['pluginFolder']; ?>
 
                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <?php echo $plugin['pluginDescription']; ?>
+                    <?php echo $plugin['pluginDescription'].'<br><font color="#ececec">'.$plugin['pluginFolder'].'</font>'; ?>
                 </div>    
 
         

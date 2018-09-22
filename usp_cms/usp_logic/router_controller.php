@@ -16,7 +16,8 @@
                 $postObject->usp = $usp;
                 // Вказую метод, який повинен виконатись:
                 if (method_exists($postObject, $_POST['action'])) {
-                    $postObject->$_POST['action']();
+                    $func = $_POST['action'];
+                    $postObject->$func();
                 } else {
                     // якщо метода не існує, то на головну:
                     header("Location: $webSiteUrl");

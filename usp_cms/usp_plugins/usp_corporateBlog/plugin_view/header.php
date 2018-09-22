@@ -23,7 +23,7 @@
 </nav>
 <style>
 .vilet {
-    background: #56004F !important;
+    
 }
 .navbar-text {
     color: #FED570 !important;
