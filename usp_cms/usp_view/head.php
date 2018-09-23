@@ -47,6 +47,15 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="?page=plugins"><?php echo dialogs(400,$language); ?></a>
                 <a class="dropdown-item" href="?page=documentation"><?php echo dialogs(401,$language); ?></a>
+<?php 
+                    foreach ($pluginsArray as $key => $value) {
+                        if( $value['pluginMenu'] == 'no') {
+?>
+                <a class="dropdown-item" href="?page=plugin&name=<?php echo $value['pluginUrl']; ?>"><?php echo $value['pluginTitle']; ?></a>
+<?php 
+                        }
+                    }
+?>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="?page=configurations">Налаштування</a>
             </div>

@@ -3,15 +3,16 @@
     #   USP plugin: Backup
     #   version: 1.0
     #   author: Vlad Salabun
-    #   Description: ...
+    #   description: Резервне копіювання бази даних
     #   Activation: yes
 
     #   Menu: no
     #   url: usp_backup
-    #   title: Backup Plugin 
+    #   title: Резервне копіювання
     
     
     /*
-        TODO: Функція швидкого резервного копіювання бази даних та файлів
+        TODO: Функція швидкого резервного копіювання бази даних
     */
 
+    require 'functions.php';
