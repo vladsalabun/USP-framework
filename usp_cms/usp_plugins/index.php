@@ -24,7 +24,6 @@
     $pluginNameCall = $_GET['name'];
     $pathToPluginView = $rootRoot.'/'.$usp.'_cms/usp_plugins/'.$pluginNameCall.'/plugin_view/';
  
-    
     $pluginConfigUrl = $webSiteUrl.$usp.'_cms/?page=plugin&name='.$pluginNameCall;
     $pluginWebURL = $webSiteUrl.$usp.'_cms/usp_plugins/';
  
@@ -41,21 +40,34 @@
             
             // Дізнаюсь чи файл index.php існує:
             if (file_exists($rootRoot.'/'.$usp.'_cms/usp_plugins/'.$pluginFolder.'/index.php')) {
+                
                 // TODO: зчитати файл і дізнатись параметри
                 $content = file($rootRoot.'/'.$usp.'_cms/usp_plugins/'.$pluginFolder.'/index.php');
                 
-                $pluginArray[] = array(
-                    'pluginName' => readParam($content[2]),
-                    'pluginVersion' => readParam($content[3]),
-                    'pluginAuthor' => readParam($content[4]),
-                    'pluginDescription' => readParam($content[5]),
-                    'pluginActivation' => readParam($content[6]),
-                    'pluginMenu' => readParam($content[8]),
-                    'pluginUrl' => readParam($content[9]),
-                    'pluginTitle' => readParam($content[10]),
-                    'pluginFolder' => $pluginFolder,
-                );
-            }
+                foreach ($content as $line) {
+                    
+                    //echo "Строка: $line\n";
+                    $pos = strpos($line, '#');
+                    
+                    if ($pos !== false) {
+                        
+                        // Знаходжу коментар:
+                        $commentArray = explode('#',$line);
+                        $paramLine = trim($commentArray[1]);
+                        
+                        // Знаходжу параметри плагіну:
+                        $pluginParamArray = explode(':',$paramLine);
+                        
+                        // Кладу у масив параметри плагінів:
+                        $pluginArray[$pluginFolder][pluginConfig::pluginParams[strtolower($pluginParamArray[0])]] = trim($pluginParamArray[1]);
+                        
+                        // і назву папки тоже кладу:
+                        $pluginArray[$pluginFolder]['pluginFolder'] = trim($pluginFolder);
+                        
+                    }
+                }
+                
+            } // <-- якщо файл index.php існує:
             
         }
         
@@ -63,18 +75,58 @@
         
     }
     
-    // Беру список всіх плагінів:
+    // Беру список всіх плагінів з папки:
     $pluginsArray = getAllPluginsInfo();
     
-    // Включаю ті, які активовані: 
-    foreach ($pluginsArray as $key => $value) {
-
-        if ($value['pluginActivation'] == 'yes') {
-
-            require_once $rootRoot.'/'.$usp.'_cms/usp_plugins/'.$value['pluginFolder'].'/index.php';
+    // беру список всіх плагінів з бази:
+    $pluginsInfo = checkUSPconfig('plugins');     
+     
+    // якщо немає інформації про плагіни в базі даних:
+    if($pluginsInfo == false) {
         
+        // то додаю всі плагіни з папки як виключені:
+        setPluginsFromFolderAsDeactivated($pluginsArray);
+        
+    } else {
+        
+        // якщо є, то кладу всі плагіни в масиви:
+        $pluginStatus = json_decode($pluginsInfo['value'],true);
+        
+    }
+     
+    // Різниця між існуючими плагінами, та зареєстрованими у базі:
+    $registeredPlugins = array_merge($pluginStatus['deactivated'], $pluginStatus['activated']);
+    $unRegisteredPlugins = array_diff(array_keys($pluginsArray), array_keys($registeredPlugins));
+    
+    // Якщо є незареєстровані плагіни, то додаю їх в базу: 
+    if(count($unRegisteredPlugins) > 0) {
+        
+        foreach ($unRegisteredPlugins as $$unRegisteredPluginID => $unRegisteredPluginFolder) {
+            $pluginStatus['deactivated'][$unRegisteredPluginFolder] = array(
+                'menu' => 'yes',
+                'subMenu' => 'yes',
+                'footerMenu' => 'yes'
+            );
+            
+        }
+
+        updatePluginsConfig(json_encode($pluginStatus));
+    }
+    
+    // Підключаю все активовані плагіни:
+    foreach ($pluginsArray as $key => $value) {
+           
+        // Підключаю все активовані плагіни:
+        if (isset($pluginStatus['activated'][$value['pluginFolder']])) {
+            require_once $rootRoot.'/'.$usp.'_cms/usp_plugins/'.$value['pluginFolder'].'/index.php';
+            $activatedPlugins[$key] = $value;
+            
+            // Записую також параметри з бази даних:
+            $activatedPlugins[$key]['pluginMenu'] = $pluginStatus['activated'][$value['pluginFolder']]['menu'];
+            $activatedPlugins[$key]['pluginSubMenu'] = $pluginStatus['activated'][$value['pluginFolder']]['subMenu'];
+            $activatedPlugins[$key]['pluginFooterMenu'] = $pluginStatus['activated'][$value['pluginFolder']]['footerMenu'];
         }
         
     }    
 
-
+   // print_r($activatedPlugins);

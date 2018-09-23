@@ -30,7 +30,7 @@
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
 <?php 
-                    foreach ($pluginsArray as $key => $value) {
+                    foreach ($activatedPlugins as $key => $value) {
                        
                         if( $value['pluginMenu'] == 'yes') {
 ?>                    
@@ -48,8 +48,8 @@
                 <a class="dropdown-item" href="?page=plugins"><?php echo dialogs(400,$language); ?></a>
                 <a class="dropdown-item" href="?page=documentation"><?php echo dialogs(401,$language); ?></a>
 <?php 
-                    foreach ($pluginsArray as $key => $value) {
-                        if( $value['pluginMenu'] == 'no') {
+                    foreach ($activatedPlugins as $key => $value) {
+                        if( $value['pluginSubMenu'] == 'yes') {
 ?>
                 <a class="dropdown-item" href="?page=plugin&name=<?php echo $value['pluginUrl']; ?>"><?php echo $value['pluginTitle']; ?></a>
 <?php 

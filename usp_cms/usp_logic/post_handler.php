@@ -45,4 +45,58 @@
         
         // <---------------   Функція зміни пароля
         
+        
+        
+        
+        // --------------> Функція активації/деактивації плагінів:
+        
+        public function pluginPlugger() {
+            
+            global $webSiteUrl;
+            global $usp;
+            
+            // Дізнаюсь конфігурацію:
+            $pluginConfig = json_decode(checkUSPconfig('plugins')['value'],true);
+            
+            if($_POST['turn'] == 'on') {
+                
+                $from = 'deactivated';
+                $to = 'activated';
+               
+            } else if($_POST['turn'] == 'off') {
+                
+                $from = 'activated';
+                $to = 'deactivated';
+            
+            }
+
+            // додаю:
+            $pluginConfig[$to][$_POST['pluginFolder']] = array(
+                'menu' => 'yes',
+                'subMenu' => 'yes',
+                'footerMenu' => 'yes'
+            );
+            
+            // видаляю:
+            unset($pluginConfig[$from][$_POST['pluginFolder']]);
+            
+            // оновляю інформацію в базі:
+            updatePluginsConfig(json_encode($pluginConfig));
+            
+            // ще раз оновляю сторінку, щоб не залипали кнопки:
+            $link = $webSiteUrl.$usp.'_cms/?page=plugins';
+            header("Location: $link");
+            exit();
+        }
+        
+        // <------------- Функція активації/деактивації плагінів:
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
