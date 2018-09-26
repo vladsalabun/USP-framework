@@ -62,7 +62,13 @@
                 
                 $from = 'deactivated';
                 $to = 'activated';
-               
+                
+                # Підключаю плагіни:
+                require_once './'.$usp.'_plugins/'.$_POST['pluginFolder'].'/plugin_database.php';
+                // активую створення таблиць плагіну:
+                $tmpObj = new $_POST['pluginFolder'];
+                $tmpObj->reinstall();
+
             } else if($_POST['turn'] == 'off') {
                 
                 $from = 'activated';

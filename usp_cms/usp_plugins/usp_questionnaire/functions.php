@@ -1,9 +1,10 @@
 <?php
 
-    // TODO: чи видно змінні з одного плагіну в іншому?
-
     require_once 'plugin_database.php';
 
+    $className = basename(pathinfo(__FILE__)['dirname']);
+    $tmpObj = new $className; 
+    
 /*
   Питання можуть бути:
   - обовязкові
@@ -18,6 +19,9 @@
     function getQuestionsToCustomer($language) {
         global $form;
 
+        $className = basename(pathinfo(__FILE__)['dirname']);
+        $tmpObj = new $className; 
+        
         if ($language == 'ukraine') {
           $questionsToCustomer = array(
               0 => array(

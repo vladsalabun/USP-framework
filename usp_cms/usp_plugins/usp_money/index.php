@@ -1,7 +1,7 @@
 <?php 
 
     #   USP plugin: Money
-    #   version: 2.1
+    #   version: 2.2
     #   author: Vlad Salabun
     #   description: Облік моїх коштів
     #   Activation: yes

@@ -23,12 +23,12 @@
         </div>
 
 <?php
-        foreach ($pluginsArray as $id => $plugin) {
+        foreach ($pluginsArray as $pluginId => $plugin) {
 ?>
         <div class="row">
             <div class="container-fluid border-bottom">
             <div class="row padding10">
-                <div class="col-2">
+                <div class="col-sm-12 col-md-2 col-lg-2 col-xl-2">
                     <?php 
                         if(isset($pluginStatus['activated'][$plugin['pluginFolder']])) {
                                echo                         
@@ -51,11 +51,26 @@
                         }
                     ?>
                 </div> 
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
-                    <?php echo $plugin['pluginName']; ?><br>
+                <div class="col-sm-12 col-md-2 col-lg-2 col-xl-2">
+                    <?php 
+                        echo modalLink('windowId'.$pluginId, $plugin['pluginName']);
+                        $pluginModalBody = 
+                        $plugin['pluginMenu'].' + '
+                        .$plugin['pluginSubMenu'].' + '
+                        .$plugin['pluginFooterMenu']
+                        
+                        .$form->formStart()
+                        .$form->hidden(array('name'=> '','value'=> ''))
+                        .$form->checkbox(array('name'=> '','value'=> array('key'=>'value')))
+                        .$form->submit(array('name'=> '','value'=> 'Зберегти','class'=>'btn btn-success'))
+                        .$form->formEnd();
+                        
+                        echo modalWindow('windowId'.$pluginId,'Налаштування плагіну <b>'.$plugin['pluginName'].'</b>:',$pluginModalBody,'large','center');
+                    
+                    ?><br>
                     <?php echo $plugin['pluginVersion']; ?>
                 </div>  
-                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                 <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
                     <?php echo $plugin['pluginDescription'].'<br><font color="#ececec">'.$plugin['pluginFolder'].'</font>'; ?>
                 </div>    
 

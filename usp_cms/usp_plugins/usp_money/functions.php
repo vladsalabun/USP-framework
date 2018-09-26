@@ -1,34 +1,10 @@
 <?php 
-
-    // To add a column to an existing table the syntax would be:
-    // mysql_query("ALTER TABLE birthdays ADD street CHAR(30)");
-    
-    // You can also specify where you want to add the field.
-    // mysql_query("ALTER TABLE birthdays ADD street CHAR(30) AFTER birthday");
-    /*
-    mysql_query("ALTER TABLE birthdays
-ADD street CHAR(30) AFTER birthday,
-Add city CHAR(30) AFTER street,
-ADD state CHAR(4) AFTER city,
-ADD zipcode CHAR(20) AFTER state,
-ADD phone CHAR(20) AFTER zipcode");
-*/
-
-/*
-Column definitions can be modified using the ALTER method. The following code would change the existing birthday column from 7 to 15 characters.
-
-    mysql_query("ALTER TABLE birthdays CHANGE birthday birthday VARCHAR(15)");
-*/
-
-/*
-Columns can be removed from an existing table. The next example of code would remove the lastname column.
-mysql_query("ALTER TABLE birthdays DROP lastname");
-*/
-
-    // TODO: чи видно змінні з одного плагіну в іншому?
     
     require_once 'plugin_database.php';
 
+    $className = basename(pathinfo(__FILE__)['dirname']);
+    $tmpObj = new $className; 
+    
     $moneyCategory = array (
 		0 => 'невідомо', 
 		1 => 'їжа', 
@@ -76,7 +52,7 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
                     
                     // update in db:
                     $array = array(
-                        "UPDATE" => $moneytablesArray[3],
+                        "UPDATE" => $tmpObj->tablesNames[3],
                         "SET" => array(
                             "moneyUAH" => $_POST['uah'],
                             "moneyUSD" => $_POST['usd'],
@@ -102,7 +78,7 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
                     // Дізнаюсь параметри готівки:
                     $array = array(
                         "SELECT" => "*",
-                        "FROM" => $moneytablesArray[3]
+                        "FROM" => $tmpObj->tablesNames[3]
                     );
                     $moneyParams = $db->select($array, null); 
                     
@@ -116,7 +92,7 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
                     
                     // Вставляю в базу нову витратну операцію:
                     $array = array(
-                        "INSERT INTO" => $moneytablesArray[0],
+                        "INSERT INTO" => $tmpObj->tablesNames[0],
                         "COLUMNS" => array(
                             "money" => $_POST['sum'],
                             "operation" => $operationType,
@@ -133,7 +109,7 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
                         $newMoney = $moneyParams[0]['moneyUAH'] - $_POST['sum'];
                         
                         $array = array(
-                            "UPDATE" => $moneytablesArray[3],
+                            "UPDATE" => $tmpObj->tablesNames[3],
                             "SET" => array(
                                 "moneyUAH" => $newMoney,
                             )
@@ -150,7 +126,7 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
                         $newMoney = $moneyParams[0]['moneyUAH'] + $_POST['sum'];
                         
                         $array = array(
-                            "UPDATE" => $moneytablesArray[3],
+                            "UPDATE" => $tmpObj->tablesNames[3],
                             "SET" => array(
                                 "moneyUAH" => $newMoney,
                             )
@@ -175,7 +151,7 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
                     // Дізнаюсь параметри готівки:
                     $array = array(
                         "SELECT" => "*",
-                        "FROM" => $moneytablesArray[3]
+                        "FROM" => $tmpObj->tablesNames[3]
                     );
                     $moneyParams = $db->select($array, null); 
                     
@@ -189,7 +165,7 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
                     
                     // Вставляю в базу нову витратну операцію:
                     $array = array(
-                        "INSERT INTO" => $moneytablesArray[1],
+                        "INSERT INTO" => $tmpObj->tablesNames[1],
                         "COLUMNS" => array(
                             "money" => $_POST['sum'],
                             "operation" => $operationType,
@@ -206,7 +182,7 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
                         $newMoney = $moneyParams[0]['moneyUSD'] - $_POST['sum'];
                         
                         $array = array(
-                            "UPDATE" => $moneytablesArray[3],
+                            "UPDATE" => $tmpObj->tablesNames[3],
                             "SET" => array(
                                 "moneyUSD" => $newMoney,
                             )
@@ -223,7 +199,7 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
                         $newMoney = $moneyParams[0]['moneyUSD'] + $_POST['sum'];
                         
                         $array = array(
-                            "UPDATE" => $moneytablesArray[3],
+                            "UPDATE" => $tmpObj->tablesNames[3],
                             "SET" => array(
                                 "moneyUSD" => $newMoney,
                             )
@@ -256,7 +232,7 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
                         }
                         
                         $array = array(
-                            "UPDATE" => $moneytablesArray[0],
+                            "UPDATE" => $tmpObj->tablesNames[0],
                             "SET" => array(
                                 "money" => $_POST['money'],
                                 "category" => $_POST['category'][0],
@@ -272,7 +248,7 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
                     } else if (isset($_POST['delete'])) {
                         // видаляю операцію:
                         $array = array(
-                            "UPDATE" => $moneytablesArray[0],
+                            "UPDATE" => $tmpObj->tablesNames[0],
                             "SET" => array(
                                 "moderation" => 1,
                             ),
@@ -307,7 +283,7 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
                         }
                         
                         $array = array(
-                            "UPDATE" => $moneytablesArray[1],
+                            "UPDATE" => $tmpObj->tablesNames[1],
                             "SET" => array(
                                 "money" => $_POST['money'],
                                 "category" => $_POST['category'][0],
@@ -323,7 +299,7 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
                     } else if (isset($_POST['delete'])) {
                         // видаляю операцію:
                         $array = array(
-                            "UPDATE" => $moneytablesArray[1],
+                            "UPDATE" => $tmpObj->tablesNames[1],
                             "SET" => array(
                                 "moderation" => 1,
                             ),
@@ -350,7 +326,7 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
                     if (isset($_POST['update'])) {
                         // оновляю інформацію про бажання:
                         $array = array(
-                            "UPDATE" => $moneytablesArray[4],
+                            "UPDATE" => $tmpObj->tablesNames[4],
                             "SET" => array(
                                 "wishName" => $_POST['wishName'],
                                 "wishCategory" => $_POST['category'][0],
@@ -367,7 +343,7 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
                     } else if (isset($_POST['delete'])) {
                         // видаляю операцію:
                         $array = array(
-                            "UPDATE" => $moneytablesArray[4],
+                            "UPDATE" => $tmpObj->tablesNames[4],
                             "SET" => array(
                                 "done" => 2,
                             ),
@@ -393,7 +369,7 @@ mysql_query("ALTER TABLE birthdays DROP lastname");
  
                     // Вставляю в базу нове бажання:
                     $array = array(
-                        "INSERT INTO" => $moneytablesArray[4],
+                        "INSERT INTO" => $tmpObj->tablesNames[4],
                         "COLUMNS" => array(
                             "wishName" => $_POST['wishName'],
                             "wishCategory" => $_POST['category'][0],

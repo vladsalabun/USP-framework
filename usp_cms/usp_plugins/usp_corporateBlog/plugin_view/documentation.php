@@ -9,8 +9,8 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 <ol>
 <?php
-
-foreach ($uspCorporateBlogTables as $tableName => $columnArray) {
+        
+foreach ($tmpObj->tables as $tableName => $columnArray) {
 
     echo '<li>
     '.$tableName.':

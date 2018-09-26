@@ -1,6 +1,6 @@
 <?php
     
-    // версія 1.0 (21 вересня 2018)
+    // версія 1.1 (23 вересня 2018)
     
     class formGenerator
     {
@@ -112,5 +112,19 @@
         {
             return '<button type="button" class="'.$array['class'].'">'.$array['anchor'].'</button>';
         }
+        
+        public function checkbox($array = null) 
+        {
+        
+        return '
+            <fieldset>
+                    <input class="form-check-input" type="checkbox" name="buffer[]" value="mm" id="oooo">
+                    <label class="form-check-label" for="oooo">iii</label>
+            </fieldset>
+         ';
+        
+        }
+
+        
  
     }

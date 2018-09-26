@@ -1,7 +1,7 @@
 <?php
     $array = array(
         "SELECT" => "*",
-        "FROM" => $moneytablesArray[3]
+        "FROM" => $tmpObj->tablesNames[3]
     );
     $moneyParams = $db->select($array, null); 
     
@@ -9,14 +9,14 @@
     // знаходжу першу дату в базі:
     $array = array(
         "SELECT" => "MIN(date)",
-        "FROM" => $moneytablesArray[0],
+        "FROM" => $tmpObj->tablesNames[0],
     );
     $firstDay = $db->select($array, null); 
     
     // знаходжу різницю у днях:
     $array = array(
         "SELECT" => "DATEDIFF(NOW(), `date`) AS days",
-        "FROM" => $moneytablesArray[0],
+        "FROM" => $tmpObj->tablesNames[0],
         "LIMIT" => 1
     );
     $dayDiff = $db->select($array, null);

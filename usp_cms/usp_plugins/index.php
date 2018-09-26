@@ -118,6 +118,7 @@
            
         // Підключаю все активовані плагіни:
         if (isset($pluginStatus['activated'][$value['pluginFolder']])) {
+            
             require_once $rootRoot.'/'.$usp.'_cms/usp_plugins/'.$value['pluginFolder'].'/index.php';
             $activatedPlugins[$key] = $value;
             
@@ -125,8 +126,21 @@
             $activatedPlugins[$key]['pluginMenu'] = $pluginStatus['activated'][$value['pluginFolder']]['menu'];
             $activatedPlugins[$key]['pluginSubMenu'] = $pluginStatus['activated'][$value['pluginFolder']]['subMenu'];
             $activatedPlugins[$key]['pluginFooterMenu'] = $pluginStatus['activated'][$value['pluginFolder']]['footerMenu'];
+            
+            // І в загальний масив теж записую:
+            $pluginsArray[$key]['pluginMenu'] = $pluginStatus['activated'][$value['pluginFolder']]['menu'];
+            $pluginsArray[$key]['pluginSubMenu'] = $pluginStatus['activated'][$value['pluginFolder']]['subMenu'];
+            $pluginsArray[$key]['pluginFooterMenu'] = $pluginStatus['activated'][$value['pluginFolder']]['footerMenu'];
+            
+        } else {
+            
+            // І в загальний масив теж записую:
+            $pluginsArray[$key]['pluginMenu'] = $pluginStatus['deactivated'][$value['pluginFolder']]['menu'];
+            $pluginsArray[$key]['pluginSubMenu'] = $pluginStatus['deactivated'][$value['pluginFolder']]['subMenu'];
+            $pluginsArray[$key]['pluginFooterMenu'] = $pluginStatus['deactivated'][$value['pluginFolder']]['footerMenu'];
+            
         }
         
+        
+        
     }    
-
-   // print_r($activatedPlugins);

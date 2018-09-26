@@ -1,7 +1,7 @@
 <?php
 
     #   USP plugin: Корпоративний блог
-    #   version: 1.0
+    #   version: 1.1
     #   author: Vlad Salabun
     #   description: Корпоративний блог
     #   Activation: yes

@@ -1,7 +1,7 @@
 <?php 
     $array = array(
         "SELECT" => "*",
-        "FROM" => $moneytablesArray[4],
+        "FROM" => $tmpObj->tablesNames[4],
         "WHERE" => "done = 0",
         "ORDER" => "ID",
         "SORT" => "DESC"
@@ -10,7 +10,7 @@
 
     $array = array(
         "SELECT" => "*",
-        "FROM" => $moneytablesArray[4],
+        "FROM" => $tmpObj->tablesNames[4],
         "WHERE" => "done = 1",
         "ORDER" => "ID",
         "SORT" => "DESC"

@@ -1,7 +1,7 @@
 <?php 
 
     #   USP plugin: Links abyss
-    #   version: 1.0
+    #   version: 1.1
     #   author: Vlad Salabun
     #   description: Посилання, які я просто зберіг, щоб мене не мучила совість і я не зберігав їх відкритими у браузері. Може колись я їх перегляну, якщо мені буде скучно.
     #   Activation: yes

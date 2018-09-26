@@ -3,6 +3,9 @@
     // TODO: чи видно змінні з одного плагіну в іншому?
 
     require_once 'plugin_database.php';
+    
+     $className = basename(pathinfo(__FILE__)['dirname']);
+     $tmpObj = new $className;
 
 /*
   Питання можуть бути:
@@ -61,11 +64,13 @@
     function getCorporateBlogCategories() {
 
        global $db;
-       global $corporateBlog;
+       
+       $className = basename(pathinfo(__FILE__)['dirname']);
+       $tmpObj = new $className;
 
        $array = array(
            "SELECT" => "*",
-           "FROM" => $corporateBlog[2],
+           "FROM" => $tmpObj->tablesNames[2],
            "WHERE" => "moderation = 0",
            "ORDER" => "parentCategoryID",
            "SORT" => "DESC"
@@ -83,10 +88,12 @@
     function addCorporateBlogCategory() {
 
         global $db;
-        global $corporateBlog;
+        
+        $className = basename(pathinfo(__FILE__)['dirname']);
+        $tmpObj = new $className;
 
         $array = array(
-            "INSERT INTO" => $corporateBlog[2],
+            "INSERT INTO" => $tmpObj->tablesNames[2],
             "COLUMNS" => array(
                 "categoryName" => $_POST['categoryName'],
                 "categoryURL" =>  $_POST['categoryURL'],

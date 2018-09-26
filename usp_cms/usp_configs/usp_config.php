@@ -1,7 +1,7 @@
 <?php
 
     # CMS version:
-    $version = '2.4';
+    $version = '2.5';
 
     # Встановлення USP:
     $uspInstaller = 0; // після першого запуску можна поставити 0

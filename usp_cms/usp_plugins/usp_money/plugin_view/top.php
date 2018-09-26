@@ -1,7 +1,7 @@
 <?php 
     $array = array(
         "SELECT" => "*",
-        "FROM" => $moneytablesArray[3]
+        "FROM" => $tmpObj->tablesNames[3]
     );
     $moneyParams = $db->select($array, null); 
 ?>

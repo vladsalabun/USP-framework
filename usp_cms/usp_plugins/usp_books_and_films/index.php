@@ -1,7 +1,7 @@
 <?php 
 
     #   USP plugin: Книги та фільми
-    #   version: 1.0
+    #   version: 1.1
     #   author: Vlad Salabun
     #   description: Книги, які я прочитав, та фільми які я переглянув
     #   Activation: yes

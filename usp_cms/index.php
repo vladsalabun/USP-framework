@@ -26,8 +26,8 @@
     }
    
    
-   // Якщо користувач зареєстрований у системі, то його ID > 0 :
-   if ($userINFO['ID'] > 0) {
+    // Якщо користувач зареєстрований у системі, то його ID > 0 :
+    if ($userINFO['ID'] > 0) {
         // то запускаю роутер:
         $need_page = checkPage($userINFO);
         
@@ -48,8 +48,8 @@
         require 'usp_view/head.php';
         require 'usp_view/'.$need_page.'.php';
         require 'usp_view/footer.php';
-   } else {
+    } else {
         // редірект на головну;
         echo '<h1>У вас недостатньо прав доступу, щоб переглядати цю сторінку.<h1>';
         exit();
-   }
+    }

@@ -1,7 +1,7 @@
 <?php 
      
     // Клас повинен співпадати з назвою папки:
-    class usp_backup {
+    class usp_cron {
         
         public $usp;
         public $tablesNames;      
