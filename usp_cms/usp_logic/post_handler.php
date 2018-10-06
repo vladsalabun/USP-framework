@@ -99,6 +99,91 @@
         
         
         
+         // --------------> Функція зміни параметрів плагіна:
+        
+        public function changePluginConfig() {
+            
+            global $usp;
+            global $webSiteUrl;
+            
+            $pluginConfigs = json_decode(checkUSPconfig('plugins')['value'],true);
+            
+            if(isset($pluginConfigs['activated'][$_POST['pluginFolder']])) {
+                
+                //
+                if(isset($_POST['pluginMenu']) == 1) {
+                    $pluginConfigs['activated'][$_POST['pluginFolder']]['menu'] = 'yes';
+                } else {
+                    $pluginConfigs['activated'][$_POST['pluginFolder']]['menu'] = 'no';
+                }
+                //
+                if(isset($_POST['pluginSubMenu'])) {
+                    $pluginConfigs['activated'][$_POST['pluginFolder']]['subMenu'] = 'yes';
+                } else {
+                    $pluginConfigs['activated'][$_POST['pluginFolder']]['subMenu'] = 'no';
+                }
+                //
+                if(isset($_POST['pluginFooterMenu'])) {
+                    $pluginConfigs['activated'][$_POST['pluginFolder']]['footerMenu'] = 'yes';
+                } else {
+                    $pluginConfigs['activated'][$_POST['pluginFolder']]['footerMenu'] = 'no';
+                }
+                //
+                if(strlen($_POST['pluginTitle']) > 0) {
+                    $pluginConfigs['activated'][$_POST['pluginFolder']]['pluginTitle'] = $_POST['pluginTitle'];
+                } else {
+                    unset($pluginConfigs['activated'][$_POST['pluginFolder']]['pluginTitle']);
+                }
+                
+            }
+            if(isset($pluginConfigs['deactivated'][$_POST['pluginFolder']])) {
+                
+                //
+                if(isset($_POST['pluginMenu']) == 1) {
+                    $pluginConfigs['deactivated'][$_POST['pluginFolder']]['menu'] = 'yes';
+                } else {
+                    $pluginConfigs['deactivated'][$_POST['pluginFolder']]['menu'] = 'no';
+                }
+                //
+                if(isset($_POST['pluginSubMenu'])) {
+                    $pluginConfigs['deactivated'][$_POST['pluginFolder']]['subMenu'] = 'yes';
+                } else {
+                    $pluginConfigs['deactivated'][$_POST['pluginFolder']]['subMenu'] = 'no';
+                }
+                //
+                if(isset($_POST['pluginFooterMenu'])) {
+                    $pluginConfigs['deactivated'][$_POST['pluginFolder']]['footerMenu'] = 'yes';
+                } else {
+                    $pluginConfigs['deactivated'][$_POST['pluginFolder']]['footerMenu'] = 'no';
+                }
+                //
+                if(strlen($_POST['pluginTitle']) > 0) {
+                    $pluginConfigs['deactivated'][$_POST['pluginFolder']]['pluginTitle'] = $_POST['pluginTitle'];
+                } else {
+                    unset($pluginConfigs['deactivated'][$_POST['pluginFolder']]['pluginTitle']);
+                }
+                
+            }
+            
+            $array = array(
+                "UPDATE" => $usp . "_configuration",
+                "SET" => array(
+                    "value" => json_encode($pluginConfigs),
+                    ),
+                "WHERE" => array(
+                    "name" => 'plugins'
+                )
+            );
+                
+            $this->db->update($array); 
+            
+            $link = $webSiteUrl.$usp.'_cms/?page=plugins';
+            header("Location: $link");
+            exit();
+
+        }
+        
+        // <---------------   Функція зміни параметрів плагіна      
         
         
         

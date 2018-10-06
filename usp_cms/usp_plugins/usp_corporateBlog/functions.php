@@ -4,8 +4,7 @@
 
     require_once 'plugin_database.php';
     
-     $className = basename(pathinfo(__FILE__)['dirname']);
-     $tmpObj = new $className;
+     $usp_corporateBlog = new usp_corporateBlog;
 
 /*
   Питання можуть бути:
@@ -66,11 +65,11 @@
        global $db;
        
        $className = basename(pathinfo(__FILE__)['dirname']);
-       $tmpObj = new $className;
+       $usp_corporateBlog = new $className;
 
        $array = array(
            "SELECT" => "*",
-           "FROM" => $tmpObj->tablesNames[2],
+           "FROM" => $usp_corporateBlog->tablesNames[2],
            "WHERE" => "moderation = 0",
            "ORDER" => "parentCategoryID",
            "SORT" => "DESC"
@@ -90,10 +89,10 @@
         global $db;
         
         $className = basename(pathinfo(__FILE__)['dirname']);
-        $tmpObj = new $className;
+        $usp_corporateBlog = new $className;
 
         $array = array(
-            "INSERT INTO" => $tmpObj->tablesNames[2],
+            "INSERT INTO" => $usp_corporateBlog->tablesNames[2],
             "COLUMNS" => array(
                 "categoryName" => $_POST['categoryName'],
                 "categoryURL" =>  $_POST['categoryURL'],

@@ -201,8 +201,132 @@
 
     ********************************************************** */
     
-    function paginator($AllitemsCount,$itemsPerPage) {
+    
+    function showPagination($url,$currentPage = null,$AllitemsCount,$elementsPerPage) {
         
-        $num_rows = round($AllitemsCount/$itemsPerPage);
+        // Скільки кнопок показувати, непарне число:
+        // TODO: set config in DB
+        $buttons = 5;
         
+        // скільки сторінок:
+        $pages = ceil($AllitemsCount/$elementsPerPage);
+         
+        if($currentPage < 1 ) {
+            $currentPage = 1;
+        } 
+        
+        $prevMax = $currentPage - ($buttons - 1)/2;
+        $nextMax = $currentPage + ($buttons - 1)/2;
+        
+        if ($prevMax < 1) {
+            $prevMax = 1;
+        }
+        if ($nextMax > $pages) {
+            $nextMax = $pages;
+        }
+         
+        $parinationArray = array(); 
+        
+        // Якщо це перші сторінки:         
+        if($currentPage < $buttons) {
+
+            if ($prevMax == 2) {
+                $parinationArray[] = 1;
+            } else if ($prevMax > 2) {
+                $parinationArray[] = 1;
+                $parinationArray[] = '...';
+            }
+            
+            for ($i = $prevMax; $i <= $nextMax; $i++) {
+                $parinationArray[] = $i;
+            }
+            
+            // якщо наступна сторінка не є останньою, то додаю останню в кінець масива:
+
+            if($nextMax <= ($pages - 2)) {
+                $parinationArray[] = '...';
+                $parinationArray[] = $pages;
+            } else if ($nextMax > ($pages - 2) and $nextMax < $pages) {
+                 $parinationArray[] = $pages;
+            }
+            
+                      
+        } else if ($currentPage == $buttons) {
+            
+            // Перша сторінка має бути завжди
+            $parinationArray[] = 1;
+            
+            if ($prevMax > 2) {
+                $parinationArray[] = '...';
+            }
+            
+            for ($i = $prevMax; $i <= $nextMax; $i++) {
+                $parinationArray[] = $i;
+            }
+            
+            // Якщо наступна не є останньою:
+            if($nextMax != $pages) {
+                $parinationArray[] = '...';
+                $parinationArray[] = $pages;
+            }
+             
+        } else if ($currentPage > $buttons and $currentPage <= $pages) {
+            
+            
+            $parinationArray[] = 1;
+            $parinationArray[] = '...';
+            
+            for ($i = $prevMax; $i <= $nextMax; $i++) {
+                $parinationArray[] = $i;
+            }
+            
+            // Якщо наступна не є останньою:
+            if($nextMax < ($pages - 1)) {
+                $parinationArray[] = '...';
+                $parinationArray[] = $pages;
+            } else if($nextMax < ($pages)) {
+                $parinationArray[] = $pages;
+            }
+            
+            
+        } else if ($currentPage >= $pages){
+            
+            for ($i = 1; $i <= (1 + ($buttons - 1)/2); $i++) {
+                $parinationArray[] = $i;
+            }
+            
+            // якщо наступна сторінка не є останньою, то додаю останню в кінець масива: 
+            if($nextMax <= ($pages - 2)) {
+                $parinationArray[] = '...';
+                $parinationArray[] = $pages;
+            } else if ($nextMax > ($pages - 2) and $nextMax < $pages) {
+                 $parinationArray[] = $pages;
+            }
+            
+        }
+        
+        /*******************************/
+         
+        // HTML код пагінації:
+        $string = '<div class="container-fluid margin30"><nav aria-label="Page navigation example"><ul class="pagination">';
+            
+        foreach ($parinationArray as $key => $value) {
+            $string .= '<li class="page-item"><a class="page-link" href="'.$url.'&p='.$value.'">'.$value.'</a></li>';
+        }   
+
+        $string .= '</ul></nav></div>';
+        
+        return $string ;
+       
+    }
+    
+  
+    /* ********************************************************
+
+        Заміна переносів строк
+
+    ********************************************************** */
+  
+    function br2nl($string){
+       return preg_replace('/<br\s?\/?>/ius', "\n", str_replace("\n","",str_replace("\r","", htmlspecialchars_decode($string))));
     }

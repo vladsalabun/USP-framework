@@ -18,6 +18,11 @@
             );
         }
         
+        // Перевіряю чи не створене вже поле з конфігами плагінів:
+        $pluginsInfo = checkUSPconfig('plugins'); 
+        // якщо ні, то додаю:
+        if($pluginsInfo == null) {
+        
         // Вставляю в базу:
         $array = array(
             "INSERT INTO" => $usp . "_configuration",
@@ -27,6 +32,21 @@
              )
         );
         $db->insert($array);
+        
+        } else {
+            // обновляю:
+            $array = array(
+                "UPDATE" => $usp . "_configuration",
+                "SET" => array(
+                    "value" => json_encode($pluginJson)
+                ),
+                "WHERE" => array(
+                    "name" => 'plugins'
+                )
+            );
+                
+            $db->update($array);  
+        }
        
     }    
 

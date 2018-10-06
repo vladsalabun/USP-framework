@@ -1,7 +1,7 @@
 <?php 
     $array = array(
         "SELECT" => "*",
-        "FROM" => $tmpObj->tablesNames[0],
+        "FROM" => $usp_money->tablesNames[0],
         "WHERE" => "category = ".$_GET['category']." AND moderation = 0",
         "ORDER" => "ID",
         "SORT" => "DESC"

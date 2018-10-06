@@ -1,9 +1,11 @@
-<?php 
+<?php
+ 
     $array = array(
         "SELECT" => "*",
-        "FROM" => $tmpObj->tablesNames[3]
+        "FROM" => $usp_money->tablesNames[3]
     );
     $moneyParams = $db->select($array, null); 
+    
 ?>
 <nav class="navbar vilet navbar-expand-lg navbar-light bg-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

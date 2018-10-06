@@ -115,13 +115,28 @@
         
         public function checkbox($array = null) 
         {
-        
-        return '
-            <fieldset>
-                    <input class="form-check-input" type="checkbox" name="buffer[]" value="mm" id="oooo">
-                    <label class="form-check-label" for="oooo">iii</label>
-            </fieldset>
-         ';
+
+            $i = 1;
+            
+            foreach ($array['value'][0] as $key => $value) {
+                
+                if($value == 1) {
+                    $checked = 'checked';
+                } else {
+                    $checked = '';
+                }
+                
+                $string .= '
+                    <fieldset>
+                            <input class="form-check-input" type="checkbox" name="'.$key.'" value="'.$value.'" id="'.$array['name'].'_'.$key.$i.'" '.$checked.'>
+                            <label class="form-check-label" for="'.$array['name'].'_'.$key.$i.'">'.$key.' '.$value.'</label>
+                    </fieldset>
+                ';
+                
+                $i++;
+            }
+      
+            return $string; 
         
         }
 

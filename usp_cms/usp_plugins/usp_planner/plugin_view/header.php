@@ -1,7 +1,3 @@
-<?php    
-    $className = $_GET['name'];
-    $usp_notes = new $className;
-?>
 <nav class="navbar vilet navbar-expand-lg navbar-light bg-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -12,22 +8,9 @@
                 <a class="nav-link" href="<?php echo $pluginConfigUrl; ?>">
                     На модерації 
                     <?php 
-                    
-                        
-                        if(in_array($_GET['plugin_config'],$notesTypesArray)){
-                            $notesType = $_GET['plugin_config'];
-                        } else if($_GET['plugin_config'] == 'category') {
-                            
-                        }
-                        else {
-                            $notesType = $notesTypesArray[0];
-                        }
-                        
-                        $notesCount = getNotesCount($notesType);
-                        
-                        $onModerationCount = getNotesCount('onmoderation');
-                        if ($onModerationCount > 0) {
-                            echo '[ '.$onModerationCount.' ]';
+                        $onModeration = getNotesCount('onModeration');
+                        if ($onModeration > 0) {
+                            echo '[ '.getNotesCount('onModeration').' ]';
                         }
                     ?>
                 </a>
@@ -43,29 +26,28 @@
                 </a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="<?php echo $pluginConfigUrl; ?>&plugin_config=category">
-                    Рубрики
-                </a>
-            </li>
-            <li class="nav-item active">
                 <?php echo modalLink('addnotes', '+Додати', 'nav-link'); ?>
             </li>
 
         </ul>
     </div>
 </nav>
-<div class="container">
-<?php 
-
-    if(isset($_GET['plugin_config'])){
-        $pluginConfigUrl = $pluginConfigUrl.'&plugin_config='.$notesType;
-    } else {
-        $pluginConfigUrl = $pluginConfigUrl;
-    }
-
-echo showPagination($pluginConfigUrl,$_GET['p'],$notesCount,$elementsPerPage); 
-
-?>
+<div class="container-fluid margin20">
+<nav aria-label="...">
+  <ul class="pagination">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item active">
+      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
 </div>
 <style>
 .vilet {
@@ -79,9 +61,10 @@ echo showPagination($pluginConfigUrl,$_GET['p'],$notesCount,$elementsPerPage);
     background: #FAFAFA;
 }
 .note {
-    background: #fff; 
+    background: #fff;
     border-top: 1px solid #f5f5e9;
-    padding-top: 20px;
+    border-bottom: 1px solid #f5f5e9;
+    padding: 20px;
 }
 .note:hover {
 
@@ -94,7 +77,7 @@ echo showPagination($pluginConfigUrl,$_GET['p'],$notesCount,$elementsPerPage);
     font-size: 14px;
 }
 .noteText {
-    font-size: 17px;
+    font-size: 26px;
 }
 .noteDate {
     width: 100%;
@@ -102,10 +85,8 @@ echo showPagination($pluginConfigUrl,$_GET['p'],$notesCount,$elementsPerPage);
     font-size: 14px;
 }
 .note-link {
-    color: #CECECD;
+    color: #000;
 }
-
-
 </style>
 <?php 
 

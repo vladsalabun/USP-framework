@@ -2,8 +2,7 @@
    
     require_once 'plugin_database.php';
     
-    $className = basename(pathinfo(__FILE__)['dirname']);
-    $tmpObj = new $className;   
+    $usp_links_abyss = new usp_links_abyss;   
     
     // Якщо чітко вказано, що це запит до плагіну:
     if ($_POST['actionTo'] == 'plugin') {
@@ -22,7 +21,7 @@
                     if(strlen($_POST['anchor']) > 0) {
                         // update in db:
                         $array = array(
-                        "INSERT INTO" => $tmpObj->tablesNames[0],
+                        "INSERT INTO" => $usp_links_abyss->tablesNames[0],
                             "COLUMNS" => array(
                                 "anchor" => $_POST['anchor'],
                                 "url" => $_POST['url']
@@ -42,7 +41,7 @@
                     if(isset($_POST['delete'])) {
                         // update in db:
                         $array = array(
-                            "UPDATE" => $tmpObj->tablesNames[0],
+                            "UPDATE" => $usp_links_abyss->tablesNames[0],
                             "SET" => array(
                                 "moderation" => 1,
                             ),
@@ -56,7 +55,7 @@
                     if(strlen($_POST['anchor']) > 0) {
                         // update in db:
                         $array = array(
-                            "UPDATE" => $tmpObj->tablesNames[0],
+                            "UPDATE" => $usp_links_abyss->tablesNames[0],
                             "SET" => array(
                                 "anchor" => $_POST['anchor'],
                                 "url" => $_POST['url'],
@@ -82,11 +81,11 @@
         global $db;
         
         $className = basename(pathinfo(__FILE__)['dirname']);
-        $tmpObj = new $className; 
+        $usp_links_abyss = new $className; 
         
         $array = array(
             "SELECT" => "*",
-            "FROM" => $tmpObj->tablesNames[0],
+            "FROM" => $usp_links_abyss->tablesNames[0],
             "WHERE" => "moderation = 0",
             "ORDER" => "date",
             "SORT" => "DESC",

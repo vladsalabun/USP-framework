@@ -14,9 +14,11 @@
             
             // Тут треба вказати назви таблиць:
             $this->tablesNames = array(
-                0 => $this->usp . "_QuickNotes"
+                0 => $this->usp . "_QuickNotes",
+                1 => $this->usp . "_QuickNotesCategories",
+                2 => $this->usp . "_QuickNotesCategoriesMatches"
             );
-            
+
             // Тут треба вказати структуру таблиць:
             $this->tables = array(
                 $this->tablesNames[0] => array ( 
@@ -33,5 +35,10 @@
         {
             global $db;
             $db->createAllTables($this->tables);
+            
+            // Створення таблиці рубрик:
+            rubricator::createPluginCategoryTable($this->tablesNames[1]);
+            // Створення таблиці залежностей:
+            rubricator::createPluginCategoryRelationsTable($this->tablesNames[2]);
         }
     }

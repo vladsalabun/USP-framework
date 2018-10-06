@@ -4,7 +4,7 @@
 
     $array = array(
         "SELECT" => "*",
-        "FROM" => $tmpObj->tablesNames[3]
+        "FROM" => $usp_money->tablesNames[3]
     );
     $moneyParams = $db->select($array, null); 
 

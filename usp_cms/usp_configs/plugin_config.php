@@ -2,7 +2,7 @@
 
     class pluginConfig {
         
-        const pluginParams = array(
+        public static $pluginParams = array(
             'usp plugin' => 'pluginName',
             'version' => 'pluginVersion',
             'author' => 'pluginAuthor',

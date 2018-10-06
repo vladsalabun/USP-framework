@@ -36,6 +36,9 @@
     require 'classes/class_table.php';
     require 'classes/class_highlight.php';
     
+    # Підключаю рубрикатор:
+    require 'classes/class_rubricator.php';
+    
     $table = new tableGenerator;
     $highlight = new highlight;
     $form = new formGenerator;

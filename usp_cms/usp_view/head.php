@@ -30,14 +30,17 @@
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
 <?php 
-                    foreach ($activatedPlugins as $key => $value) {
-                       
-                        if( $value['pluginMenu'] == 'yes') {
+        if(is_array($activatedPlugins)) {
+            foreach ($activatedPlugins as $key => $value) {
+           
+                if( $value['pluginMenu'] == 'yes') {
 ?>                    
-                        <li class="nav-item"><a class="nav-link" href="?page=plugin&name=<?php echo $value['pluginUrl']; ?>"><?php echo $value['pluginTitle']; ?></a></li>
+                <li class="nav-item"><a class="nav-link" href="?page=plugin&name=<?php echo $value['pluginUrl']; ?>"><?php echo $value['pluginTitle']; ?></a></li>
 <?php
-                        }
-                    }
+                }
+                
+            }
+        }
 ?>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,13 +51,15 @@
                 <a class="dropdown-item" href="?page=plugins"><?php echo dialogs(400,$language); ?></a>
                 <a class="dropdown-item" href="?page=documentation"><?php echo dialogs(401,$language); ?></a>
 <?php 
-                    foreach ($activatedPlugins as $key => $value) {
-                        if( $value['pluginSubMenu'] == 'yes') {
+        if(is_array($activatedPlugins)) {   
+            foreach ($activatedPlugins as $key => $value) {
+                if( $value['pluginSubMenu'] == 'yes') {
 ?>
-                <a class="dropdown-item" href="?page=plugin&name=<?php echo $value['pluginUrl']; ?>"><?php echo $value['pluginTitle']; ?></a>
+        <a class="dropdown-item" href="?page=plugin&name=<?php echo $value['pluginUrl']; ?>"><?php echo $value['pluginTitle']; ?></a>
 <?php 
-                        }
-                    }
+                }
+            }
+        }
 ?>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="?page=configurations">Налаштування</a>

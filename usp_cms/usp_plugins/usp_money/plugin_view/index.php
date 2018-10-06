@@ -4,7 +4,7 @@
 
     $array = array(
         "SELECT" => "*",
-        "FROM" => $tmpObj->tablesNames[0],
+        "FROM" => $usp_money->tablesNames[0],
         "WHERE" => "moderation = 0",
         "ORDER" => "ID",
         "SORT" => "DESC"
@@ -13,7 +13,7 @@
 
     $array = array(
         "SELECT" => "*",
-        "FROM" => $tmpObj->tablesNames[2],
+        "FROM" => $usp_money->tablesNames[2],
         "WHERE" => "moderation = 0"
     );
     $allCategoryArray = $db->select($array);

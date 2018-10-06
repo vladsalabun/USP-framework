@@ -59,7 +59,7 @@
                         $pluginParamArray = explode(':',$paramLine);
                         
                         // Кладу у масив параметри плагінів:
-                        $pluginArray[$pluginFolder][pluginConfig::pluginParams[strtolower($pluginParamArray[0])]] = trim($pluginParamArray[1]);
+                        $pluginArray[$pluginFolder][pluginConfig::$pluginParams[strtolower($pluginParamArray[0])]] = trim($pluginParamArray[1]);
                         
                         // і назву папки тоже кладу:
                         $pluginArray[$pluginFolder]['pluginFolder'] = trim($pluginFolder);
@@ -77,20 +77,26 @@
     
     // Беру список всіх плагінів з папки:
     $pluginsArray = getAllPluginsInfo();
-    
+
     // беру список всіх плагінів з бази:
-    $pluginsInfo = checkUSPconfig('plugins');     
-     
+    $pluginsInfo = checkUSPconfig('plugins');  
+        
+    // якщо раптом налаштування збились на null:
+    if($pluginsInfo['value'] == null or $pluginsInfo['value'] == 'null') {
+        echo 1111;
+        setPluginsFromFolderAsDeactivated($pluginsArray);
+    }
+  
     // якщо немає інформації про плагіни в базі даних:
     if($pluginsInfo == false) {
-        
+
         // то додаю всі плагіни з папки як виключені:
         setPluginsFromFolderAsDeactivated($pluginsArray);
         
     } else {
-        
+
         // якщо є, то кладу всі плагіни в масиви:
-        $pluginStatus = json_decode($pluginsInfo['value'],true);
+        $pluginStatus = json_decode($pluginsInfo['value'],true); 
         
     }
      
@@ -119,7 +125,11 @@
         // Підключаю все активовані плагіни:
         if (isset($pluginStatus['activated'][$value['pluginFolder']])) {
             
-            require_once $rootRoot.'/'.$usp.'_cms/usp_plugins/'.$value['pluginFolder'].'/index.php';
+            // Підключаю, якщо я знаходжусь в цьому плагіні:
+            if(isset($_GET['name'])) {
+                require_once $rootRoot.'/'.$usp.'_cms/usp_plugins/'.$value['pluginFolder'].'/index.php';
+            }
+            
             $activatedPlugins[$key] = $value;
             
             // Записую також параметри з бази даних:
@@ -127,10 +137,22 @@
             $activatedPlugins[$key]['pluginSubMenu'] = $pluginStatus['activated'][$value['pluginFolder']]['subMenu'];
             $activatedPlugins[$key]['pluginFooterMenu'] = $pluginStatus['activated'][$value['pluginFolder']]['footerMenu'];
             
+            if(isset($activatedPlugins[$key]['pluginTitle'])) {
+                $activatedPlugins[$key]['pluginTitle'] = $pluginStatus['activated'][$value['pluginFolder']]['pluginTitle'];
+            }
+            
             // І в загальний масив теж записую:
             $pluginsArray[$key]['pluginMenu'] = $pluginStatus['activated'][$value['pluginFolder']]['menu'];
             $pluginsArray[$key]['pluginSubMenu'] = $pluginStatus['activated'][$value['pluginFolder']]['subMenu'];
             $pluginsArray[$key]['pluginFooterMenu'] = $pluginStatus['activated'][$value['pluginFolder']]['footerMenu'];
+            
+            
+            if(isset($pluginStatus['activated'][$value['pluginFolder']]['pluginTitle'])) {
+                $pluginsArray[$key]['pluginTitle'] = $pluginStatus['activated'][$value['pluginFolder']]['pluginTitle'];
+                $activatedPlugins[$key]['pluginTitle'] = $pluginStatus['activated'][$value['pluginFolder']]['pluginTitle'];
+            } else {
+                $activatedPlugins[$key]['pluginTitle'] = $pluginsArray[$value['pluginFolder']]['pluginTitle'];
+            }          
             
         } else {
             

@@ -10,7 +10,7 @@
 <ol>
 <?php
         
-foreach ($tmpObj->tables as $tableName => $columnArray) {
+foreach ($usp_corporateBlog->tables as $tableName => $columnArray) {
 
     echo '<li>
     '.$tableName.':

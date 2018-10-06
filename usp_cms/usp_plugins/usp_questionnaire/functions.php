@@ -2,8 +2,7 @@
 
     require_once 'plugin_database.php';
 
-    $className = basename(pathinfo(__FILE__)['dirname']);
-    $tmpObj = new $className; 
+    $usp_questionnaire = new usp_questionnaire;
     
 /*
   Питання можуть бути:
@@ -20,7 +19,7 @@
         global $form;
 
         $className = basename(pathinfo(__FILE__)['dirname']);
-        $tmpObj = new $className; 
+        $usp_questionnaire = new $className; 
         
         if ($language == 'ukraine') {
           $questionsToCustomer = array(

@@ -2,9 +2,29 @@
 
     require_once 'plugin_database.php';
     
-    $className = basename(pathinfo(__FILE__)['dirname']);
-    $tmpObj = new $className; 
+    $usp_notes  = new usp_notes;
 
+    $monthNames = array (
+		'01' => 'січ', 
+		'02' => 'лют', 
+		'03' => 'бер', 
+		'04' => 'кві', 
+		'05' => 'тра', 
+		'06' => 'чер',
+		'07' => 'лип', 
+		'08' => 'сер', 
+		'09' => 'вер', 
+		'10' => 'жов', 
+		'11' => 'лис', 
+		'12' => 'гру'
+	);
+    
+    $notesTypesArray = array(       
+        'onmoderation',
+        'approved',
+        'deleted'
+    );
+    
     // Якщо чітко вказано, що це запит до плагіну:
     if ($_POST['actionTo'] == 'plugin') {
         
@@ -21,7 +41,7 @@
                     
                     // update in db:
                     $array = array(
-                    "INSERT INTO" => $tmpObj->tablesNames[0],
+                    "INSERT INTO" => $usp_notes->tablesNames[0],
                         "COLUMNS" => array(
                             "text" => nl2br($_POST['text'])
                             )                            
@@ -40,7 +60,7 @@
                 if ($_POST['action'] == 'moderate') {
                     
                     $array = array(
-                        "UPDATE" => $tmpObj->tablesNames[0],
+                        "UPDATE" => $usp_notes->tablesNames[0],
                         "SET" => array(
                             "moderation" => $_POST['moderation'],
                         ),
@@ -62,9 +82,9 @@
                 if ($_POST['action'] == 'editNote') {
                     
                     $array = array(
-                        "UPDATE" => $tmpObj->tablesNames[0],
+                        "UPDATE" => $usp_notes->tablesNames[0],
                         "SET" => array(
-                            "text" => nl2br($_POST['text']),
+                            "text" => nl2br($_POST['text'],false),
                         ),
                         "WHERE" => array(
                             "ID" => $_POST['ID']
@@ -91,30 +111,30 @@
         global $db;
         
         $className = basename(pathinfo(__FILE__)['dirname']);
-        $tmpObj = new $className; 
-
-        if($type == 'onModeration') {
+        $usp_notes = new $className; 
+        
+        if($type == 'onmoderation') {
             $array = array(
                 "SELECT" => "*",
-                "FROM" => $tmpObj->tablesNames[0],
+                "FROM" => $usp_notes->tablesNames[0],
                 "WHERE" => "moderation = 0",
                 "ORDER" => "date",
                 "SORT" => "DESC",
             );
             return count($db->select($array));
-        } else if ($type == 'Approved') {
+        } else if ($type == 'approved') {
             $array = array(
                 "SELECT" => "*",
-                "FROM" => $tmpObj->tablesNames[0],
+                "FROM" => $usp_notes->tablesNames[0],
                 "WHERE" => "moderation = 2",
                 "ORDER" => "date",
                 "SORT" => "DESC",
             );
             return count($db->select($array));
-        } else if ($type == 'Deleted') {
+        } else if ($type == 'deleted') {
             $array = array(
                 "SELECT" => "*",
-                "FROM" => $tmpObj->tablesNames[0],
+                "FROM" => $usp_notes->tablesNames[0],
                 "WHERE" => "moderation = 1",
                 "ORDER" => "date",
                 "SORT" => "DESC",
@@ -124,41 +144,50 @@
         }
     }
     
-    function getNotes($type) {
+    function getNotes($type,$p) {
         
         global $db;
+        global $elementsPerPage;
         
-        $className = basename(pathinfo(__FILE__)['dirname']);
-        $tmpObj = new $className; 
+        if($p < 1) {
+            $p = 1;
+        }
         
-        if($type == 'onModeration') {
+        $usp_notes = new usp_notes; 
+        
+        if($type == 'onmoderation') {
             
             $array = array(
                 "SELECT" => "*",
-                "FROM" => $tmpObj->tablesNames[0],
+                "FROM" => $usp_notes->tablesNames[0],
                 "WHERE" => "moderation = 0",
                 "ORDER" => "date",
                 "SORT" => "DESC",
+                "LIMIT" => $elementsPerPage * ($p - 1).",".$elementsPerPage
             );
             return $db->select($array);
             
-        } else if ($type == 'Approved') {
+        } else if ($type == 'approved') {
             $array = array(
                 "SELECT" => "*",
-                "FROM" => $tmpObj->tablesNames[0],
+                "FROM" => $usp_notes->tablesNames[0],
                 "WHERE" => "moderation = 2",
                 "ORDER" => "date",
                 "SORT" => "DESC",
+                "LIMIT" => $elementsPerPage * ($p - 1).",".$elementsPerPage
             );
             return $db->select($array);
-        } else if ($type == 'Deleted') {
+        } else if ($type == 'deleted') {
              $array = array(
                 "SELECT" => "*",
-                "FROM" => $tmpObj->tablesNames[0],
+                "FROM" => $usp_notes->tablesNames[0],
                 "WHERE" => "moderation = 1",
                 "ORDER" => "date",
                 "SORT" => "DESC",
+                "LIMIT" => $elementsPerPage * ($p - 1).",".$elementsPerPage
             );
             return $db->select($array);
         }
-    }    
+    } 
+
+  

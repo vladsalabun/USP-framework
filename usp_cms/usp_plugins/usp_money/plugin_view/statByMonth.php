@@ -2,7 +2,7 @@
     $q = "LIKE '".$_GET['year'] ."-".$_GET['month'] ."%'";
     $array = array(
         "SELECT" => "*",
-        "FROM" => $tmpObj->tablesNames[0],
+        "FROM" => $usp_money->tablesNames[0],
         "WHERE" => "date ".$q." AND moderation = 0",
         "ORDER" => "ID",
         "SORT" => "DESC"

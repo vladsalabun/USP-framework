@@ -1,7 +1,7 @@
 <?php
 
     # CMS version:
-    $version = '2.5';
+    $version = '2.7';
 
     # Встановлення USP:
     $uspInstaller = 0; // після першого запуску можна поставити 0
@@ -31,6 +31,8 @@
         $webSiteUrl.'usp_cms/usp_js/bootstrap.js'
     );
 
+    // TODO: set config in DB
+    $elementsPerPage = 10;
 
     $cmsFonts = $webSiteUrl.'usp_cms/usp_fonts/';
 

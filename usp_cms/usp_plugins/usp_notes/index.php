@@ -1,7 +1,7 @@
 <?php 
 
     #   USP plugin: Notes
-    #   version: 1.1
+    #   version: 1.2
     #   author: Vlad Salabun
     #   description: Для швидких нотаток, щоб не завантажувати в свій телефон
     #   Activation: yes

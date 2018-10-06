@@ -11,8 +11,13 @@
         echo  
         '<ul class="list-group">
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <span class="operation-date">'.$bookCount.'.'.modalLink('modal'.$value['ID'], $value['author'].' «'.$value['name'].'»','className').'</span>
-            <span class="operation-date"><span'.$catClass.'>'.$value['date'].'</span>
+            <span class="operation-date">'.$bookCount.'. '.modalLink('modal'.$value['ID'], $value['author'].' «'.$value['name'].'»','className').'</span>
+            <span class="operation-date">
+            <span'.$catClass.'>
+            '.date('d',strtotime($value['date'])).'
+            '.$monthNames[date('m',strtotime($value['date']))].'
+            \''.substr(date('Y',strtotime($value['date'])),2).'
+            </span>
           </li>
         </ul>';
 
@@ -47,8 +52,12 @@
         echo  
         '<ul class="list-group">
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <span class="operation-date">'.$filmCount.'.'.modalLink('modal'.$value['ID'], $value['name'].' ('.$value['year'].')','className').'</span>
-            <span class="operation-date"><span'.$catClass.'>'.$value['date'].'</span>
+            <span class="operation-date">'.$filmCount.'. '.modalLink('modal'.$value['ID'], $value['name'].' ('.$value['year'].')','className').'</span>
+            <span class="operation-date"><span'.$catClass.'>
+            '.date('d',strtotime($value['date'])).'
+            '.$monthNames[date('m',strtotime($value['date']))].'
+            \''.substr(date('Y',strtotime($value['date'])),2).'
+            </span>
           </li>
         </ul>';
         

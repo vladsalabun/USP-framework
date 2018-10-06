@@ -3,7 +3,7 @@
     #   USP plugin: Чек-лист
     #   version: 1.1
     #   author: Vlad Salabun
-    #   description: Регулярні дії
+    #   description: Чек-лист
     #   Activation: yes
 
     #   Menu: no

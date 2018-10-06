@@ -1,53 +1,27 @@
 <?php
-    require_once 'header.php';
-    
-    $notes = getNotes($notesType,$_GET['p']);
-     
-    if(isset($_GET['p'])) {
-        $p = $_GET['p'];
-    } else {
-        $p = 1;
-    }
-    $item = ($p - 1) * $elementsPerPage + 1;
+  require_once 'header.php';
+  
 ?>
-<div class="container">
-<?php   
+
+<?php
+    $notes = getNotes('Deleted');
     foreach ($notes as $key => $value) {
 ?>
 <div class="row margin20 note">
-    <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2">
-    <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-1  col-xl-1">
 <?php
-    
-    $tmpUnix = strtotime($value['date']);
-    $tmpDate = date('Y/'.$monthNames['m']. ' /d',$tmpUnix);
-
-    // Дата публікації:
-    echo p(
-        '<span class="noteDate">'
-        .modalLink(
-            'editNote'.$value['ID'], 
-            date('d',$tmpUnix).' '.$monthNames[date('m',$tmpUnix)].' \''.substr(date('Y',$tmpUnix),2), 
-            'note-link').'</span>'
-         );
-    //'<span class="noteID">'.$item.'</span>'
-    $item++;
+    echo '<p><span class="noteID">'.$value['ID'].'</span></p>';
 ?>
     </div>
-    </div>
-    <div class="col-sm-6 col-md-7 col-lg-6 col-xl-7">
-    <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
 <?php
-    echo p('<span class="noteText">'.$value['text'].'</span>');
+    echo '<p><span class="noteText">'.modalLink('editNote'.$value['ID'], $value['text'], 'note-link').'</span></p>';
+    echo '<p><span class="noteDate margin30">'.$value['date'].'</span></p>';
 ?>
     </div>
-    </div>
-    <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
-        
-        
-<div class="container">
-  <div class="d-flex flex-row justify-content-between">
-    <div class="block">
+    <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+        <div class="row">
+            <div class="col-sm-9 col-md-9 col-lg-6 col-xl-6 margin10">
 <?php
 
     echo 
@@ -57,14 +31,13 @@
         .$form->hidden(array('name'=> 'action','value'=> 'moderate'))
         .$form->hidden(array('name'=> 'ID','value'=> $value['ID']))
         .$form->hidden(array('name'=> 'moderation','value'=> 2))
-        .$form->hidden(array('name'=> 'url','value'=> $pluginConfigUrl))
+        .$form->hidden(array('name'=> 'url','value'=> $pluginConfigUrl.'&plugin_config=deleted'))
         .$form->submit(array('name'=> '','value'=> 'Одобрити','class'=>'btn btn-success'))
         .$form->formEnd();
         
-?>
-    
-    </div>
-    <div class="block">
+?>    
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-4 col-xl-4 margin10">
 <?php 
     echo 
          $form->formStart()
@@ -72,17 +45,14 @@
         .$form->hidden(array('name'=> 'pluginFolder','value'=> 'usp_notes'))
         .$form->hidden(array('name'=> 'action','value'=> 'moderate'))
         .$form->hidden(array('name'=> 'ID','value'=> $value['ID']))        
-        .$form->hidden(array('name'=> 'moderation','value'=> 1))
-        .$form->hidden(array('name'=> 'url','value'=> $pluginConfigUrl))
-        .$form->submit(array('name'=> '','value'=> 'Відхилити','class'=>'btn btn-danger'))
+        .$form->hidden(array('name'=> 'moderation','value'=> 0))
+        .$form->hidden(array('name'=> 'url','value'=> $pluginConfigUrl.'&plugin_config=deleted'))
+        .$form->submit(array('name'=> '','value'=> 'На модерацію','class'=>'btn'))
         .$form->formEnd();   
 
-?>
-    </div>
-    
-  </div>
-</div>
-       
+?>            
+            </div>
+        </div>
     </div>
 </div>
 <?php
@@ -93,10 +63,9 @@
         .$form->hidden(array('name'=> 'action','value'=> 'editNote'))
         .$form->hidden(array('name'=> 'ID','value'=> $value['ID']))
         .$form->hidden(array('name'=> 'url','value'=> $pluginConfigUrl.'&plugin_config=deleted'))
-        .p($form->textarea(array('name'=> 'text','value'=> br2nl($value['text']),'class'=>'big_textarea')))
+        .p($form->textarea(array('name'=> 'text','value'=> $value['text'],'class'=>'big_textarea','placeholder' => 'Wish name')))
         .p($form->submit(array('name'=> 'submit','value'=> 'Редагувати нотатку','class'=>'btn btn-success')),'center')
         .$form->formEnd();
         echo modalWindow('editNote'.$value['ID'],'Редагування нотатки:',$notesBody,1,1);
     }
 ?>
-</div>

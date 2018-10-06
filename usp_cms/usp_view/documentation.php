@@ -1,11 +1,15 @@
 <div class="container-fluid">
-    <div class="container center">
-    <h2><?php echo dialogs(100,$language); ?></h2>
+    <div class="container">
+<?php 
+    //rubricator::createPluginTable('usp_sss');
+?>
     </div>
 </div>
 <div class="container-fluid">
 <p><code>$pluginConfigUrl</code> - посилання на поточний плагін</p>
 <p><code>&plugin_config=documentation</code> - так створювати сторінки для плагіна, береться documentation.php з папки view.</p>
+<p><code>rubricator::createPluginCategoryTable($this->tablesNames[1]);</code> - Створення таблиці рубрик</p>
+<p><code>rubricator::createPluginCategoryRelationsTable($this->tablesNames[2]);</code> - Створення таблиці залежностей:</p>
 
 <div class="row">
 	<div class="col-lg-8">

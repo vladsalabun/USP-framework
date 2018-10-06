@@ -1,7 +1,7 @@
 <?php 
     $array = array(
         "SELECT" => "*",
-        "FROM" => $tmpObj->tablesNames[1],
+        "FROM" => $usp_money->tablesNames[1],
         "WHERE" => "moderation = 0",
         "ORDER" => "ID",
         "SORT" => "DESC"

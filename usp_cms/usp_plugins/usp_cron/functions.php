@@ -2,8 +2,7 @@
     
     require_once 'plugin_database.php';
     
-    $className = basename(pathinfo(__FILE__)['dirname']);
-    $tmpObj = new $className; 
+    $usp_cron = new usp_cron; 
 
     
     // Якщо чітко вказано, що це запит до плагіну:

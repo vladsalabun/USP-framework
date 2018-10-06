@@ -1,10 +1,9 @@
 <?php 
     
-    require_once 'plugin_database.php';
-
-    $className = basename(pathinfo(__FILE__)['dirname']);
-    $tmpObj = new $className; 
+    require_once 'plugin_database.php'; 
     
+    $usp_money = new usp_money;
+     
     $moneyCategory = array (
 		0 => 'невідомо', 
 		1 => 'їжа', 
@@ -52,7 +51,7 @@
                     
                     // update in db:
                     $array = array(
-                        "UPDATE" => $tmpObj->tablesNames[3],
+                        "UPDATE" => $usp_money->tablesNames[3],
                         "SET" => array(
                             "moneyUAH" => $_POST['uah'],
                             "moneyUSD" => $_POST['usd'],
@@ -78,7 +77,7 @@
                     // Дізнаюсь параметри готівки:
                     $array = array(
                         "SELECT" => "*",
-                        "FROM" => $tmpObj->tablesNames[3]
+                        "FROM" => $usp_money->tablesNames[3]
                     );
                     $moneyParams = $db->select($array, null); 
                     
@@ -92,7 +91,7 @@
                     
                     // Вставляю в базу нову витратну операцію:
                     $array = array(
-                        "INSERT INTO" => $tmpObj->tablesNames[0],
+                        "INSERT INTO" => $usp_money->tablesNames[0],
                         "COLUMNS" => array(
                             "money" => $_POST['sum'],
                             "operation" => $operationType,
@@ -109,7 +108,7 @@
                         $newMoney = $moneyParams[0]['moneyUAH'] - $_POST['sum'];
                         
                         $array = array(
-                            "UPDATE" => $tmpObj->tablesNames[3],
+                            "UPDATE" => $usp_money->tablesNames[3],
                             "SET" => array(
                                 "moneyUAH" => $newMoney,
                             )
@@ -126,7 +125,7 @@
                         $newMoney = $moneyParams[0]['moneyUAH'] + $_POST['sum'];
                         
                         $array = array(
-                            "UPDATE" => $tmpObj->tablesNames[3],
+                            "UPDATE" => $usp_money->tablesNames[3],
                             "SET" => array(
                                 "moneyUAH" => $newMoney,
                             )
@@ -151,7 +150,7 @@
                     // Дізнаюсь параметри готівки:
                     $array = array(
                         "SELECT" => "*",
-                        "FROM" => $tmpObj->tablesNames[3]
+                        "FROM" => $usp_money->tablesNames[3]
                     );
                     $moneyParams = $db->select($array, null); 
                     
@@ -165,7 +164,7 @@
                     
                     // Вставляю в базу нову витратну операцію:
                     $array = array(
-                        "INSERT INTO" => $tmpObj->tablesNames[1],
+                        "INSERT INTO" => $usp_money->tablesNames[1],
                         "COLUMNS" => array(
                             "money" => $_POST['sum'],
                             "operation" => $operationType,
@@ -182,7 +181,7 @@
                         $newMoney = $moneyParams[0]['moneyUSD'] - $_POST['sum'];
                         
                         $array = array(
-                            "UPDATE" => $tmpObj->tablesNames[3],
+                            "UPDATE" => $usp_money->tablesNames[3],
                             "SET" => array(
                                 "moneyUSD" => $newMoney,
                             )
@@ -199,7 +198,7 @@
                         $newMoney = $moneyParams[0]['moneyUSD'] + $_POST['sum'];
                         
                         $array = array(
-                            "UPDATE" => $tmpObj->tablesNames[3],
+                            "UPDATE" => $usp_money->tablesNames[3],
                             "SET" => array(
                                 "moneyUSD" => $newMoney,
                             )
@@ -232,7 +231,7 @@
                         }
                         
                         $array = array(
-                            "UPDATE" => $tmpObj->tablesNames[0],
+                            "UPDATE" => $usp_money->tablesNames[0],
                             "SET" => array(
                                 "money" => $_POST['money'],
                                 "category" => $_POST['category'][0],
@@ -248,7 +247,7 @@
                     } else if (isset($_POST['delete'])) {
                         // видаляю операцію:
                         $array = array(
-                            "UPDATE" => $tmpObj->tablesNames[0],
+                            "UPDATE" => $usp_money->tablesNames[0],
                             "SET" => array(
                                 "moderation" => 1,
                             ),
@@ -283,7 +282,7 @@
                         }
                         
                         $array = array(
-                            "UPDATE" => $tmpObj->tablesNames[1],
+                            "UPDATE" => $usp_money->tablesNames[1],
                             "SET" => array(
                                 "money" => $_POST['money'],
                                 "category" => $_POST['category'][0],
@@ -299,7 +298,7 @@
                     } else if (isset($_POST['delete'])) {
                         // видаляю операцію:
                         $array = array(
-                            "UPDATE" => $tmpObj->tablesNames[1],
+                            "UPDATE" => $usp_money->tablesNames[1],
                             "SET" => array(
                                 "moderation" => 1,
                             ),
@@ -326,7 +325,7 @@
                     if (isset($_POST['update'])) {
                         // оновляю інформацію про бажання:
                         $array = array(
-                            "UPDATE" => $tmpObj->tablesNames[4],
+                            "UPDATE" => $usp_money->tablesNames[4],
                             "SET" => array(
                                 "wishName" => $_POST['wishName'],
                                 "wishCategory" => $_POST['category'][0],
@@ -343,7 +342,7 @@
                     } else if (isset($_POST['delete'])) {
                         // видаляю операцію:
                         $array = array(
-                            "UPDATE" => $tmpObj->tablesNames[4],
+                            "UPDATE" => $usp_money->tablesNames[4],
                             "SET" => array(
                                 "done" => 2,
                             ),
@@ -369,7 +368,7 @@
  
                     // Вставляю в базу нове бажання:
                     $array = array(
-                        "INSERT INTO" => $tmpObj->tablesNames[4],
+                        "INSERT INTO" => $usp_money->tablesNames[4],
                         "COLUMNS" => array(
                             "wishName" => $_POST['wishName'],
                             "wishCategory" => $_POST['category'][0],
