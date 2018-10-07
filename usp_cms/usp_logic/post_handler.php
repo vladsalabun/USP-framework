@@ -16,6 +16,35 @@
         }
         
         
+        // --------------> Функція входу:
+        public function login() {
+
+            global $usp;
+            global $webSiteUrl;
+        
+            if (md5($_POST['password']) === checkUSPuserByLogin($_POST['login'])['password']) {
+               
+               // Якщо пароль вірний, то ставлю куки:
+               setcookie("login",$_POST['login'],time()+31536000,'/');
+               setcookie("password",md5($_POST['password']),time()+31536000,'/');
+               
+               $link = $webSiteUrl.$usp.'_cms';
+               
+               header("Location: $link");
+               exit();
+
+            } else {
+               // Якщо пароль не вірний, то редірект на головну:
+               $link = $webSiteUrl.$usp.'_cms';
+               header("Location: $link");
+               exit();
+            }
+           
+        }
+        // <---------------   Функція входу
+        
+        
+        
         // --------------> Функція зміни пароля:
         
         public function changePassword() {
@@ -186,7 +215,18 @@
         // <---------------   Функція зміни параметрів плагіна      
         
         
+        // -------------->    Функція додавання нової категорії в плагін:
         
+        public function addNewCategory() { 
+
+            rubricator::addNewCategory();
+            
+            $link = $_POST['url'];
+            header("Location: $link");
+            exit();
+        }
+        
+        // <---------------   Функція додавання нової категорії в плагін          
         
         
         

@@ -13,10 +13,13 @@
         $categorySelection['value'][$value['ID']] = $value['name'];
     }
     
+    if (isset($_GET['edit_category'])) {
+        
+    } else {}
     
 ?>
 <div class="container-fluid padding20">
-    <h2>Рубрики плагіну:</h2>
+    <h2>Редактор рубрики:</h2>
 </div>
 <div class="container-fluid background4 padding20">
 
@@ -40,21 +43,6 @@
 <div class="container-fluid padding20">
 
 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-<?php   
-    
-    $linkParamArray = array(
-        'url' => $pluginConfigUrl,
-    );
-    
-    // Виводжу випадаючий список рубрик:
-    echo '<h3>Рубрики:</h3>';
-    echo renderCategoryDropList($notesCategories,$linkParamArray,1,$pluginConfigUrl.'edit_category');
-
-    
-    
-    // Виводжу на екран у вигляді дерева (3 колонки):
-    
-?>
 
 
 </div>

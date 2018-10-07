@@ -174,30 +174,127 @@
             'anchor' => ,
             'class' => ,
         );
+        
+        $categoryIdAndName = array(
+            'ID' => , // ід категорії
+            'name' => , // назва категорії
+        );
 
     ********************************************************** */
 
-    function renderCategoryTreeHTML($tree, $linkParamArray,$selectCatArray) {
+    /* Версія 1: Ручна */
+    function renderCategoryTreeHTML($tree, $linkParamArray,$categoryIdAndName,$fullCategoriesInfo = null,$categoryEditing = null,$url = null) {
+    
+        global $form;
 
-        $string = '<ul>';
-        foreach($tree as $root => $branch) {
-            $string .= '<li><a href="'.$linkParamArray['url'].'&category='.$root.'" title="'.$selectCatArray[$root].'" class="'.$linkParamArray['class'].'">'.$selectCatArray[$root].'</a>';
-            if (is_array($branch)) {
-                $string .= renderCategoryTreeHTML($branch, $linkParamArray,$selectCatArray);
+        // якщо передано інфу з бази даних про категорії:
+        if($fullCategoriesInfo != null) {
+            foreach($fullCategoriesInfo as $gid => $categoryArray) {
+                $categoriesArray[$categoryArray['ID']] = array(
+                    'name' => $categoryArray['name'],
+                    'uri' => $categoryArray['uri'],
+                    'count' => $categoryArray['count'],
+                    'description' => $categoryArray['description'],
+                    'position' => $categoryArray['position'],
+                    'parentID' => $categoryArray['parentID'],
+                );
             }
-            $string .= '</li>';
+           
+            // Якщо це дерево має листя (більше, ніж 0), то складаю список:
+            if(count($tree) > 0 ) {
+
+                $string = '<ul class="ul-treefree ul-dropfree">';
+               
+                foreach($tree as $root => $branch) {
+                    
+                    if ($categoryEditing != null) {
+                        // якщо включена опція редагування:
+                        //$editing = modalLink('windowId'.$root, 'edit','className');
+                        $editing = '<a href="'.$url.'&catId='.$root.'">edit link</a>';
+                    }
+                    
+                    $string .= '<li><a href="'.$linkParamArray['url'].'&c='.$categoriesArray[$root]['uri'].'" title="'.$categoryIdAndName[$root].'" class="'.$linkParamArray['class'].'">'.$categoriesArray[$root]['name'].'</a> [ '.$categoriesArray[$root]['count'].' ] '.$editing;
+                    
+                    if (is_array($branch)) {
+                        $string .= renderCategoryTreeHTML($branch, $linkParamArray,$categoryIdAndName,$fullCategoriesInfo,$categoryEditing);
+                    }
+                
+                    $string .= '</li>';
+                    /*
+                    // Форма редагування категорій:
+                    $catModalBody = 
+                         $form->formStart()
+                        .$form->hidden(array('name'=> 'action','value'=> 'editCategory'))
+                        .$form->hidden(array('name'=> 'url','value'=> $pluginConfigUrl.'category'))
+                        .$form->hidden(array('name'=> 'tableName','value'=> $usp_notes->tablesNames[1]))
+                        .p($form->text(array('name'=> 'categoryName','value'=> $categoriesArray[$root]['name'],'class'=>'txtfield','placeholder' =>'Enter new category name')))
+                        .p($form->text(array('name'=> 'description','value'=> $categoriesArray[$root]['description'],'class'=>'txtfield','placeholder' =>'Enter description')))
+                        .p('Позиція: '.$form->select(array('name'=> 'position','value' => array('1'=>'1','2'=>'2','3'=>'3'))))
+                        .p('Надрубрика: '.$form->select($categorySelection))
+                        .p($form->submit(array('name'=> 'submit','value'=> 'Додати категорію','class'=>'btn btn-success')))
+                        .$form->formEnd();
+                    
+                    // модальне вікно для редагування рубрики
+                    echo modalWindow('windowId'.$root,'Редагування рубрики: <b>'.$categoriesArray[$root]['name'].'</b>',$catModalBody,'large','center');
+                    */
+                }
+                
+                $string .= '</ul>'; 
+            
+            } 
+ 
+        } else { 
+            // якщо інфи не передано, а тільки дерево:
+            
+            // Якщо це дерево має листя (більше, ніж 0), то складаю список:
+            if(count($tree) > 0 ) {
+            
+                $string = '<ul>';
+                foreach($tree as $root => $branch) {
+                    $string .= '<li><a href="'.$linkParamArray['url'].'&category='.$root.'" title="'.$selectCatArray[$root].'" class="'.$linkParamArray['class'].'">'.$selectCatArray[$root].$count.'</a>';
+                    if (is_array($branch)) {
+                        $string .= renderCategoryTreeHTML($branch, $linkParamArray,$selectCatArray);
+                    }
+                    $string .= '</li>';
+                }
+                $string .= '</ul>';
+            }
         }
-        $string .= '</ul>';
 
         return $string;
     }
 
+    /* Версія 2: Автоматична в 1 запит */
+    /*
+        $CategoriesInfo це результат запиту: rubricator::getCategories($usp_notes->tablesNames[1]);
+        
+        $linkParamArray = array(
+            'url' => '', // посилання на відображення записів з рубрики
+            'class' => '', // стиль посилання (щоб покрасити в колір наприклад)
+        );
+    */
+    
+    function renderCategoryDropList($categoriesInfo,$linkParamArray,$categoryEditing = null,$url = null) {
+    
+        foreach ($categoriesInfo as $id => $value) {
+            // створюю одновимірний масив залежностей категорій:
+            $oneDimensionalCategoryArray[$value['ID']] = $value['parentID'];
+            $categoryIdAndName[$value['ID']] = $value['name'];
+        }
+        
+        // Створюю багатовимірний масив дерева категорій:
+        $tree = createMultidimensionalArray($oneDimensionalCategoryArray);
+          
+        return renderCategoryTreeHTML($tree, $linkParamArray,$categoryIdAndName,$categoriesInfo,$categoryEditing,$url);
+        
+    }    
+    
     
     /* ********************************************************
 
         Генератор пагінації
 
-        Потрібно передати кількість записів і скільки виводити на сторінку ;
+        Потрібно передати кількість записів і скільки виводити на сторінку;
 
     ********************************************************** */
     
@@ -329,4 +426,81 @@
   
     function br2nl($string){
        return preg_replace('/<br\s?\/?>/ius', "\n", str_replace("\n","",str_replace("\r","", htmlspecialchars_decode($string))));
+    }
+    
+
+
+/*
+    Plugin Name: Cyrillic Transformation
+    Plugin URI: http://salabun.com/
+    Description: Цей плагін знімає головну біль при завантаженні файлів з кириличними іменами. Ви можете замовити у мене розробку плагіну чи сайту. Пишіть на пошту <a href="mailto:vlad@salabun.com" class="email">vlad@salabun.com</a>
+
+    Author: Władysław Sałabun
+    Version: 1.0
+    Author URI: http://salabun.com/
+*/
+ 
+    function CyryllicNameToLatin($name) {
+
+        $cyr = array(
+                'а', 'б', 'в', 
+                'г', 'д', 'е', 
+                'ё', 'ж', 'з', 
+                'и', 'й', 'к', 
+                'л', 'м', 'н', 
+                'о', 'п', 'р', 
+                'с', 'т', 'у', 
+                'ф', 'х', 'ц', 
+                'ч', 'ш', 'щ', 
+                'ъ', 'ы', 'ь', 
+                'э', 'ю', 'я',
+                'А', 'Б', 'В', 
+                'Г', 'Д', 'Е', 
+                'Ё', 'Ж', 'З', 
+                'И', 'Й', 'К', 
+                'Л', 'М', 'Н', 
+                'О', 'П', 'Р', 
+                'С', 'Т', 'У', 
+                'Ф', 'Х', 'Ц', 
+                'Ч', 'Ш', 'Щ', 
+                'Ъ', 'Ы', 'Ь', 
+                'Э', 'Ю', 'Я',
+                'і', 'ї', 'ґ',
+                'є', 'І', 'Ї', 
+                'Ґ', 'Є',
+            );
+
+        $lat = array(
+                'a', 'b', 'v', 
+                'g', 'd', 'e', 
+                'e', 'zh', 'z', 
+                'i', 'j', 'k', 
+                'l', 'm', 'n', 
+                'o', 'p', 'r', 
+                's', 't', 'u', 
+                'f', 'h', 'ts', 
+                'ch', 'sh', 'sch', 
+                '', 'y', '', 
+                'e', 'ju', 'ya',
+                'a', 'b', 'v', 
+                'g', 'd', 'e', 
+                'e', 'zh', 'z', 
+                'i', 'j', 'k', 
+                'l', 'm', 'n', 
+                'o', 'p', 'r', 
+                's', 't', 'u', 
+                'f', 'h', 'ts', 
+                'ch', 'sh', 'sch', 
+                '', 'y', '', 
+                'e', 'ju', 'ya',
+                'i', 'ji', 'g',
+                'je', 'i', 'ji',
+                'g', 'je'
+            );
+
+        $output = str_replace($cyr, $lat, $name);
+        $output = preg_replace('%[^\-_a-zA-Z0-9]%i', '-', $output);
+
+        return $output;
+        
     }

@@ -23,11 +23,14 @@
         $webSiteUrl.'usp_cms/usp_css/links_style.css',
         $webSiteUrl.'usp_cms/usp_css/tables_style.css',
         $webSiteUrl.'usp_cms/usp_css/forms_style.css',
+        $webSiteUrl.'usp_cms/usp_css/ul-treefree.css',
     );
     $cmsImg = $webSiteUrl.'usp_cms/usp_img/';
     $cmsJsArray = array(
-        $webSiteUrl.'usp_cms/usp_js/jQuery_v1.12.4.js',
+        //$webSiteUrl.'usp_cms/usp_js/jQuery_v1.12.4.js',
+        $webSiteUrl.'usp_cms/usp_js/jQuery_v1.9.1.js',
         $webSiteUrl.'usp_cms/usp_js/fade.js',
+        $webSiteUrl.'usp_cms/usp_js/ul-drop.js',
         $webSiteUrl.'usp_cms/usp_js/bootstrap.js'
     );
 

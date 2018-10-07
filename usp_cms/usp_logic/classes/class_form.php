@@ -1,6 +1,6 @@
 <?php
     
-    // версія 1.1 (23 вересня 2018)
+    // версія 1.2 (6 жоавтня 2018)
     
     class formGenerator
     {
@@ -76,21 +76,24 @@
             return '<input name="'.$name.'" type="file">';
         } 
 
-        public function select($array = null, $selected = null)
+        public function select($array, $selected = null)
         {
-            $sting = '<select name="'.$array['name'].'[]">';
             
-            foreach ($array['value'] as $key => $value) {
-                if ($key == $selected) {
-                    $select = ' selected ';
-                } else {
-                    $select = '';
+            if ($array != null) {
+                $sting = '<select name="'.$array['name'].'[]">';
+                
+                foreach ($array['value'] as $key => $value) {
+                    if ($key == $selected) {
+                        $select = ' selected ';
+                    } else {
+                        $select = '';
+                    }
+                    $sting .= '<option value="'.$key.'"'.$select.'>'.$value.'</option>';
                 }
-                $sting .= '<option value="'.$key.'"'.$select.'>'.$value.'</option>';
+                
+                $sting .= '</select>';
+                return $sting;
             }
-            
-            $sting .= '</select>';
-            return $sting;
         }       
  
         public function datetime($array = null)

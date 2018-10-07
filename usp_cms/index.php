@@ -12,11 +12,21 @@
     # Перевіряю чи користувач авторизований:   
     $userINFO = checkUSPuserByLogin($_COOKIE['login']);
     
+    // Якщо був запит на вхід:
+    if(isset($_POST['action']) and $_POST['action'] == 'login') {
+        $postObject = new postHandler; 
+        $postObject->login(); 
+    }
+    
     # Якщо ні - на головну:
-    if($userINFO == null) {       
-       header("Location: $webSiteUrl");
+    if($userINFO == null) { 
+        require 'usp_view/login_head.php';
+        require 'usp_view/login_index.php';
+        require 'usp_view/login_footer.php';
        exit();
     }
+    
+    
     
     # Якщо куки є, перевіряю їх:
     if($_COOKIE['password'] === $userINFO['password']) {

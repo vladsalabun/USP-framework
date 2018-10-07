@@ -9,18 +9,23 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent1">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="<?php echo $pluginConfigUrl; ?>">
+            <li class="nav-item active">
+                <a class="nav-link" href="<?php echo $pluginConfigUrl; ?>&plugin_config=approved">
+                    Всі нотатки
+                </a>
+            </li>
+               <a class="nav-link" href="<?php echo $pluginConfigUrl; ?>">
                     На модерації 
                     <?php 
                     
                         
                         if(in_array($_GET['plugin_config'],$notesTypesArray)){
                             $notesType = $_GET['plugin_config'];
-                        } else if($_GET['plugin_config'] == 'category') {
-                            
+                        } else if($_GET['plugin_config'] == '') {
+                            $notesType = $notesTypesArray[0];
                         }
                         else {
-                            $notesType = $notesTypesArray[0];
+                            
                         }
                         
                         $notesCount = getNotesCount($notesType);
@@ -30,11 +35,6 @@
                             echo '[ '.$onModerationCount.' ]';
                         }
                     ?>
-                </a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="<?php echo $pluginConfigUrl; ?>&plugin_config=approved">
-                    Одобрені
                 </a>
             </li>
             <li class="nav-item active">
@@ -63,7 +63,9 @@
         $pluginConfigUrl = $pluginConfigUrl;
     }
 
-echo showPagination($pluginConfigUrl,$_GET['p'],$notesCount,$elementsPerPage); 
+    if($notesCount > 0) {
+        echo showPagination($pluginConfigUrl,$_GET['p'],$notesCount,$elementsPerPage); 
+    }
 
 ?>
 </div>
@@ -104,9 +106,8 @@ echo showPagination($pluginConfigUrl,$_GET['p'],$notesCount,$elementsPerPage);
 .note-link {
     color: #CECECD;
 }
-
-
 </style>
+
 <?php 
 
     $notesBody =         

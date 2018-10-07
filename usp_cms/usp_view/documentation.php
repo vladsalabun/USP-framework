@@ -55,6 +55,7 @@
     ← → ⇽ ⇾ ↗ ↺ ↻ ⇄ ⇏ ⇔
     <br>
     <h3>Bootstrap:</h3>
+    <b>col-sm-12 col-md-12 col-lg-12 col-xl-12 </b><br>
     <b>.container-fluid</b> - контейнер на ширину екрану<br>
     <b>.table-striped table-mini</b> - компктний стиль для таблиць<br>
     <p>Покраска фона:<br>

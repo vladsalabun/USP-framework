@@ -20,8 +20,10 @@
                     "ID" => "INT( 11 ) AUTO_INCREMENT PRIMARY KEY",
                     "parentID" => "INT( 11 ) DEFAULT '0'",
                     "name" => "VARCHAR( 100 ) NULL",
+                    "description" => "VARCHAR( 200 ) NULL",
                     "uri" => "VARCHAR( 100 ) NULL",
                     "count" => "INT( 11 ) DEFAULT '0'",
+                    "position" => "INT( 11 ) DEFAULT '0'", // колонка для трьохколончої верстки
                     "moderation" => "INT( 1 ) DEFAULT '0'"
                 )
             );
@@ -44,9 +46,26 @@
             self::reinstall($tables);
         }
         
-        public static function addNewCategory($array,$tableName)
+        public static function addNewCategory()
         {
-            echo $tableName;
+           
+            global $db;
+
+            // якщо це корінна категорія:
+            $array = array(
+            "INSERT INTO" => $_POST['tableName'],
+                "COLUMNS" => array(
+                    "parentID" => $_POST['parentCategory'][0],
+                    "name" => $_POST['categoryName'],
+                    "description" => $_POST['description'][0],
+                    "position" => $_POST['position'][0],
+                    "uri" => CyryllicNameToLatin($categoryName),
+                 )                           
+            );
+                    
+            $db->insert($array); 
+
+            
         } 
         
         public static function getCategories($tableName)
@@ -57,17 +76,31 @@
                 "SELECT" => "*",
                 "FROM" => $tableName,
                 "WHERE" => "moderation = 0",
-                "ORDER" => "date",
+                "ORDER" => "count",
+                "SORT" => "DESC",
             );
             
-            return $db->select($array);
+            $categoriesArray = $db->select($array);
+           
+            return $categoriesArray;
             
         } 
         
-        public static function editCategories($array,$tableName)
+        public static function editCategory($array,$tableName)
         {
             echo $tableName;
         }
+        
+        public static function showCategoriesTree($tableName)
+        {
+            
+        }
+        
+        public static function showCategoriesTree3($tableName)
+        {
+            
+        }
+
         
     }
     
