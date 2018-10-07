@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule ^page/(.*)/? index.php?theme_page=$1

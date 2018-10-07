@@ -59,6 +59,20 @@
         return '404';
     }
     
-    function checkThemePage() {
-        return 'index';
+    function checkThemePage($theme) {
+        
+        // Дізнаюсь всі сторінки теми, окрім head, header i footer:
+        $pagesArray = getThemeFilesArray($theme);
+        
+        // Дізнаюсь, чи запитувана сторінка є у масиві:
+        if($_GET['theme_page'] == '') {
+            return 'index';
+        }
+        if (in_array($_GET['theme_page'].'.php',$pagesArray)) {
+            return $_GET['theme_page'];
+        } else {
+            // якщо немає, то 404
+            return '404';
+        } 
+        
     }

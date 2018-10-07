@@ -29,6 +29,34 @@
 
     }
 
+    // Сторінки теми:
+    function getThemeFilesArray($theme) {
+
+        global $usp;
+        global $rootFolder;
+
+        $exclude = array('head','header','footer');
+        
+        $array = array();
+
+        // беру файли з директорії:
+        $files = scandir($_SERVER['DOCUMENT_ROOT'].$rootFolder.'/themes/'.$theme.'/view/');
+
+        // проходжу по масиву і беру тільки php файли:
+        foreach ($files as $key => $string) {
+            // якщо розширення .php:
+            if(substr($string, -4) == '.php') {
+                if(!in_array(substr($string, 0,-4),$exclude)) {
+                    // додаю файл в масив:
+                    $array[] = $string;
+                }
+            }
+        }
+
+        return $array;
+
+    }    
+    
     function getFoldersArray($dir) {
 
         global $usp;

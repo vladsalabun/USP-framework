@@ -40,7 +40,7 @@
             
             if ($maintance == false) {
                 // то запускаю роутер:
-                $need_page = checkThemePage();
+                $need_page = checkThemePage($theme);
                 
                 // if there is no POST request, we can show page:
                 require 'themes/'.$theme.'/functions.php';

@@ -1,21 +1,6 @@
-<?php 
-
-   $tmpPSWD = checkUSPuserByLogin($_COOKIE['login'])['password'];
-   
-   if ($_COOKIE['password'] === $tmpPSWD and $tmpPSWD != null) {
-       
-       $link = $webSiteUrl.$usp.'_cms';
-       
-       header("Location: $link");
-       exit();
-   } else {
-       
-   }
-   
-?>
 <html lang="ru">
 <head>
-<title>Привіт, Влад!</title>
+<title>Привіт!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
