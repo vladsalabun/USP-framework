@@ -12,6 +12,8 @@
     /* TODO: тут роутер */
     $maintance = false;
     
+    /* TODO: А як підключати функції плагінів у темі? */
+    
     /* TODO: дізнатись яка тема вибрата у налаштуваннях */
     $theme = 'personal_crm';
     
@@ -49,9 +51,7 @@
                 require 'themes/'.$theme.'/view/footer.php';
                 
             } else {
-                require 'themes/'.$theme.'/view/head.php';
-                require 'themes/'.$theme.'/view/gateway.php';
-                require 'themes/'.$theme.'/view/footer.php';
+                // TODO: What else?
             }
             
         }

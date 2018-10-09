@@ -76,6 +76,7 @@
                 return '<p>ERROR: you must set FROM what table you want select rows.</p>';
             }
             // TODO: what if we get user data? 
+            // TODO: WEHRE ARRAY!
             if (isset($query['WHERE'])) {
                 $where = 'WHERE '. $query['WHERE'];
             }

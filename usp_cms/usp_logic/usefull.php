@@ -6,6 +6,24 @@
 
     */
 
+    /**
+    
+    
+     * Выводит информацию о переменной
+     *
+     * @param mixed $obj
+     * @return string
+     */
+    function dump($obj)
+    {
+        if (is_array($obj) || is_object($obj)) {
+            $obj = print_r($obj, true);
+        }
+
+        echo '<pre>' . htmlentities($obj, ENT_QUOTES) . "</pre><br>\n";
+    }
+    
+    
     function getFilesArray($dir) {
 
         global $usp;

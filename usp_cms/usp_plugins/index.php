@@ -83,7 +83,6 @@
         
     // якщо раптом налаштування збились на null:
     if($pluginsInfo['value'] == null or $pluginsInfo['value'] == 'null') {
-        echo 1111;
         setPluginsFromFolderAsDeactivated($pluginsArray);
     }
   
@@ -125,10 +124,10 @@
         // Підключаю все активовані плагіни:
         if (isset($pluginStatus['activated'][$value['pluginFolder']])) {
             
-            // Підключаю, якщо я знаходжусь в цьому плагіні:
-            if(isset($_GET['name'])) {
+            // Підключаю плагіни:
+            //if(isset($_GET['name'])) {
                 require_once $rootRoot.'/'.$usp.'_cms/usp_plugins/'.$value['pluginFolder'].'/index.php';
-            }
+            //}
             
             $activatedPlugins[$key] = $value;
             
