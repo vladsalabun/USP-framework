@@ -1,6 +1,6 @@
 <?php
     
-    // версія 1.2 (6 жоавтня 2018)
+    // версія 1.3 (11 жоавтня 2018)
     
     class formGenerator
     {
@@ -144,5 +144,16 @@
         }
 
         
+        public function number($array = null)
+        {
+            if (isset($array['class'])) {
+                $class = 'class="'.$array['class'].'"';
+            } 
+            if (isset($array['step'])) { 
+                $step = 'step="'.$array['step'].'"';
+            }
+            
+            return '<input type="number" name="'.$array['name'].'" value="'.$array['value'].'" placeholder="'.$array['placeholder'].'" '.$class.' '.$step.'>';
+        }
  
     }
