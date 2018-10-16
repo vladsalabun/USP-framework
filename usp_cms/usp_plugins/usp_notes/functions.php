@@ -1,5 +1,10 @@
 <?php 
 
+    if($userINFO['ID'] < 1) {
+        die();
+        exit();
+    }
+
     require_once 'plugin_database.php';
     
     $usp_notes  = new usp_notes;

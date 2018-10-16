@@ -16,7 +16,17 @@
             .$form->formEnd();
             ?>
         </div>
-        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">2</div>
+        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+        <h2>Мова:</h2>
+            <?php
+            echo
+             $form->formStart()
+            .$form->hidden(array('name'=> 'action','value'=> 'changeLanguage'))
+            .p($form->select(array('name'=> 'newPassword2','value'=> $allowedLanguages,'class'=>'txtfield')))
+            .p($form->submit(array('name'=> '','value'=> 'Save','class'=>'btn btn-success')))
+            .$form->formEnd();
+            ?>        
+        </div>
         <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">3</div>
     </div>
 </div>

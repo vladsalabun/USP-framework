@@ -1,4 +1,9 @@
 <?php 
+
+    if($userINFO['ID'] < 1) {
+        die();
+        exit();
+    }
     
     require_once 'plugin_database.php';
     

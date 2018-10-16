@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Привіт, Влад!</title>
+<title>Привет!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +22,7 @@
 </head>
 </body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="<?php echo $webSiteUrl.$usp; ?>_cms">Головна</a>
+  <a class="navbar-brand" href="<?php echo $webSiteUrl.$usp; ?>_cms">Главная</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -49,7 +49,7 @@
             
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="?page=plugins"><?php echo dialogs(400,$language); ?></a>
-                <a class="dropdown-item" href="?page=documentation"><?php echo dialogs(401,$language); ?></a>
+                <!---<a class="dropdown-item" href="?page=documentation"><?php echo dialogs(401,$language); ?></a> --->
 <?php 
         if(is_array($activatedPlugins)) {   
             foreach ($activatedPlugins as $key => $value) {
@@ -62,13 +62,13 @@
         }
 ?>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="?page=configurations">Налаштування</a>
+                <a class="dropdown-item" href="?page=configurations">Настройки</a>
             </div>
         </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="?page=logout">Logout</a>
+                <a class="nav-link" href="?page=logout">Выход</a>
             </li>
         </ul>
 </div>

@@ -6,14 +6,14 @@
          
         $dialogs = array(
             400 => array(
-                'ukraine' => 'Плагіни',
+                'ukraine' => 'Плагины',
                 'russian' => 'Плагины',
                 'poland' => '',
                 'english' => 'Plugins',
             ),
             401 => array(
-                'ukraine' => 'Документація',
-                'russian' => 'Документаця',
+                'ukraine' => 'Документация',
+                'russian' => 'Документация',
                 'poland' => '',
                 'english' => 'Documentation',
             ) 

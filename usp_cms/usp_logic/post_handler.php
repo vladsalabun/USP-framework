@@ -229,5 +229,19 @@
         // <---------------   Функція додавання нової категорії в плагін          
         
         
+        // -------------->    Зміна мови CMS
+        
+        public function changeLanguage() { 
+
+            var_dump($_POST);
+            exit();
+            
+            $link = $_POST['url'];
+            header("Location: $link");
+            exit();
+        }
+        
+        // <---------------   Зміна мови CMS       
+        
         
     }

@@ -1,5 +1,10 @@
 <?php
 
+    if($userINFO['ID'] < 1) {
+        die();
+        exit();
+    }
+
     // TODO: чи видно змінні з одного плагіну в іншому?
 
     require_once 'plugin_database.php';

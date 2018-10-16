@@ -3,7 +3,10 @@
     require_once 'plugin_database.php';
     
     // назву файлу з датою, щоб не могли підібрати
-
+    if($userINFO['ID'] < 1) {
+        die();
+        exit();
+    }
     
     // Якщо чітко вказано, що це запит до плагіну:
     if ($_POST['actionTo'] == 'plugin') {

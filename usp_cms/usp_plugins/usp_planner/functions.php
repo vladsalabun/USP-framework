@@ -1,5 +1,10 @@
 <?php 
 
+    if($userINFO['ID'] < 1) {
+        die();
+        exit();
+    }
+
     require_once 'plugin_database.php';
     
     // Вставляється в базу даних при створенні бази:
