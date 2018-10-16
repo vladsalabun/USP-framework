@@ -1,6 +1,6 @@
 <?php
     
-    // версія 1.3 (11 жоавтня 2018)
+    // версія 1.4 (16 жоавтня 2018)
     
     class formGenerator
     {
@@ -63,7 +63,7 @@
             if (isset($array['class'])) {
                 $class = 'class="'.$array['class'].'"';
             }
-            return '<textarea name="'.$array['name'].'" '.$class.'>'.$array['value'].'</textarea>';
+            return '<textarea name="'.$array['name'].'" placeholder="'.$array['placeholder'].'" '.$class.'>'.$array['value'].'</textarea>';
         }
         
         public function uploadFile($array = null)
