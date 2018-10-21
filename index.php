@@ -1,4 +1,8 @@
 <?php
+ 
+    $postFunctionSecret = 'fHeyYoGsgeOKksncs47dkj';
+ 
+    require_once 'access_details.php';
     
     # Підключаю конфігурацію:
     require_once 'usp_cms/usp_configs/index.php';
@@ -6,6 +10,10 @@
     # Підключаю логіку:
     require_once 'usp_cms/'.$usp.'_logic/index.php';
 
+    if($db->firstStartCMS() == false) {
+        installUSPConfigurationTable();
+    }
+    
     # Підключаю плагіни:
     require_once 'usp_cms/'.$usp.'_plugins/index.php';
     
@@ -14,7 +22,7 @@
     
     /* TODO: А як підключати функції плагінів у темі? */
     
-    /* TODO: дізнатись яка тема вибрата у налаштуваннях */
+    /* TODO: дізнатись яка тема вибрана у налаштуваннях */
     $theme = 'personal_crm';
     
     if (isset($_GET['lang'])) {

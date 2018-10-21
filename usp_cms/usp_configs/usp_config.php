@@ -48,7 +48,7 @@
     
 
     # CMS prefix:
-    $usp = 'usp'; // не працює
+    $usp = 'usp';
 
     # CMS статус:
     $debug = 1;

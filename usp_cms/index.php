@@ -1,11 +1,19 @@
 <?php
-   
+
+    $postFunctionSecret = 'fHeyYoGsgeOKksncs47dkj';
+
+    require_once '../access_details.php';
+
     # Підключаю конфігурацію:
     require_once 'usp_configs/index.php';
 
     # Підключаю логіку:
     require_once $usp.'_logic/index.php';
 
+    if($db->firstStartCMS() == false) {
+        installUSPConfigurationTable();
+    }
+    
     # Перевіряю чи користувач авторизований:   
     $userINFO = checkUSPuserByLogin($_COOKIE['login']);
     // <-- Цю перевірку необхідно виконати до підключення плагінів, щоб захистити неавторизовані запити    

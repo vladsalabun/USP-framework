@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
-            <h2>Зміна пароля:</h2>
+            <h2>Изменение пароля:</h2>
             <?php
             echo
              $form->formStart()
@@ -12,7 +12,7 @@
             .p($form->text(array('name'=> 'oldPassword','value'=> '','class'=>'txtfield','placeholder' =>'old password')))
             .p($form->text(array('name'=> 'newPassword','value'=> '','class'=>'txtfield','placeholder' =>'new password')))
             .p($form->text(array('name'=> 'newPassword2','value'=> '','class'=>'txtfield','placeholder' =>'new passrowd again')))
-            .p($form->submit(array('name'=> '','value'=> 'Змінити пароль','class'=>'btn btn-success')))
+            .p($form->submit(array('name'=> '','value'=> 'Сохранить пароль','class'=>'btn btn-success')))
             .$form->formEnd();
             ?>
         </div>

@@ -15,3 +15,7 @@
     require_once 'database_config.php';
     require_once 'language_config.php';
     require_once 'plugin_config.php';
+    
+    if($theme == null) {
+        $theme = 'YandexMoneyAPP_'.$language;
+    }

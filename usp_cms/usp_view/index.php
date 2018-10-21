@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 center"></div>
-        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">На моей страничке вы можете увидеть так же и другие мои приложения, или заказать разработку чего-нибудь. Поэтому просто заходите в гости иногда :)</div>
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 center">На моей страничке вы можете увидеть так же и другие мои приложения, или заказать разработку чего-нибудь. <br>Поэтому просто заходите в гости иногда :)</div>
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 center"></div>
     </div>
 </div>

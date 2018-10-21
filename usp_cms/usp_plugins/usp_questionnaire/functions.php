@@ -1,7 +1,6 @@
 <?php
 
-    if($userINFO['ID'] < 1) {
-        die();
+    if($postFunctionSecret != 'fHeyYoGsgeOKksncs47dkj') {
         exit();
     }
 

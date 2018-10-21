@@ -1,10 +1,8 @@
 <?php
 
-    if($userINFO['ID'] < 1) {
-        die();
+    if($postFunctionSecret != 'fHeyYoGsgeOKksncs47dkj') {
         exit();
     }
-
     // TODO: чи видно змінні з одного плагіну в іншому?
 
     require_once 'plugin_database.php';

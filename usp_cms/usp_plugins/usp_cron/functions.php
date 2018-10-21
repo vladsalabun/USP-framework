@@ -1,10 +1,9 @@
 <?php 
 
-    if($userINFO['ID'] < 1) {
-        die();
+    if($postFunctionSecret != 'fHeyYoGsgeOKksncs47dkj') {
         exit();
     }
-    
+ 
     require_once 'plugin_database.php';
     
     $usp_cron = new usp_cron; 

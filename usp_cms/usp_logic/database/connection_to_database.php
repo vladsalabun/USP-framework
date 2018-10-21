@@ -23,6 +23,21 @@
             }
         }    
 
+        function firstStartCMS() {
+            
+            // Try a select statement against the table
+            // Run it in try/catch in case PDO is in ERRMODE_EXCEPTION.
+            try {
+                $result = $this->conn->query("SELECT * FROM usp_configuration LIMIT 1");
+            } catch (Exception $e) {
+                // We got an exception == table not found
+                return FALSE;
+            }
+
+            // Result is either boolean FALSE (no table found) or PDOStatement Object (table found)
+            return $result !== FALSE;
+        }        
+        
         public function createAllTables($tableToCreate = null, $wipe = null) 
         {
             

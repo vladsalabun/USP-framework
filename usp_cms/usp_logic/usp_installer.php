@@ -6,14 +6,6 @@
 
     */
 
-   if ($uspInstaller == 1) {
-       
-        installUSPConfigurationTable();
-
-   }
-   
-   
-   
    
    
    /* нижче функції: */
@@ -21,6 +13,7 @@
    
    function installUSPConfigurationTable() {
         
+        global $webSiteUrl;
         global $usp;
         global $db;
         
@@ -62,5 +55,7 @@
             );
             $db->insert($array);
         }
+        
+        header("Location: $webSiteUrl");
         
    }
