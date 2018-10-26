@@ -1,6 +1,6 @@
 <?php
     
-    // версія 1.4 (16 жоавтня 2018)
+    // версія 1.5 (23 жоавтня 2018)
     
     class formGenerator
     {
@@ -48,6 +48,14 @@
         public function hidden($array = null)
         {
             return '<input type="hidden" name="'.$array['name'].'" value="'.$array['value'].'">';
+        }
+
+        public function hiddens($array = null)
+        {
+            foreach ($array as $name => $value) {
+                $string .= '<input type="hidden" name="'.$name.'" value="'.$value.'">';
+            }
+            return $string;
         }
         
         public function text($array = null)

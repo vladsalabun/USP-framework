@@ -15,7 +15,7 @@
     {
         # Адрес вашего сайта
         # Пример: http://test1.ru/ или http://test1.ru/shop/
-        const URL = 'http://test1.ru/drive/yandex-money/';
+        const URL = 'http://usp.com.yy/';
         
         # Сервер базы данных:
         # Пример: localhost

@@ -14,12 +14,17 @@
         
         private function connecting() 
         {
+            
+            global $usp;
+
             // Connectiong to db:
             try {
-                $this->conn = new PDO('mysql:host='.CONFIGURATION::HOST.';dbname='.CONFIGURATION::DB_NAME, CONFIGURATION::DB_USER, CONFIGURATION::DB_PASSWORD);
+                //$this->conn = new PDO('mysql:host='.$dbCfg->host.';dbname='.$dbCfg->db_name, $dbCfg->db_user, $dbcfg->db_password);
+                $this->conn = new PDO('mysql:host='.accessDetail::HOST.';dbname='.$usp.'_'.accessDetail::DB_NAME, accessDetail::DB_USER, accessDetail::DB_PASSWORD);
                 $this->conn->exec("set names utf8mb4");
             } catch (Exception $e) {
-                echo dialogs(101,$language) . $e->getMessage();
+                echo $e->getMessage();
+                exit();
             }
         }    
 
@@ -36,8 +41,9 @@
 
             // Result is either boolean FALSE (no table found) or PDOStatement Object (table found)
             return $result !== FALSE;
-        }        
+        }
         
+            
         public function createAllTables($tableToCreate = null, $wipe = null) 
         {
             
@@ -91,7 +97,6 @@
                 return '<p>ERROR: you must set FROM what table you want select rows.</p>';
             }
             // TODO: what if we get user data? 
-            // TODO: WEHRE ARRAY!
             if (isset($query['WHERE'])) {
                 $where = 'WHERE '. $query['WHERE'];
             }
@@ -197,7 +202,7 @@
         }
         
         ### /UPDATE
-        
+
         ### INSERT
         public function insert($array) 
         {           
@@ -231,5 +236,5 @@
         
         
     } // <- end of class database
-    
+
     

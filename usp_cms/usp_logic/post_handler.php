@@ -242,6 +242,43 @@
         }
         
         // <---------------   Зміна мови CMS       
+
+        
+        // -------------->    Функція активації YDA
+        
+        public function ydaActivation() { 
+
+            global $webSiteUrl;
+            
+            $params = array(
+                'request' => 'activation',
+                'plugin' => $_POST['plugin'],
+                'e_mail' => $_POST['email'],
+                'url' => $_SERVER['SERVER_NAME'],
+                'version' => $_POST['version']
+            );
+            
+            $answer = apiLicense($params);
+            
+            if(is_array($answer)) {
+
+                if(isset($answer['decision']) and $answer['request'] == 'activation') {
+                    // Записую в базу даних $answer['decision']:
+                    updateYmConfig('license email',$_POST['email']);
+                    updateYmConfig('license token',$answer['decision']);
+                }
+            } else {
+                // Що робити, якщо прийшов не масив?
+            }
+            
+            $link = $webSiteUrl.'/usp_cms/?page=plugin&name=usp_yandex_donation';
+            header("Location: $link");
+            exit();
+            
+        }
+        
+        // <---------------   Функція активації YDA 
+
         
         
     }

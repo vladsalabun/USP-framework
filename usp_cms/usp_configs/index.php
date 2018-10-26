@@ -12,7 +12,6 @@
     */
 
     require_once 'usp_config.php';
-    require_once 'database_config.php';
     require_once 'language_config.php';
     require_once 'plugin_config.php';
     

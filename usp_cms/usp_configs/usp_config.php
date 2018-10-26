@@ -11,7 +11,7 @@
     $defaultPassword = 'marketing';
 
     # Посилання:
-    $webSiteUrl = 'http://usp.com.yy/';                         // <- Треба редагувати при встановленні   
+    $webSiteUrl = accessDetail::URL;   
     
     # Модулі:
     $cmsStylesArray = array(
