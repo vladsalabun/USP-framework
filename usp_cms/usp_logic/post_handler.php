@@ -6,7 +6,8 @@
 
     */
     
-    class postHandler {
+    class postHandler 
+    {
         
         public $db;
         
@@ -21,7 +22,7 @@
 
             global $usp;
             global $webSiteUrl;
-        
+
             if (md5($_POST['password']) === checkUSPuserByLogin($_POST['login'])['password']) {
                
                // Якщо пароль вірний, то ставлю куки:
@@ -95,8 +96,11 @@
                 # Підключаю плагіни:
                 require_once './'.$usp.'_plugins/'.$_POST['pluginFolder'].'/plugin_database.php';
                 // активую створення таблиць плагіну:
-                $tmpObj = new $_POST['pluginFolder'];
-                $tmpObj->reinstall();
+                // Якщо такий клас існує:
+                if (class_exists($_POST['pluginFolder'])) {
+                    $tmpObj = new $_POST['pluginFolder'];
+                    $tmpObj->reinstall();
+                }
 
             } else if($_POST['turn'] == 'off') {
                 
@@ -227,8 +231,7 @@
         }
         
         // <---------------   Функція додавання нової категорії в плагін          
-        
-        
+
         // -------------->    Зміна мови CMS
         
         public function changeLanguage() { 
@@ -241,7 +244,7 @@
             exit();
         }
         
-        // <---------------   Зміна мови CMS       
+        // <---------------   Зміна мови CMS  
 
         
         // -------------->    Функція активації YDA
@@ -259,7 +262,7 @@
             );
             
             $answer = apiLicense($params);
-            
+                    
             if(is_array($answer)) {
 
                 if(isset($answer['decision']) and $answer['request'] == 'activation') {
@@ -269,16 +272,17 @@
                 }
             } else {
                 // Що робити, якщо прийшов не масив?
+                echo 'cURL error!';
+                exit();
             }
             
-            $link = $webSiteUrl.'/usp_cms/?page=plugin&name=usp_yandex_donation';
+            $link = $webSiteUrl.'usp_cms/?page=plugin&name=usp_yandex_donation';
             header("Location: $link");
             exit();
             
         }
         
         // <---------------   Функція активації YDA 
-
         
         
     }
