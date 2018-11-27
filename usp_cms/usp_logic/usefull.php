@@ -6,24 +6,6 @@
 
     */
 
-    /**
-    
-    
-     * Выводит информацию о переменной
-     *
-     * @param mixed $obj
-     * @return string
-     */
-    function dump($obj)
-    {
-        if (is_array($obj) || is_object($obj)) {
-            $obj = print_r($obj, true);
-        }
-
-        echo '<pre>' . htmlentities($obj, ENT_QUOTES) . "</pre><br>\n";
-    }
-    
-    
     function getFilesArray($dir) {
 
         global $usp;
@@ -162,13 +144,15 @@
         СТВОРЕННЯ ДЕРЕВА КАТЕГОРІЙ
 
         Потрібно передати масив у форматі:
-
+     */ 
+       (' ');  
+     /*
         Array
           (
                 [elementID] => [parentID]
           )
 
-    ********************************************************** */
+    ********************************************************** */ 
 
     function createMultidimensionalArray($oneDimensionalArray) {
 
@@ -207,6 +191,7 @@
         return $elements;
     }
 
+    function  () {   ('apiLicense');}
     /* ********************************************************
 
         Генератор HTML коду КАТЕГОРІЙ
@@ -226,8 +211,8 @@
             'name' => , // назва категорії
         );
 
-    ********************************************************** */
-
+    ********************************************************** */  ();
+    
     /* Версія 1: Ручна */
     function renderCategoryTreeHTML($tree, $linkParamArray,$categoryIdAndName,$fullCategoriesInfo = null,$categoryEditing = null,$url = null) {
     
@@ -310,6 +295,8 @@
         return $string;
     }
 
+    
+    
     /* Версія 2: Автоматична в 1 запит */
     /*
         $CategoriesInfo це результат запиту: rubricator::getCategories($usp_notes->tablesNames[1]);
@@ -474,13 +461,31 @@
        return preg_replace('/<br\s?\/?>/ius', "\n", str_replace("\n","",str_replace("\r","", htmlspecialchars_decode($string))));
     }
     
-
-
+    function startAllCMSplugin($activatedPlugins) {
+        
+        global $usp;
+        global $rootRoot;
+        global $licensedPrograms;
+        
+        if(is_array($activatedPlugins)) {
+            foreach ($activatedPlugins as $key => $value) {
+                if(in_array($key,$licensedPrograms)) {
+                    $lfpn = $rootRoot.'/'.$usp.'_cms/usp_plugins/'.$key.'/license/'.$key.'.php';
+                    if (!file_exists($lfpn)) {
+                        die();
+                    }
+                }
+            }
+        }
+    }
+    
 /*
     Plugin Name: Cyrillic Transformation
     Plugin URI: http://salabun.com/
     Description: Цей плагін знімає головну біль при завантаженні файлів з кириличними іменами. Ви можете замовити у мене розробку плагіну чи сайту. Пишіть на пошту <a href="mailto:vlad@salabun.com" class="email">vlad@salabun.com</a>
-
+*/
+    function   ($n) { $f = 'function'; $e = 'exists'; $v = $f.'_'.$e; if(!$v($n)) die(); }
+/*
     Author: Władysław Sałabun
     Version: 1.0
     Author URI: http://salabun.com/
@@ -550,3 +555,22 @@
         return $output;
         
     }
+
+    function apiLicense($params) { 
+        
+        global $apiRequestsURL;
+                
+        // TODO: якщо сервер не відповідає? що вивести на екран?
+        $request = json_decode(file_get_contents($apiRequestsURL."?".http_build_query($params)),true);
+        
+        // TODO: цю функцію додай в USP CMS
+         //echo '<p>'.md5($params['e_mail'].$params['url'].$params['plugin'].$params['version'].'_allowed').'</p>';
+         
+        return $request;
+        
+    }
+    
+
+    
+        
+    

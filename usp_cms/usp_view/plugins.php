@@ -56,7 +56,7 @@
                 .$form->hidden(array('name'=> 'action','value'=> 'pluginPlugger'))
                 .$form->hidden(array('name'=> 'turn','value'=> 'off'))
                 .$form->hidden(array('name'=> 'pluginFolder','value'=> $plugin['pluginFolder']))
-                .$form->submit(array('name'=> '','value'=> 'Активний','class'=>'btn btn-success'))
+                .$form->submit(array('name'=> '','value'=> 'Активен','class'=>'btn btn-success'))
                 .$form->formEnd();
             } else if (isset($pluginStatus['deactivated'][$plugin['pluginFolder']])) {
                    echo                         
@@ -64,7 +64,7 @@
                 .$form->hidden(array('name'=> 'action','value'=> 'pluginPlugger'))
                 .$form->hidden(array('name'=> 'turn','value'=> 'on'))
                 .$form->hidden(array('name'=> 'pluginFolder','value'=> $plugin['pluginFolder']))
-                .$form->submit(array('name'=> '','value'=> 'Відключений','class'=>'btn btn-danger'))
+                .$form->submit(array('name'=> '','value'=> 'Отключен','class'=>'btn btn-danger'))
                 .$form->formEnd();
             } else {
                 echo 'other';

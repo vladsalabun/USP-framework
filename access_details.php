@@ -22,7 +22,7 @@
         const HOST = 'localhost';
         
         # Название базы данных:     
-        const DB_NAME = 'system';
+        const DB_NAME = 'usp_system';
         
         # Имя пользователя базы данных:
         const DB_USER = 'mysql';

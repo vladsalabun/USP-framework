@@ -33,7 +33,7 @@
     /* Взяти іфнормацію про користувача по логіну: */
     function checkUSPuserByLogin($login) {
        
-        if (strlen($login) < 1) {
+        if (strlen($login) < 1 or strlen($login) > 20) {
            return null;
         }
        

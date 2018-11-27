@@ -1,7 +1,7 @@
 <?php
 
     # CMS version:
-    $version = '2.7';
+    $version = '2.7.1';
 
     # Встановлення USP:
     $uspInstaller = 0; // після першого запуску можна поставити 0
@@ -11,34 +11,8 @@
     $defaultPassword = 'marketing';
 
     # Посилання:
-    $webSiteUrl = accessDetail::URL;   
+    $webSiteUrl = accessDetail::URL;  // <- Треба редагувати при встановленні   
     
-    # Модулі:
-    $cmsStylesArray = array(
-        $webSiteUrl.'usp_cms/usp_css/basic4.css',
-        $webSiteUrl.'usp_cms/usp_css/usefull.css',
-        $webSiteUrl.'usp_cms/usp_css/navbar_style.css',
-        $webSiteUrl.'usp_cms/usp_css/modal_style.css',
-        $webSiteUrl.'usp_cms/usp_css/cms_style.css',
-        $webSiteUrl.'usp_cms/usp_css/links_style.css',
-        $webSiteUrl.'usp_cms/usp_css/tables_style.css',
-        $webSiteUrl.'usp_cms/usp_css/forms_style.css',
-        $webSiteUrl.'usp_cms/usp_css/ul-treefree.css',
-    );
-    $cmsImg = $webSiteUrl.'usp_cms/usp_img/';
-    $cmsJsArray = array(
-        //$webSiteUrl.'usp_cms/usp_js/jQuery_v1.12.4.js',
-        $webSiteUrl.'usp_cms/usp_js/jQuery_v1.9.1.js',
-        $webSiteUrl.'usp_cms/usp_js/fade.js',
-        $webSiteUrl.'usp_cms/usp_js/ul-drop.js',
-        $webSiteUrl.'usp_cms/usp_js/bootstrap.js'
-    );
-
-    // TODO: set config in DB
-    $elementsPerPage = 10;
-
-    $cmsFonts = $webSiteUrl.'usp_cms/usp_fonts/';
-
 
     ##############################################################
     #
@@ -77,3 +51,36 @@
     }
   
     $rootFolder = '/'.$rootFolder; // <- внутрішня папка, у якій встановлено CMS
+    
+    $licensedPrograms = array(
+        'usp_yandex_donation'
+    );
+    
+    $apiRequestsURL = 'http://api.salabun.com/';
+    
+    # Модулі:
+    $cmsStylesArray = array(
+        $webSiteUrl.'usp_cms/usp_css/basic4.css',
+        $webSiteUrl.'usp_cms/usp_css/usefull.css',
+        $webSiteUrl.'usp_cms/usp_css/navbar_style.css',
+        $webSiteUrl.'usp_cms/usp_css/modal_style.css',
+        $webSiteUrl.'usp_cms/usp_css/cms_style.css',
+        $webSiteUrl.'usp_cms/usp_css/links_style.css',
+        $webSiteUrl.'usp_cms/usp_css/tables_style.css',
+        $webSiteUrl.'usp_cms/usp_css/forms_style.css',
+        $webSiteUrl.'usp_cms/usp_css/ul-treefree.css',
+    );
+    $cmsImg = $webSiteUrl.'usp_cms/usp_img/';
+    $cmsJsArray = array(
+        //$webSiteUrl.'usp_cms/usp_js/jQuery_v1.12.4.js',
+        $webSiteUrl.'usp_cms/usp_js/jQuery_v1.9.1.js',
+        $webSiteUrl.'usp_cms/usp_js/fade.js',
+        $webSiteUrl.'usp_cms/usp_js/ul-drop.js',
+        $webSiteUrl.'usp_cms/usp_js/bootstrap.js'
+    );
+
+    // TODO: set config in DB
+    $elementsPerPage = 10;
+
+    $cmsFonts = $webSiteUrl.'usp_cms/usp_fonts/';
+    

@@ -58,3 +58,25 @@ pre {
         padding: 0px !important;
     }
 }
+
+.shopCoverImage { max-width: 300px; }
+
+
+.vkfield {
+    border: 1px solid #d3d9de;
+    border-radius: 5px;
+    color: #000;
+    font-family: RobotoCondensed-Bold;
+    width: 100%;
+    padding: 5px 10px 5px 10px;
+}
+
+.vktextarea {
+    border: 1px solid #d3d9de;
+    font-size: 16px;
+    border-radius: 5px;
+    color: #000;
+    width: 100%;
+    padding: 5px 10px 5px 10px;
+    min-height: 130px;
+}
