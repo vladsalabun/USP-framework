@@ -562,9 +562,6 @@
                 
         // TODO: якщо сервер не відповідає? що вивести на екран?
         $request = json_decode(file_get_contents($apiRequestsURL."?".http_build_query($params)),true);
-        
-        // TODO: цю функцію додай в USP CMS
-         //echo '<p>'.md5($params['e_mail'].$params['url'].$params['plugin'].$params['version'].'_allowed').'</p>';
          
         return $request;
         
