@@ -63,9 +63,38 @@
         global $rootFolder;
 
         $array = array();
+
+
+        /*
+            Данин Баг
+        */
+        
+        $path = $_SERVER['DOCUMENT_ROOT'].$rootFolder.'/'.$usp.'_cms/usp_plugins';
+        
+        if (!file_exists($path)) {
+            
+            echo '<p><b>Ошибка!</b> Скорее всего вы указали неправыльный адрес своего сайта. Ваш магазин установлен не в корне домена, а в какую-то папку, не так ли? Укажите полный путь к своему магазину в файле <b>access_details.php</b>.</p>
+            <p>Пример:</p>
+            <p>Если сайт установлен в папке /shop, то нужно указать такой адрес: <b>http://site.ru/shop</b></p>';
+            
+            exit();
+            
+        }
+        
+        /*
+            ***********
+        */
+        
         // беру файли з директорії:
         $files = scandir($_SERVER['DOCUMENT_ROOT'].$rootFolder.'/'.$usp.'_cms/usp_plugins');
+        //echo $_SERVER['DOCUMENT_ROOT'].$rootFolder.'/'.$usp.'_cms/usp_plugins';
+        //var_dump($files);       
+            
 
+
+        
+        
+        
         // проходжу по масиву і беру тільки php файли:
         foreach ($files as $key => $string) {
             // якщо розширення .php:

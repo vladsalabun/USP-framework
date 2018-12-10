@@ -4,6 +4,6 @@
        
     header("Location: $webSiteUrl");
     
-    var_dump($_COOKIE);
+
     exit();
 ?>
