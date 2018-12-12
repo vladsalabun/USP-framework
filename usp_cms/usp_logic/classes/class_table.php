@@ -1,7 +1,7 @@
 <?php
-    
-    // версія 1.0 (21 вересня 2018)
-    
+
+    // версія 1.1 (12 грудня 2018)
+
     class tableGenerator
     {
         public function tableStart($array = null)
@@ -15,7 +15,7 @@
                   <!--- TABLE ---><table class="'.$array['class'].'">
                   <thead>
                       <tr>';
-              foreach ($array['th'] as $value){            
+              foreach ($array['th'] as $value){
                  $string .= '<th scope="col">'.$value.'</th>';
               }
               $string .= '</tr>
@@ -25,12 +25,12 @@
               return $string;
             }
         }
-        
+
         public function tableEnd($array = null)
         {
             return '</tbody></table><!--- /TABLE --->';
         }
-        
+
         public function tr($array = null)
         {
             $string .= '<tr>';
@@ -44,5 +44,19 @@
             $string .= '</tr>';
             return $string;
         }
-        
+
+        /******* AUTOGENERATOR **********/
+
+        public function fullPageDataSheet($trArray)
+        {
+            $string .= $this->tableStart();
+            foreach ($trArray as $tdArray) {
+                $string .= $this->tr($tdArray);
+            }
+            $string .= $this->tableEnd();
+
+            return $string;
+        }
+
+
     }
