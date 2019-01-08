@@ -49,10 +49,24 @@
 
         public function fullPageDataSheet($trArray)
         {
-            $string .= $this->tableStart();
+            // Беру заголовки таблиці з бази:
+            $keys = array_keys($trArray[0]);
+            // Встановлюю клас таблиці за замовчуванням:
+            $th = array('class'=>'table');
+            // Формую масив заголовків:
+            foreach ($keys as $key) {
+                $th['th'][] = $key;
+            }
+            
+            // Отримую заголовки таблиці:
+            $string .= $this->tableStart($th);
+            
+            // Отримую строки таблиці
             foreach ($trArray as $tdArray) {
                 $string .= $this->tr($tdArray);
             }
+            
+            // Завершую таблицю:
             $string .= $this->tableEnd();
 
             return $string;
