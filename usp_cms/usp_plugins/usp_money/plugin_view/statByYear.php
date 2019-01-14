@@ -94,6 +94,10 @@
                           }
                       }
                       
+                      if($currentYearMonth == 0) {
+                          $currentYearMonth = 1;
+                      }
+                      
                       
                       foreach ($yearArray['categories'] as $catID => $catValue) {
                           
