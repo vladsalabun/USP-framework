@@ -35,18 +35,79 @@
     //
     $dollarsToUAH = $moneyParams[0]['moneyUSD'] * $moneyParams[0]['usdToUah'];
     $daysLiving = floor($dollarsToUAH / $expensesPerDay);
+    
+    /* Скільки я потратив сьогодні? */
+        $array = array(
+        "SELECT" => "*",
+        "FROM" => $usp_money->tablesNames[0],
+        "WHERE" => "DATE(date) > DATE(CAST(NOW() - INTERVAL 1 DAY AS DATE))",
+    );
+    $spendMoneyLast24hArray = $db->select($array, null); 
+    
+    function getLast24hSpendings($spendMoneyLast24hArray) {
+        
+        $spendings = 0;
+        
+        foreach ($spendMoneyLast24hArray as $key => $value) {
+            if($value['operation'] == 1) {
 
+                $spendings += $value['money'];
+            }
+        }
+        
+        return $spendings;
+    }
+
+    /***********************************************/
+    
+    /* Скільки я потратив цього місяця? */
+        $array = array(
+        "SELECT" => "*",
+        "FROM" => $usp_money->tablesNames[0],
+        "WHERE" => "YEAR(date) = ".date('Y')." AND MONTH(date) = ".date('m'),
+    );
+    
+    $spendMoneyMonthArray = $db->select($array, null);  
+    
+    $secondPrice = round($expensesPerDay/(24*60*60),7);
 ?>
 <div class="container-fluid margin30 delpadding576">
     <div class="row margin20 delpadding576">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 delpadding576">
-        Вартість одного дня: <?php echo $expensesPerDay; ?> ₴<br>
-        Вартість одного місяця: <?php echo $expensesPerDay * 30; ?> ₴<br>
+        Сьогодні можна витратити ще: <span id="iTimer"><?php echo ( $expensesPerDay - getLast24hSpendings($spendMoneyLast24hArray));?></span> ₴<br>
+        Цього місяця можна витратити ще: <?php echo (($expensesPerDay * 30) - getLast24hSpendings($spendMoneyMonthArray));?> ₴<br>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 delpadding576">
+        Вартість секунди: <?php echo $secondPrice; ?> ₴<br>
+        Вартість одного дня: <?php echo $expensesPerDay; ?> ₴<br>
+        Вартість одного місяця: <?php echo $expensesPerDay * 30; ?> ₴<br>
         Вистачить на: <?php echo $daysLiving; ?> днів (<?php echo round($daysLiving / 365, 2); ?> років)
         </div>
     </div>
+<script>
+
+    var iTimer = <?php echo $secondPrice; ?>;
+    
+    // bad habits
+    function increaseTime()
+    {
+        var t = $("span#iTimer").text();
+        var next = parseFloat(t) + iTimer;
+        $("span#iTimer").text(next);
+    }
+
+    // Запуск функции по таймеру:
+    $(document).ready(function(){
+        setInterval('increaseTime()',1000);
+    });
+
+    // Запуск функции по таймеру:
+    $(document).ready(function(){
+        show();
+        // На рабочем сервере установи интервал 5 секунд: 
+        setInterval('show()',1000);
+    });
+</script>
     <div class="row delpadding576">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 delpadding576">
             <h2 class="margin20">По місяцях:</h2>
